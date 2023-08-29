@@ -32,13 +32,13 @@ for idx,row in data.iterrows():
     row[0] = row[0].replace('rt',' ')
 
 
-max_fatures = 2000
+max_fatures = 4000
 tokenizer = Tokenizer(num_words=max_fatures, split=' ')
 tokenizer.fit_on_texts(data['text'].values)
 X = tokenizer.texts_to_sequences(data['text'].values)
 X = pad_sequences(X)
 
-embed_dim = 128
+embed_dim = 256
 lstm_out = 196
 
 model = Sequential()
@@ -55,8 +55,8 @@ print(X_train.shape,Y_train.shape)
 print(X_test.shape,Y_test.shape)
 
 
-batch_size = 32
-model.fit(X_train, Y_train, epochs = 7, batch_size=batch_size, verbose = 2)
+batch_size = 64
+model.fit(X_train, Y_train, epochs = 10, batch_size=batch_size, verbose = 2)
 
 validation_size = 1500
 
@@ -65,6 +65,7 @@ Y_validate = Y_test[-validation_size:]
 X_test = X_test[:-validation_size]
 Y_test = Y_test[:-validation_size]
 score,acc = model.evaluate(X_test, Y_test, verbose = 2, batch_size = batch_size)
+# Score:0.68 Acc: 0.83
 
 
 pos_cnt, neg_cnt, pos_correct, neg_correct = 0, 0, 0, 0
@@ -84,4 +85,7 @@ for x in range(len(X_validate)):
         pos_cnt += 1
 
 print("pos_acc", pos_correct/pos_cnt*100, "%")
+# pos_acc 59.8705501618123 %
+
 print("neg_acc", neg_correct/neg_cnt*100, "%")
+# neg_acc 91.51973131821998 %
