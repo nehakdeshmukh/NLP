@@ -8,12 +8,11 @@ Created on Mon Aug 28 11:45:28 2023
 import pandas as pd
 import re
 from keras.preprocessing.text import Tokenizer
-from keras_preprocessing.sequence import pad_sequences
 from keras.utils import pad_sequences
 from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
 from keras.models import Sequential
 from sklearn.model_selection import train_test_split
-
+import numpy as np
 
 data = pd.read_csv(r"C:\Neha\kaggle Projects\Git hub\NLP\Sentiment.csv")
 
@@ -68,5 +67,19 @@ Y_test = Y_test[:-validation_size]
 score,acc = model.evaluate(X_test, Y_test, verbose = 2, batch_size = batch_size)
 
 
-
+pos_cnt, neg_cnt, pos_correct, neg_correct = 0, 0, 0, 0
+for x in range(len(X_validate)):
+    
+    result = model.predict(X_validate[x].reshape(1,X_test.shape[1]),batch_size=1,verbose = 2)[0]
+   
+    if np.argmax(result) == np.argmax(Y_validate[x]):
+        if np.argmax(Y_validate[x]) == 0:
+            neg_correct += 1
+        else:
+            pos_correct += 1
+       
+    if np.argmax(Y_validate[x]) == 0:
+        neg_cnt += 1
+    else:
+        pos_cnt += 1
 
