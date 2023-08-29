@@ -83,3 +83,5 @@ for x in range(len(X_validate)):
     else:
         pos_cnt += 1
 
+print("pos_acc", pos_correct/pos_cnt*100, "%")
+print("neg_acc", neg_correct/neg_cnt*100, "%")
