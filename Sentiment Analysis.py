@@ -89,3 +89,10 @@ print("pos_acc", pos_correct/pos_cnt*100, "%")
 
 print("neg_acc", neg_correct/neg_cnt*100, "%")
 # neg_acc 91.51973131821998 %
+
+#Test Data 
+
+twt = ['Meetings: Because none of us is as dumb as all of us.']
+twt = tokenizer.texts_to_sequences(twt)
+
+
