@@ -97,3 +97,11 @@ twt = tokenizer.texts_to_sequences(twt)
 
 #padding 
 twt = pad_sequences(twt, maxlen=28, dtype='int32', value=0)
+
+#Prediction
+sentiment = model.predict(twt,batch_size=1,verbose = 2)[0]
+
+if(np.argmax(sentiment) == 0):
+    print("negative")
+elif (np.argmax(sentiment) == 1):
+    print("positive")
