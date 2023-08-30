@@ -95,4 +95,5 @@ print("neg_acc", neg_correct/neg_cnt*100, "%")
 twt = ['Meetings: Because none of us is as dumb as all of us.']
 twt = tokenizer.texts_to_sequences(twt)
 
-
+#padding 
+twt = pad_sequences(twt, maxlen=28, dtype='int32', value=0)
