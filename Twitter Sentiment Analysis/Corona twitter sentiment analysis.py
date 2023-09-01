@@ -38,3 +38,6 @@ ax.bar_label(ax.containers[0])
 plt.ylabel('count')
 plt.xlabel('')
 plt.show()
+
+
+tweets_per_country = train_data['Location'].value_counts().loc[lambda x : x > 100].reset_index(name='counts')
