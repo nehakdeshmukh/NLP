@@ -40,11 +40,11 @@ plt.xlabel('')
 plt.show()
 
 
-tweets_per_country = train_data['Location'].value_counts().loc[lambda x : x > 100].reset_index(name='counts')
+tweets_per_region = train_data['Location'].value_counts().loc[lambda x : x > 50].reset_index(name='counts')
 
 plt.figure(figsize=(15,6))
-ax = sns.barplot(x='index', y='counts', data=tweets_per_country,edgecolor = 'black',ci=False, palette='Spectral')
-plt.title('Tweets count by country')
+ax = sns.barplot(x='index', y='counts', data=tweets_per_region,edgecolor = 'black',ci=False, palette='Spectral')
+plt.title('Tweets count by region')
 plt.xticks(rotation=70)
 plt.yticks([])
 ax.bar_label(ax.containers[0])
