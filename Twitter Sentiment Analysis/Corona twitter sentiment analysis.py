@@ -11,6 +11,9 @@ import plotly.graph_objects as go
 from plotly.offline import plot
 import seaborn  as sns
 import matplotlib.pyplot as plt
+import re
+import emoji
+
 
 train_data = pd.read_csv(r"C:\Neha\kaggle Projects\Git hub\NLP\Twitter Sentiment Analysis\Corona_NLP_train.csv",encoding='ISO-8859-1')
  
@@ -51,3 +54,15 @@ ax.bar_label(ax.containers[0])
 plt.ylabel('count')
 plt.xlabel('')
 plt.show()
+
+
+df = train_data[['OriginalTweet','Sentiment']]
+
+df_test = test_data[['OriginalTweet','Sentiment']]
+
+
+#remove emojis
+def strip_emoji(text):
+    return re.sub(emoji.get_emoji_regexp(), r"", text) 
+
+
