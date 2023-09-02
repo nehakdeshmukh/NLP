@@ -67,7 +67,9 @@ def strip_emoji(text):
 
 
 
-#remove \n and \r & make it lower case 
+
 def strip_all_entities(text): 
-    text = text.replace('\r', '').replace('\n', ' ').replace('\n', ' ').lower() 
+    text = text.replace('\r', '').replace('\n', ' ').replace('\n', ' ').lower() #remove \n and \r & make it lowercase
+    text = re.sub(r"(?:\@|https?\://)\S+", "", text) #remove links and mentions
+    
     return text 
