@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 from plotly.offline import plot
 import seaborn  as sns
 import matplotlib.pyplot as plt
-import re
+import re,string
 import emoji
 
 
@@ -70,4 +70,8 @@ def strip_all_entities(text):
     text = text.replace('\r', '').replace('\n', ' ').replace('\n', ' ').lower() #remove \n and \r & make it lowercase
     text = re.sub(r"(?:\@|https?\://)\S+", "", text) #remove links and mentions
     text = re.sub(r'[^\x00-\x7f]',r'', text) #remove non utf8/ascii characters
+    
+    banned_list= string.punctuation + 'Ã'+'±'+'ã'+'¼'+'â'+'»'+'§'
+    table = str.maketrans('', '', banned_list)
+    text = text.translate(table)
     return text 
