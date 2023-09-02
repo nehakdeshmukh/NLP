@@ -75,3 +75,6 @@ def strip_all_entities(text):
     table = str.maketrans('', '', banned_list)
     text = text.translate(table)
     return text 
+
+def remove_mult_spaces(text): # remove multiple spaces
+    return re.sub("\s\s+" , " ", text)
