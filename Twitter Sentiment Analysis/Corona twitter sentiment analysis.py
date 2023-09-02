@@ -66,3 +66,8 @@ def strip_emoji(text):
     return re.sub(emoji.get_emoji_regexp(), r"", text) 
 
 
+
+#remove \n and \r & make it lower case 
+def strip_all_entities(text): 
+    text = text.replace('\r', '').replace('\n', ' ').replace('\n', ' ').lower() 
+    return text 
