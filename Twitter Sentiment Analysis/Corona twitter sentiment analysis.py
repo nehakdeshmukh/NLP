@@ -85,3 +85,14 @@ def clean_hashtags(tweet):
     new_tweet2 = " ".join(word.strip() for word in re.split('#|_', new_tweet)) #remove hashtags symbol from words in the middle of the sentence
 
     return new_tweet2
+
+
+#Filter special characters 
+def filter_chars(a):
+    sent = []
+    for word in a.split(' '):
+        if ('$' in word) | ('&' in word):
+            sent.append('')
+        else:
+            sent.append(word)
+    return ' '.join(sent)
