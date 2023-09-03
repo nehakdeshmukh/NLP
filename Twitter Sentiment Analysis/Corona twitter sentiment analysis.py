@@ -82,4 +82,6 @@ def remove_mult_spaces(text): # remove multiple spaces
 
 def clean_hashtags(tweet):
     new_tweet = " ".join(word.strip() for word in re.split('#(?!(?:hashtag)\b)[\w-]+(?=(?:\s+#[\w-]+)*\s*$)', tweet)) #remove last hashtags
-    return new_tweet 
+    new_tweet2 = " ".join(word.strip() for word in re.split('#|_', new_tweet)) #remove hashtags symbol from words in the middle of the sentence
+
+    return new_tweet2
