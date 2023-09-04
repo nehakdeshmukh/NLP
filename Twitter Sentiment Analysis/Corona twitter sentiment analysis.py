@@ -107,3 +107,7 @@ for t in df.OriginalTweet:
 texts_new_test = []
 for t in df_test.OriginalTweet:
     texts_new_test.append(remove_mult_spaces(filter_chars(clean_hashtags(strip_all_entities(strip_emoji(t))))))
+    
+    
+df['text_clean'] = texts_new
+df_test['text_clean'] = texts_new_test
