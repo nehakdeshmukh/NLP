@@ -102,3 +102,8 @@ def filter_chars(a):
 texts_new = []
 for t in df.OriginalTweet:
     texts_new.append(remove_mult_spaces(filter_chars(clean_hashtags(strip_all_entities(strip_emoji(t))))))
+    
+    
+texts_new_test = []
+for t in df_test.OriginalTweet:
+    texts_new_test.append(remove_mult_spaces(filter_chars(clean_hashtags(strip_all_entities(strip_emoji(t))))))
