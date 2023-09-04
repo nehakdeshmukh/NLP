@@ -96,3 +96,9 @@ def filter_chars(a):
         else:
             sent.append(word)
     return ' '.join(sent)
+
+
+
+texts_new = []
+for t in df.OriginalTweet:
+    texts_new.append(remove_mult_spaces(filter_chars(clean_hashtags(strip_all_entities(strip_emoji(t))))))
