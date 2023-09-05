@@ -63,7 +63,8 @@ df_test = test_data[['OriginalTweet','Sentiment']]
 
 #remove emojis
 def strip_emoji(text):
-    return re.sub(emoji.get_emoji_regexp(), r"", text) 
+    # return emoji.get_emoji_regexp().sub(r'', text.decode('utf8'))
+    return emoji.replace_emoji(text, replace='')
 
 
 def strip_all_entities(text): 
@@ -111,3 +112,7 @@ for t in df_test.OriginalTweet:
     
 df['text_clean'] = texts_new
 df_test['text_clean'] = texts_new_test
+
+
+df['text_clean'].head()
+df_test['text_clean'].head()
