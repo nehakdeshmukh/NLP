@@ -116,3 +116,6 @@ df_test['text_clean'] = texts_new_test
 
 df['text_clean'].head()
 df_test['text_clean'].head()
+
+
+df['text_clean'][1:8].values
