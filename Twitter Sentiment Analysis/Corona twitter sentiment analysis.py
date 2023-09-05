@@ -119,3 +119,8 @@ df_test['text_clean'].head()
 
 
 df['text_clean'][1:8].values
+
+text_len = []
+for text in df.text_clean:
+    tweet_len = len(text.split())
+    text_len.append(tweet_len)
