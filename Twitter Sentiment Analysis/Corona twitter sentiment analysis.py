@@ -133,3 +133,12 @@ for text in df_test.text_clean:
     text_len_test.append(tweet_len)
     
 df_test['text_len'] = text_len_test
+
+plt.figure(figsize=(7,5))
+ax = sns.countplot(x='text_len', data=df[df['text_len']<10], palette='mako')
+plt.title('Training tweets with less than 10 words')
+plt.yticks([])
+ax.bar_label(ax.containers[0])
+plt.ylabel('count')
+plt.xlabel('')
+plt.show()
