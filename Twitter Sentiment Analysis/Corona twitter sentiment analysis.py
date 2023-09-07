@@ -152,3 +152,10 @@ ax.bar_label(ax.containers[0])
 plt.ylabel('count')
 plt.xlabel('')
 plt.show()
+
+print(f" DF SHAPE: {df.shape}")
+print(f" DF TEST SHAPE: {df_test.shape}")
+
+df = df[df['text_len'] > 4]
+
+df_test = df_test[df_test['text_len'] > 4]
