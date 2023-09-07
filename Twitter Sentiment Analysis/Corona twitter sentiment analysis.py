@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 import re,string
 import emoji
 
+#transformers
+from transformers import BertTokenizerFast
 
 train_data = pd.read_csv(r"C:\Neha\kaggle Projects\Git hub\NLP\Twitter Sentiment Analysis\Corona_NLP_train.csv",encoding='ISO-8859-1')
  
@@ -159,3 +161,8 @@ print(f" DF TEST SHAPE: {df_test.shape}")
 df = df[df['text_len'] > 4]
 
 df_test = df_test[df_test['text_len'] > 4]
+
+print(f" DF SHAPE: {df.shape}")
+print(f" DF TEST SHAPE: {df_test.shape}")
+
+tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
