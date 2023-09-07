@@ -166,3 +166,10 @@ print(f" DF SHAPE: {df.shape}")
 print(f" DF TEST SHAPE: {df_test.shape}")
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
+
+token_lens = []
+
+for txt in df['text_clean'].values:
+    tokens = tokenizer.encode(txt, max_length=512, truncation=True)
+    token_lens.append(len(tokens))
+    
