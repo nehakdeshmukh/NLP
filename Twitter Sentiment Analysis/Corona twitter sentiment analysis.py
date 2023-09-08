@@ -176,3 +176,11 @@ for txt in df['text_clean'].values:
 max_len=np.max(token_lens)
 
 print(f"MAX TOKENIZED SENTENCE LENGTH: {max_len}")
+
+token_lens = []
+
+for i,txt in enumerate(df['text_clean'].values):
+    tokens = tokenizer.encode(txt, max_length=512, truncation=True)
+    token_lens.append(len(tokens))
+    if len(tokens)>80:
+        print(f"INDEX: {i}, TEXT: {txt}")  
