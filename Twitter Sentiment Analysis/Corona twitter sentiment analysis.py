@@ -173,3 +173,6 @@ for txt in df['text_clean'].values:
     tokens = tokenizer.encode(txt, max_length=512, truncation=True)
     token_lens.append(len(tokens))
     
+max_len=np.max(token_lens)
+
+print(f"MAX TOKENIZED SENTENCE LENGTH: {max_len}")
