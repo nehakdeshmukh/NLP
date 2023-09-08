@@ -184,3 +184,11 @@ for i,txt in enumerate(df['text_clean'].values):
     token_lens.append(len(tokens))
     if len(tokens)>80:
         print(f"INDEX: {i}, TEXT: {txt}")  
+        
+df['token_lens'] = token_lens
+
+df = df.sort_values(by='token_lens', ascending=False)
+df.head(20)
+
+df = df.iloc[12:]
+df.head()
