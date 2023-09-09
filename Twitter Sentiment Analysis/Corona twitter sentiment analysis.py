@@ -206,7 +206,13 @@ for txt in df_test['text_clean'].values:
     
 max_len=np.max(token_lens_test)
 
+token_lens_test = []
 
+for i,txt in enumerate(df_test['text_clean'].values):
+    tokens = tokenizer.encode(txt, max_length=512, truncation=True)
+    token_lens_test.append(len(tokens))
+    if len(tokens)>80:
+        print(f"INDEX: {i}, TEXT: {txt}")
 
 
 
