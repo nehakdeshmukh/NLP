@@ -194,3 +194,21 @@ df = df.iloc[12:]
 df.head()
 
 df = df.sample(frac=1).reset_index(drop=True)
+
+
+# for test data 
+
+token_lens_test = []
+
+for txt in df_test['text_clean'].values:
+    tokens = tokenizer.encode(txt, max_length=512, truncation=True)
+    token_lens_test.append(len(tokens))
+    
+max_len=np.max(token_lens_test)
+
+
+
+
+
+
+
