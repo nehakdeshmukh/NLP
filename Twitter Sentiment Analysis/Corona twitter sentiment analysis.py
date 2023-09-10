@@ -214,7 +214,7 @@ for i,txt in enumerate(df_test['text_clean'].values):
     if len(tokens)>80:
         print(f"INDEX: {i}, TEXT: {txt}")
 
+df_test['token_lens'] = token_lens_test
 
-
-
-
+df_test = df_test.sort_values(by='token_lens', ascending=False)
+df_test.head(10) 
