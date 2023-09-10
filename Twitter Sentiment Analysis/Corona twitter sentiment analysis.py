@@ -222,3 +222,5 @@ df_test.head(10)
 
 df_test = df_test.iloc[5:]
 df_test.head(3)
+
+df['Sentiment'].value_counts()
