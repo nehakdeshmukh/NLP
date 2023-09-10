@@ -218,3 +218,7 @@ df_test['token_lens'] = token_lens_test
 
 df_test = df_test.sort_values(by='token_lens', ascending=False)
 df_test.head(10) 
+
+
+df_test = df_test.iloc[5:]
+df_test.head(3)
