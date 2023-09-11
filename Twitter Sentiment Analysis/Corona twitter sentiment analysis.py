@@ -224,3 +224,5 @@ df_test = df_test.iloc[5:]
 df_test.head(3)
 
 df['Sentiment'].value_counts()
+
+df['Sentiment'] = df['Sentiment'].map({'Extremely Negative':0,'Negative':0,'Neutral':1,'Positive':2,'Extremely Positive':2})
