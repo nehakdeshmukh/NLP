@@ -247,4 +247,9 @@ train_os['Sentiment'].value_counts()
 X = train_os['text_clean'].values
 y = train_os['Sentiment'].values
 
+X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.1, stratify=y, random_state=seed)
+
+X_test = df_test['text_clean'].values
+y_test = df_test['Sentiment'].values
+
 
