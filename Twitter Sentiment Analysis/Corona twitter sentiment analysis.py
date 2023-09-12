@@ -13,6 +13,7 @@ import seaborn  as sns
 import matplotlib.pyplot as plt
 import re,string
 import emoji
+from imblearn.over_sampling import RandomOverSampler
 
 #transformers
 from transformers import BertTokenizerFast
@@ -230,3 +231,11 @@ df['Sentiment'] = df['Sentiment'].map({'Extremely Negative':0,'Negative':0,'Neut
 df_test['Sentiment'] = df_test['Sentiment'].map({'Extremely Negative':0,'Negative':0,'Neutral':1,'Positive':2,'Extremely Positive':2})
 
 df['Sentiment'].value_counts()
+
+
+ros = RandomOverSampler()
+train_x, train_y = ros.fit_resample(np.array(df['text_clean']).reshape(-1, 1), np.array(df['Sentiment']).reshape(-1, 1));
+train_os = pd.DataFrame(list(zip([x[0] for x in train_x], train_y)), columns = ['text_clean', 'Sentiment']);
+
+
+
