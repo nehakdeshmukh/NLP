@@ -14,9 +14,14 @@ import matplotlib.pyplot as plt
 import re,string
 import emoji
 from imblearn.over_sampling import RandomOverSampler
+from sklearn.model_selection import train_test_split
 
 #transformers
 from transformers import BertTokenizerFast
+
+
+#set seed 
+seed=42
 
 train_data = pd.read_csv(r"C:\Neha\kaggle Projects\Git hub\NLP\Twitter Sentiment Analysis\Corona_NLP_train.csv",encoding='ISO-8859-1')
  
@@ -237,5 +242,9 @@ ros = RandomOverSampler()
 train_x, train_y = ros.fit_resample(np.array(df['text_clean']).reshape(-1, 1), np.array(df['Sentiment']).reshape(-1, 1));
 train_os = pd.DataFrame(list(zip([x[0] for x in train_x], train_y)), columns = ['text_clean', 'Sentiment']);
 
+train_os['Sentiment'].value_counts()
+
+X = train_os['text_clean'].values
+y = train_os['Sentiment'].values
 
 
