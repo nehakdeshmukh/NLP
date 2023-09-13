@@ -257,4 +257,9 @@ y_train_le = y_train.copy()
 y_valid_le = y_valid.copy()
 y_test_le = y_test.copy()
 
+ohe = preprocessing.OneHotEncoder()
+y_train = ohe.fit_transform(np.array(y_train).reshape(-1, 1)).toarray()
+y_valid = ohe.fit_transform(np.array(y_valid).reshape(-1, 1)).toarray()
+y_test = ohe.fit_transform(np.array(y_test).reshape(-1, 1)).toarray()
+
 
