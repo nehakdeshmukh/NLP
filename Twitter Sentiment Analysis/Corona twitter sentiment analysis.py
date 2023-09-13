@@ -17,6 +17,8 @@ from imblearn.over_sampling import RandomOverSampler
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 
+from sklearn.feature_extraction.text import CountVectorizer
+
 #transformers
 from transformers import BertTokenizerFast
 
@@ -263,3 +265,11 @@ y_valid = ohe.fit_transform(np.array(y_valid).reshape(-1, 1)).toarray()
 y_test = ohe.fit_transform(np.array(y_test).reshape(-1, 1)).toarray()
 
 
+print(f"TRAINING DATA: {X_train.shape[0]}\nVALIDATION DATA: {X_valid.shape[0]}\nTESTING DATA: {X_test.shape[0]}" )
+
+
+# Naive  Bayes Classifier 
+
+clf = CountVectorizer()
+X_train_cv =  clf.fit_transform(X_train)
+X_test_cv = clf.transform(X_test)
