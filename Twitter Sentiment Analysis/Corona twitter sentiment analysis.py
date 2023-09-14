@@ -18,6 +18,8 @@ from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.naive_bayes import MultinomialNB
 
 #transformers
 from transformers import BertTokenizerFast
@@ -273,3 +275,9 @@ print(f"TRAINING DATA: {X_train.shape[0]}\nVALIDATION DATA: {X_valid.shape[0]}\n
 clf = CountVectorizer()
 X_train_cv =  clf.fit_transform(X_train)
 X_test_cv = clf.transform(X_test)
+
+tf_transformer = TfidfTransformer(use_idf=True).fit(X_train_cv)
+X_train_tf = tf_transformer.transform(X_train_cv)
+X_test_tf = tf_transformer.transform(X_test_cv)
+
+
