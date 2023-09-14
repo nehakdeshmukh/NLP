@@ -280,4 +280,9 @@ tf_transformer = TfidfTransformer(use_idf=True).fit(X_train_cv)
 X_train_tf = tf_transformer.transform(X_train_cv)
 X_test_tf = tf_transformer.transform(X_test_cv)
 
+nb_clf = MultinomialNB()
+
+nb_clf.fit(X_train_tf, y_train_le)
+
+nb_pred = nb_clf.predict(X_test_tf)
 
