@@ -24,6 +24,10 @@ from sklearn.naive_bayes import MultinomialNB
 #transformers
 from transformers import BertTokenizerFast
 
+#metrics
+from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import classification_report, confusion_matrix
+
 
 #set seed 
 seed=42
@@ -280,9 +284,12 @@ tf_transformer = TfidfTransformer(use_idf=True).fit(X_train_cv)
 X_train_tf = tf_transformer.transform(X_train_cv)
 X_test_tf = tf_transformer.transform(X_test_cv)
 
+
 nb_clf = MultinomialNB()
 
 nb_clf.fit(X_train_tf, y_train_le)
 
 nb_pred = nb_clf.predict(X_test_tf)
 
+
+classification_report(y_test_le,nb_pred, target_names=['Negative', 'Neutral', 'Positive']))
