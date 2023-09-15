@@ -312,7 +312,9 @@ def tokenize(data,max_len=MAX_LEN) :
     return np.array(input_ids),np.array(attention_masks)
 
 
-
+train_input_ids, train_attention_masks = tokenize(X_train, MAX_LEN)
+val_input_ids, val_attention_masks = tokenize(X_valid, MAX_LEN)
+test_input_ids, test_attention_masks = tokenize(X_test, MAX_LEN)
 
 
 
