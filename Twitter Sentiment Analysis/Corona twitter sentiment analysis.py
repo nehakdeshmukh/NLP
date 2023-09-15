@@ -292,4 +292,33 @@ nb_clf.fit(X_train_tf, y_train_le)
 nb_pred = nb_clf.predict(X_test_tf)
 
 
-classification_report(y_test_le,nb_pred, target_names=['Negative', 'Neutral', 'Positive']))
+classification_report(y_test_le,nb_pred, target_names=['Negative', 'Neutral', 'Positive'])
+
+MAX_LEN=128
+
+def tokenize(data,max_len=MAX_LEN) :
+    input_ids = []
+    attention_masks = []
+    for i in range(len(data)):
+        encoded = tokenizer.encode_plus(
+            data[i],
+            add_special_tokens=True,
+            max_length=MAX_LEN,
+            padding='max_length',
+            return_attention_mask=True
+        )
+        input_ids.append(encoded['input_ids'])
+        attention_masks.append(encoded['attention_mask'])
+    return np.array(input_ids),np.array(attention_masks)
+
+
+
+
+
+
+
+
+
+
+
+
