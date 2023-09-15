@@ -23,6 +23,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 #transformers
 from transformers import BertTokenizerFast
+from transformers import TFBertModel
 
 #metrics
 from sklearn.metrics import accuracy_score, f1_score
@@ -316,7 +317,7 @@ train_input_ids, train_attention_masks = tokenize(X_train, MAX_LEN)
 val_input_ids, val_attention_masks = tokenize(X_valid, MAX_LEN)
 test_input_ids, test_attention_masks = tokenize(X_test, MAX_LEN)
 
-
+bert_model = TFBertModel.from_pretrained('bert-base-uncased')
 
 
 
