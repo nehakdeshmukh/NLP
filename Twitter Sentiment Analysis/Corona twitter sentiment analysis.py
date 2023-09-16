@@ -345,7 +345,8 @@ def create_model(bert_model, max_len=MAX_LEN):
     return model
 
 
-
+model = create_model(bert_model, MAX_LEN)
+model.summary()
 
 
 
