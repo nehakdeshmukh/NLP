@@ -324,7 +324,7 @@ bert_model = TFBertModel.from_pretrained('bert-base-uncased')
 def create_model(bert_model, max_len=MAX_LEN):
     
     ##params###
-    opt = tf.keras.optimizers.Adam(learning_rate=1e-5, decay=1e-7)
+    opt = tf.keras.optimizers.Adam(learning_rate=1e-5)
     loss = tf.keras.losses.CategoricalCrossentropy()
     accuracy = tf.keras.metrics.CategoricalAccuracy()
 
@@ -348,5 +348,8 @@ def create_model(bert_model, max_len=MAX_LEN):
 model = create_model(bert_model, MAX_LEN)
 model.summary()
 
+history_bert = model.fit([train_input_ids,train_attention_masks], y_train, 
+                         validation_data=([val_input_ids,val_attention_masks], 
+                                          y_valid), epochs=4, batch_size=32)
 
 
