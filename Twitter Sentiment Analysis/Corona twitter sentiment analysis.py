@@ -21,6 +21,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 
+import tensorflow as tf
+
 #transformers
 from transformers import BertTokenizerFast
 from transformers import TFBertModel
@@ -319,6 +321,28 @@ test_input_ids, test_attention_masks = tokenize(X_test, MAX_LEN)
 
 bert_model = TFBertModel.from_pretrained('bert-base-uncased')
 
+def create_model(bert_model, max_len=MAX_LEN):
+    
+    ##params###
+    opt = tf.keras.optimizers.Adam(learning_rate=1e-5, decay=1e-7)
+    loss = tf.keras.losses.CategoricalCrossentropy()
+    accuracy = tf.keras.metrics.CategoricalAccuracy()
+
+
+    input_ids = tf.keras.Input(shape=(max_len,),dtype='int32')
+    
+    attention_masks = tf.keras.Input(shape=(max_len,),dtype='int32')
+    
+    embeddings = bert_model([input_ids,attention_masks])[1]
+    
+    output = tf.keras.layers.Dense(3, activation="softmax")(embeddings)
+    
+    model = tf.keras.models.Model(inputs = [input_ids,attention_masks], outputs = output)
+    
+    model.compile(opt, loss=loss, metrics=accuracy)
+    
+    
+    return model
 
 
 
