@@ -353,3 +353,7 @@ history_bert = model.fit([train_input_ids,train_attention_masks], y_train,
                                           y_valid), epochs=4, batch_size=32)
 
 
+result_bert = model.predict([test_input_ids,test_attention_masks])
+
+y_pred_bert =  np.zeros_like(result_bert)
+y_pred_bert[np.arange(len(y_pred_bert)), result_bert.argmax(1)] = 1
