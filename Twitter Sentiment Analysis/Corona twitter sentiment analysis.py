@@ -360,3 +360,5 @@ y_pred_bert[np.arange(len(y_pred_bert)), result_bert.argmax(1)] = 1
 
 
 confusion_matrix(y_test.argmax(1), y_pred_bert.argmax(1),'BERT Sentiment Analysis\nConfusion Matrix')
+
+classification_report(y_test,y_pred_bert, target_names=['Negative', 'Neutral', 'Positive'])
