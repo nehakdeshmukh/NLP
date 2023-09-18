@@ -368,6 +368,13 @@ classification_report(y_test,y_pred_bert, target_names=['Negative', 'Neutral', '
 
 tokenizer_roberta = RobertaTokenizerFast.from_pretrained("roberta-base")
 
+token_lens = []
+
+for txt in X_train:
+    tokens = tokenizer_roberta.encode(txt, max_length=512, truncation=True)
+    token_lens.append(len(tokens))
+max_length=np.max(token_lens)
+max_length
 
 
 
