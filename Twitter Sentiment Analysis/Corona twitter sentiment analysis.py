@@ -376,7 +376,22 @@ for txt in X_train:
 max_length=np.max(token_lens)
 max_length
 
+MAX_LEN=128
 
+def tokenize_roberta(data,max_len=MAX_LEN) :
+    input_ids = []
+    attention_masks = []
+    for i in range(len(data)):
+        encoded = tokenizer_roberta.encode_plus(
+            data[i],
+            add_special_tokens=True,
+            max_length=max_len,
+            padding='max_length',
+            return_attention_mask=True
+        )
+        input_ids.append(encoded['input_ids'])
+        attention_masks.append(encoded['attention_mask'])
+    return np.array(input_ids),np.array(attention_masks)
 
 
 
