@@ -399,5 +399,18 @@ val_input_ids, val_attention_masks = tokenize_roberta(X_valid, MAX_LEN)
 test_input_ids, test_attention_masks = tokenize_roberta(X_test, MAX_LEN)
 
 
+def create_model(bert_model, max_len=MAX_LEN):
+    
+    opt = tf.keras.optimizers.Adam(learning_rate=1e-5, decay=1e-7)
+    loss = tf.keras.losses.CategoricalCrossentropy()
+    accuracy = tf.keras.metrics.CategoricalAccuracy()
 
+    input_ids = tf.keras.Input(shape=(max_len,),dtype='int32')
+    attention_masks = tf.keras.Input(shape=(max_len,),dtype='int32')
+    output = bert_model([input_ids,attention_masks])
+    output = output[1]
+    output = tf.keras.layers.Dense(3, activation=tf.nn.softmax)(output)
+    model = tf.keras.models.Model(inputs = [input_ids,attention_masks],outputs = output)
+    model.compile(opt, loss=loss, metrics=accuracy)
+    return model
 
