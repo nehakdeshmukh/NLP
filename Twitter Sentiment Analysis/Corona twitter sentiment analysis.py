@@ -27,6 +27,7 @@ import tensorflow as tf
 from transformers import BertTokenizerFast
 from transformers import TFBertModel
 from transformers import RobertaTokenizerFast
+from transformers import TFRobertaModel
 
 #metrics
 from sklearn.metrics import accuracy_score, f1_score
@@ -414,3 +415,4 @@ def create_model(bert_model, max_len=MAX_LEN):
     model.compile(opt, loss=loss, metrics=accuracy)
     return model
 
+roberta_model = TFRobertaModel.from_pretrained('roberta-base')
