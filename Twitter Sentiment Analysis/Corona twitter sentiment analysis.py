@@ -419,3 +419,7 @@ roberta_model = TFRobertaModel.from_pretrained('roberta-base')
 
 model = create_model(roberta_model, MAX_LEN)
 model.summary()
+
+history_2 = model.fit([train_input_ids,train_attention_masks], y_train, 
+                      validation_data=([val_input_ids,val_attention_masks], 
+                                       y_valid), epochs=4, batch_size=30)
