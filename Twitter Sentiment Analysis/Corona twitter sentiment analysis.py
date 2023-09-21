@@ -426,3 +426,6 @@ history_2 = model.fit([train_input_ids,train_attention_masks], y_train,
 
 
 result_roberta = model.predict([test_input_ids,test_attention_masks])
+
+y_pred_roberta =  np.zeros_like(result_roberta)
+y_pred_roberta[np.arange(len(y_pred_roberta)), result_roberta.argmax(1)] = 1
