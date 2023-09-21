@@ -416,3 +416,6 @@ def create_model(bert_model, max_len=MAX_LEN):
     return model
 
 roberta_model = TFRobertaModel.from_pretrained('roberta-base')
+
+model = create_model(roberta_model, MAX_LEN)
+model.summary()
