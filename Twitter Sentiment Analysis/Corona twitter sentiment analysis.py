@@ -423,3 +423,6 @@ model.summary()
 history_2 = model.fit([train_input_ids,train_attention_masks], y_train, 
                       validation_data=([val_input_ids,val_attention_masks], 
                                        y_valid), epochs=4, batch_size=30)
+
+
+result_roberta = model.predict([test_input_ids,test_attention_masks])
