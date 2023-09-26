@@ -55,3 +55,19 @@ def get_response(msg):
                 return random.choice(intent['responses'])
     
     return "I do not understand..."
+
+if __name__ == "__main__":
+    print("Let's chat! (type 'quit' to exit)")
+    while True:
+        
+        sentence = input("You: ")
+        if sentence == "quit":
+            break
+
+        resp = get_response(sentence)
+        print(resp)
+    
+    
+    
+
+
