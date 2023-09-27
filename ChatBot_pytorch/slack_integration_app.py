@@ -35,4 +35,26 @@ GREETING_MESSAGE = "Hello {user_name}, welcome to the {channel_name} " \
                    "channel! We're excited to have you here."
                    
                    
+welcomed_users = set()                   
                    
+@slack_event_adapter.on('member_joined_channel')                   
+
+def handle_member_joined_channel(event_data):
+    user_id = event_data['event']['user']
+    channel_id = event_data['event']['channel']
+
+    # Only send a welcome message if the user is new
+    if user_id not in welcomed_users:
+        welcomed_users.add(user_id)
+
+        user_info = client.users_info(user=user_id)
+        user_name = user_info['user']['name']
+
+        channel_info = client.conversations_info(channel=channel_id)
+        channel_name = channel_info['channel']['name']
+
+        greeting = GREETING_MESSAGE.format(user_name=user_name,
+                                          channel_name=channel_name)
+
+        client.chat_postMessage(channel=channel_id, text=greeting)
+                          
