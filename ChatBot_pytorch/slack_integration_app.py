@@ -58,3 +58,21 @@ def handle_member_joined_channel(event_data):
 
         client.chat_postMessage(channel=channel_id, text=greeting)
                           
+        
+@slack_event_adapter.on('message')
+def message(payload):
+    print(payload)
+    event = payload.get('event', {})
+    channel_id = event.get('channel')
+    user_id = event.get('user')
+    text = event.get('text')
+    print(text)
+    
+    out = get_response(text)
+ 
+    if BOT_ID != user_id:
+        client.chat_postMessage(channel=channel_id,text=out)
+ 
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
