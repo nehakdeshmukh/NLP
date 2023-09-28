@@ -32,7 +32,7 @@ BOT_ID = client.api_call("auth.test")['user_id']
 
 
 GREETING_MESSAGE = "Hello {user_name}, welcome to the {channel_name} " \
-                   "channel! We're excited to have you here."
+                   "channel!."
                    
                    
 welcomed_users = set()                   
