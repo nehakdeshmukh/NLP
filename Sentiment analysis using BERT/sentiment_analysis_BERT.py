@@ -6,6 +6,8 @@ Created on Tue Oct  3 21:42:17 2023
 """
 
 import pandas as pd 
+from sklearn.model_selection import train_test_split
+
 
 df = pd.read_csv('smile-annotations-final.csv', names=['id', 'text', 'category'])
 df.set_index('id', inplace=True)
@@ -30,4 +32,13 @@ for index, possible_label in enumerate(possible_labels):
     
     
 df['label'] = df.category.replace(label_dict)
+
+# train test split 
+
+x_train, x_val, y_train, y_val = train_test_split(df.index.values, 
+                                                  df.label.values, 
+                                                  test_size=0.15, 
+                                                  random_state=17, 
+                                                  stratify=df.label.values)
+
 
