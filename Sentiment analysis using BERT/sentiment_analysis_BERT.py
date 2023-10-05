@@ -29,5 +29,5 @@ for index, possible_label in enumerate(possible_labels):
     label_dict[possible_label] = index
     
     
-
+df['label'] = df.category.replace(label_dict)
 
