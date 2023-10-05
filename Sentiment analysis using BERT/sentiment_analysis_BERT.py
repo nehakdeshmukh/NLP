@@ -41,4 +41,9 @@ x_train, x_val, y_train, y_val = train_test_split(df.index.values,
                                                   random_state=17, 
                                                   stratify=df.label.values)
 
+df['data_type'] = ['not_set']*df.shape[0]
+
+df.loc[x_train, 'data_type'] = 'train'
+df.loc[x_val, 'data_type'] = 'val'
+
 
