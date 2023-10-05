@@ -47,3 +47,4 @@ df.loc[x_train, 'data_type'] = 'train'
 df.loc[x_val, 'data_type'] = 'val'
 
 
+df.groupby(['category', 'label', 'data_type']).count()
