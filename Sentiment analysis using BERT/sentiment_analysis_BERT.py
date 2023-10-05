@@ -18,3 +18,16 @@ df["category"].value_counts()
 df = df[~df.category.str.contains('\|')]
 
 df = df[df.category != 'nocode']
+
+
+df.category.value_counts()
+
+possible_labels = df.category.unique()
+
+label_dict = {}
+for index, possible_label in enumerate(possible_labels):
+    label_dict[possible_label] = index
+    
+    
+
+
