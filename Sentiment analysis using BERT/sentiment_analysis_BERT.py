@@ -13,3 +13,8 @@ df.set_index('id', inplace=True)
 df.head()
 
 df["category"].value_counts()
+
+
+df = df[~df.category.str.contains('\|')]
+
+df = df[df.category != 'nocode']
