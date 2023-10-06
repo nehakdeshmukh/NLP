@@ -8,6 +8,8 @@ Created on Tue Oct  3 21:42:17 2023
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 
+from transformers import BertTokenizer
+from torch.utils.data import TensorDataset
 
 df = pd.read_csv('smile-annotations-final.csv', names=['id', 'text', 'category'])
 df.set_index('id', inplace=True)
@@ -48,3 +50,9 @@ df.loc[x_val, 'data_type'] = 'val'
 
 
 df.groupby(['category', 'label', 'data_type']).count()
+
+#Tokenizer and Encoding
+
+Tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
+
+
