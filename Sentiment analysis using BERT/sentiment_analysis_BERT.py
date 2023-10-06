@@ -7,7 +7,7 @@ Created on Tue Oct  3 21:42:17 2023
 
 import pandas as pd 
 from sklearn.model_selection import train_test_split
-
+import torch
 from transformers import BertTokenizer
 from torch.utils.data import TensorDataset
 
@@ -69,4 +69,9 @@ val_encoded_data = tokenizer.batch_encode_plus(df[df.data_type=='val'].text.valu
                                                 pad_to_max_length=True, 
                                                 max_length=256, 
                                                 return_tensors='pt')
+
+
+input_ids_train = train_encoded_data['input_ids']
+attention_masks_train = train_encoded_data['attention_mask']
+labels_train = torch.tensor(df[df.data_type=='train'].label.values)
 
