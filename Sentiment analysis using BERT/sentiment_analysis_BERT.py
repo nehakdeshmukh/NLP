@@ -61,3 +61,12 @@ train_encoded_data = tokenizer.batch_encode_plus(df[df.data_type=='train'].text.
                                                     pad_to_max_length=True, 
                                                     max_length=256, 
                                                     return_tensors='pt' )
+
+
+val_encoded_data = tokenizer.batch_encode_plus(df[df.data_type=='val'].text.values, 
+                                                add_special_tokens=True, 
+                                                return_attention_mask=True, 
+                                                pad_to_max_length=True, 
+                                                max_length=256, 
+                                                return_tensors='pt')
+
