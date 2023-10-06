@@ -53,6 +53,11 @@ df.groupby(['category', 'label', 'data_type']).count()
 
 #Tokenizer and Encoding
 
-Tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
 
-
+train_encoded_data = tokenizer.batch_encode_plus(df[df.data_type=='train'].text.values, 
+                                                    add_special_tokens=True, 
+                                                    return_attention_mask=True, 
+                                                    pad_to_max_length=True, 
+                                                    max_length=256, 
+                                                    return_tensors='pt' )
