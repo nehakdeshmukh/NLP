@@ -75,3 +75,6 @@ input_ids_train = train_encoded_data['input_ids']
 attention_masks_train = train_encoded_data['attention_mask']
 labels_train = torch.tensor(df[df.data_type=='train'].label.values)
 
+input_ids_val = val_encoded_data['input_ids']
+attention_masks_val = val_encoded_data['attention_mask']
+labels_val = torch.tensor(df[df.data_type=='val'].label.values)
