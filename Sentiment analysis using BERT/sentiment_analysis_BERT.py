@@ -78,3 +78,9 @@ labels_train = torch.tensor(df[df.data_type=='train'].label.values)
 input_ids_val = val_encoded_data['input_ids']
 attention_masks_val = val_encoded_data['attention_mask']
 labels_val = torch.tensor(df[df.data_type=='val'].label.values)
+
+dataset_train = TensorDataset(input_ids_train, attention_masks_train, labels_train)
+dataset_val = TensorDataset(input_ids_val, attention_masks_val, labels_val)
+
+
+
