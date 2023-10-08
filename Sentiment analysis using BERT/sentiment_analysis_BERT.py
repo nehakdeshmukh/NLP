@@ -115,3 +115,11 @@ optimizer = AdamW(model.parameters(),
                   lr=1e-5, 
                   eps=1e-8)
 
+epochs = 3
+
+scheduler = get_linear_schedule_with_warmup(optimizer, 
+                                            num_warmup_steps=0,
+                                            num_training_steps=len(dataloader_train)*epochs)
+
+
+
