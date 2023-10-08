@@ -11,6 +11,8 @@ import torch
 from transformers import BertTokenizer
 from torch.utils.data import TensorDataset
 
+from transformers import BertForSequenceClassification
+
 df = pd.read_csv('smile-annotations-final.csv', names=['id', 'text', 'category'])
 df.set_index('id', inplace=True)
 
@@ -82,5 +84,12 @@ labels_val = torch.tensor(df[df.data_type=='val'].label.values)
 dataset_train = TensorDataset(input_ids_train, attention_masks_train, labels_train)
 dataset_val = TensorDataset(input_ids_val, attention_masks_val, labels_val)
 
+len(dataset_train)
+len(dataset_val)
 
+#BERT Pretrained model 
 
+model = BertForSequenceClassification.from_pretrained("bert-base-uncased",
+                                                      num_labels=len(label_dict),
+                                                      output_attentions=False,
+                                                      output_hidden_states=False)
