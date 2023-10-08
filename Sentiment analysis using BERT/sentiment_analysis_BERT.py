@@ -14,6 +14,9 @@ from torch.utils.data import TensorDataset
 from transformers import BertForSequenceClassification
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 
+from transformers import AdamW, get_linear_schedule_with_warmup
+
+
 df = pd.read_csv('smile-annotations-final.csv', names=['id', 'text', 'category'])
 df.set_index('id', inplace=True)
 
@@ -108,4 +111,7 @@ dataloader_validation = DataLoader(dataset_val,
                                    batch_size=batch_size)
 
 
+optimizer = AdamW(model.parameters(),
+                  lr=1e-5, 
+                  eps=1e-8)
 
