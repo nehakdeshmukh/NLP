@@ -101,3 +101,11 @@ batch_size = 32
 dataloader_train = DataLoader(dataset_train, 
                               sampler=RandomSampler(dataset_train), 
                               batch_size=batch_size)
+
+
+dataloader_validation = DataLoader(dataset_val, 
+                                   sampler=SequentialSampler(dataset_val), 
+                                   batch_size=batch_size)
+
+
+
