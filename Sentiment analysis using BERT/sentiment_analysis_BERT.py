@@ -12,6 +12,7 @@ from transformers import BertTokenizer
 from torch.utils.data import TensorDataset
 
 from transformers import BertForSequenceClassification
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 
 df = pd.read_csv('smile-annotations-final.csv', names=['id', 'text', 'category'])
 df.set_index('id', inplace=True)
@@ -93,3 +94,10 @@ model = BertForSequenceClassification.from_pretrained("bert-base-uncased",
                                                       num_labels=len(label_dict),
                                                       output_attentions=False,
                                                       output_hidden_states=False)
+
+
+batch_size = 32
+
+dataloader_train = DataLoader(dataset_train, 
+                              sampler=RandomSampler(dataset_train), 
+                              batch_size=batch_size)
