@@ -16,6 +16,8 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 
 from transformers import AdamW, get_linear_schedule_with_warmup
 
+import numpy as np
+from sklearn.metrics import f1_score
 
 df = pd.read_csv('smile-annotations-final.csv', names=['id', 'text', 'category'])
 df.set_index('id', inplace=True)
@@ -120,6 +122,12 @@ epochs = 3
 scheduler = get_linear_schedule_with_warmup(optimizer, 
                                             num_warmup_steps=0,
                                             num_training_steps=len(dataloader_train)*epochs)
+
+
+def f1_score_func(preds, labels):
+    preds_flat = np.argmax(preds, axis=1).flatten()
+    labels_flat = labels.flatten()
+    return f1_score(labels_flat, preds_flat, average='weighted')
 
 
 
