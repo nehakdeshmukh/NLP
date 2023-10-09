@@ -19,6 +19,15 @@ from transformers import AdamW, get_linear_schedule_with_warmup
 import numpy as np
 from sklearn.metrics import f1_score
 
+import random
+
+seed_val = 17
+random.seed(seed_val)
+np.random.seed(seed_val)
+torch.manual_seed(seed_val)
+torch.cuda.manual_seed_all(seed_val)
+
+
 df = pd.read_csv('smile-annotations-final.csv', names=['id', 'text', 'category'])
 df.set_index('id', inplace=True)
 
@@ -141,3 +150,9 @@ def accuracy_per_class(preds, labels):
         y_true = labels_flat[labels_flat==label]
         print(f'Class: {label_dict_inverse[label]}')
         print(f'Accuracy: {len(y_preds[y_preds==label])}/{len(y_true)}\n')
+        
+        
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.to(device)
+
+print(device)
