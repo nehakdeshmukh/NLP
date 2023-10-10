@@ -224,3 +224,15 @@ for epoch in tqdm(range(1, epochs+1)):
         scheduler.step()
 
         progress_bar.set_postfix({'training_loss': '{:.3f}'.format(loss.item()/len(batch))})
+        
+    torch.save(model.state_dict(), f'finetuned_BERT_epoch_{epoch}.model')
+        
+    tqdm.write(f'\nEpoch {epoch}')
+    
+    loss_train_avg = loss_train_total/len(dataloader_train)             
+    tqdm.write(f'Training loss: {loss_train_avg}')
+    
+    val_loss, predictions, true_vals = evaluate(dataloader_validation)
+    val_f1 = f1_score_func(predictions, true_vals)
+    tqdm.write(f'Validation loss: {val_loss}')
+    tqdm.write(f'F1 Score (Weighted): {val_f1}')        
