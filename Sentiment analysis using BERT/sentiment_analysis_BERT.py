@@ -20,6 +20,8 @@ import numpy as np
 from sklearn.metrics import f1_score
 
 import random
+from tqdm.notebook import tqdm
+
 
 seed_val = 17
 random.seed(seed_val)
@@ -192,3 +194,28 @@ def evaluate(dataloader_val):
             
     return loss_val_avg, predictions, true_vals
 
+for epoch in tqdm(range(1, epochs+1)):
+    
+    model.train()
+    
+    loss_train_total = 0
+
+    progress_bar = tqdm(dataloader_train, desc='Epoch {:1d}'.format(epoch), leave=False, disable=False)
+    for batch in progress_bar:
+
+        model.zero_grad()
+        
+        batch = tuple(b.to(device) for b in batch)
+        
+        inputs = {'input_ids':      batch[0],
+                  'attention_mask': batch[1],
+                  'labels':         batch[2],
+                 }       
+
+        outputs = model(**inputs)
+        
+        loss = outputs[0]
+        loss_train_total += loss.item()
+        loss.backward()
+
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
