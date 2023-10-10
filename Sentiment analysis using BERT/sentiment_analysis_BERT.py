@@ -219,3 +219,8 @@ for epoch in tqdm(range(1, epochs+1)):
         loss.backward()
 
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        
+        optimizer.step()
+        scheduler.step()
+
+        progress_bar.set_postfix({'training_loss': '{:.3f}'.format(loss.item()/len(batch))})
