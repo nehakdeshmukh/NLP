@@ -236,3 +236,11 @@ for epoch in tqdm(range(1, epochs+1)):
     val_f1 = f1_score_func(predictions, true_vals)
     tqdm.write(f'Validation loss: {val_loss}')
     tqdm.write(f'F1 Score (Weighted): {val_f1}')        
+
+model = BertForSequenceClassification.from_pretrained("bert-base-uncased",
+                                                      num_labels=len(label_dict),
+                                                      output_attentions=False,
+                                                      output_hidden_states=False)
+
+model.to(device)
+
