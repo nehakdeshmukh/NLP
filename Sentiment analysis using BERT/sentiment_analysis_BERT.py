@@ -245,3 +245,5 @@ model = BertForSequenceClassification.from_pretrained("bert-base-uncased",
 model.to(device)
 
 model.load_state_dict(torch.load('Models/BERT.model', map_location=torch.device('cpu')))
+
+_, predictions, true_vals = evaluate(dataloader_validation)
