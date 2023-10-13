@@ -253,3 +253,4 @@ _, predictions, true_vals = evaluate(dataloader_validation)
 
 accuracy_per_class(predictions, true_vals)
 
+f1_score_func(predictions, true_vals)
