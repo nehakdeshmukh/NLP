@@ -203,6 +203,9 @@ for epoch in tqdm(range(1, epochs+1)):
     progress_bar = tqdm(dataloader_train, desc='Epoch {:1d}'.format(epoch), leave=False, disable=False)
     for batch in progress_bar:
 
+        print("batch :",batch)
+        print("len of progress bar :",len(progress_bar))
+        
         model.zero_grad()
         
         batch = tuple(b.to(device) for b in batch)
