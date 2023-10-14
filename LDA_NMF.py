@@ -9,3 +9,7 @@ import pandas as pd
 
 
 data = pd.read_csv(r'articles.csv')
+
+len(data)
+
+data.head(5)
