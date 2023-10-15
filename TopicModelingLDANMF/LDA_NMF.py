@@ -21,3 +21,8 @@ sns.distplot(data['length_text'], color="b")
 plt.show()
 
 
+data['length_title'] = data['title'].str.len()
+sns.distplot(data['length_title'], color="r")
+plt.show()
+
+
