@@ -26,3 +26,5 @@ sns.distplot(data['length_title'], color="r")
 plt.show()
 
 
+titles = [x for x in data['title']]
+docs = [x for x in data['text']]
