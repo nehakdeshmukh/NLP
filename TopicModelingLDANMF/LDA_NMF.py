@@ -14,6 +14,7 @@ import re
 import string
 from nltk.stem.wordnet import WordNetLemmatizer
 lem = WordNetLemmatizer()
+from gensim.corpora import Dictionary
 
 data = pd.read_csv(r'articles.csv')
 
@@ -58,3 +59,6 @@ def list_words(text):
 
 nltk.download('wordnet')
 docs = [list_words(x) for x in data['text']]
+
+dictionary = Dictionary(docs)
+print('Number of unique words in initital documents:', len(dictionary))
