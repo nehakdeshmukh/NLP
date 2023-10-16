@@ -36,3 +36,7 @@ docs = [x for x in data['text']]
 nltk.download('stopwords')
 
 
+stop_words = stopwords.words('english')
+stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
+
+
