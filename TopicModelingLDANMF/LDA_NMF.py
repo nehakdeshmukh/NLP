@@ -8,6 +8,9 @@ Created on Fri Oct 13 22:01:51 2023
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt 
+import nltk
+from nltk.corpus import stopwords
+
 
 data = pd.read_csv(r'articles.csv')
 
@@ -28,3 +31,8 @@ plt.show()
 
 titles = [x for x in data['title']]
 docs = [x for x in data['text']]
+
+
+nltk.download('stopwords')
+
+
