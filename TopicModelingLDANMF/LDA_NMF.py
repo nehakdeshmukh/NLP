@@ -55,3 +55,6 @@ def list_words(text):
 
     return words 
 
+
+nltk.download('wordnet')
+docs = [list_words(x) for x in data['text']]
