@@ -15,6 +15,11 @@ import string
 from nltk.stem.wordnet import WordNetLemmatizer
 lem = WordNetLemmatizer()
 from gensim.corpora import Dictionary
+import gensim
+from gensim.models import LdaModel
+import pyLDAvis.gensim
+
+
 
 data = pd.read_csv(r'articles.csv')
 
@@ -78,10 +83,22 @@ for i in range(len(bow_doc_300)):
                                                      bow_doc_300[i][1]))
     
     
-def get_lda_topics(model, num_topics):
+def get_lda_topics(model, num__of_topics):
     word_dict = {};
-    for i in range(num_topics):
-        words = model.show_topic(i, topn = 20);
+    for i in range(num__of_topics):
+        words = model.show_topic(i, topn = 30);
         word_dict['Topic # ' + '{:02d}'.format(i+1)] = [i[0] for i in words];
     return pd.DataFrame(word_dict);
 
+# Build LDA model
+lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
+                                            id2word=dictionary,
+                                           num_topics=10, 
+                                           random_state=100,
+                                           update_every=1,
+                                           chunksize=500,
+                                           passes=20,
+                                           alpha='auto',
+                                           per_word_topics=True)
+
+get_lda_topics(lda_model, 10)
