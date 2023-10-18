@@ -76,3 +76,12 @@ for i in range(len(bow_doc_300)):
     print("Word {} (\"{}\") appears {} time.".format(bow_doc_300[i][0], 
                                                      dictionary[bow_doc_300[i][0]], 
                                                      bow_doc_300[i][1]))
+    
+    
+def get_lda_topics(model, num_topics):
+    word_dict = {};
+    for i in range(num_topics):
+        words = model.show_topic(i, topn = 20);
+        word_dict['Topic # ' + '{:02d}'.format(i+1)] = [i[0] for i in words];
+    return pd.DataFrame(word_dict);
+
