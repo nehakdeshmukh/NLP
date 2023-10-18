@@ -66,3 +66,6 @@ print('Number of unique words in initital documents:', len(dictionary))
 
 dictionary.filter_extremes(no_below=10, no_above=0.2)
 print('Number of unique words after removing rare and common words:', len(dictionary))
+
+corpus = [dictionary.doc2bow(doc) for doc in docs]
+print(len(corpus))
