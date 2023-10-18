@@ -93,7 +93,7 @@ def get_lda_topics(model, num__of_topics):
 # Build LDA model
 lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
                                             id2word=dictionary,
-                                           num_topics=10, 
+                                           num_topics=15, 
                                            random_state=100,
                                            update_every=1,
                                            chunksize=500,
@@ -101,4 +101,4 @@ lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
                                            alpha='auto',
                                            per_word_topics=True)
 
-get_lda_topics(lda_model, 10)
+get_lda_topics(lda_model, 15)
