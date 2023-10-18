@@ -69,3 +69,10 @@ print('Number of unique words after removing rare and common words:', len(dictio
 
 corpus = [dictionary.doc2bow(doc) for doc in docs]
 print(len(corpus))
+
+bow_doc_300 = corpus[300]
+
+for i in range(len(bow_doc_300)):
+    print("Word {} (\"{}\") appears {} time.".format(bow_doc_300[i][0], 
+                                                     dictionary[bow_doc_300[i][0]], 
+                                                     bow_doc_300[i][1]))
