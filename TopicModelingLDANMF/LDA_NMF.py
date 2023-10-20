@@ -121,3 +121,9 @@ for topic in topics:
 for idx, topic in lda_model.print_topics(-1):
     print("Topic: {} \nWords: {}".format(topic, idx ))
     print("\n")
+    
+#Topic Modeling using NMF
+
+data_text = data[['text']]
+data_text = data_text.astype('str')
+
