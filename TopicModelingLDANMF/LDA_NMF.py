@@ -19,7 +19,7 @@ import gensim
 from gensim.models import LdaModel
 import pyLDAvis.gensim
 import warnings
-
+from sklearn.feature_extraction.text import CountVectorizer
 
 data = pd.read_csv(r'articles.csv')
 
@@ -130,3 +130,5 @@ data_text = data_text.astype('str')
 articles = [value[0] for value in data_text.iloc[0:].values]
 
 articles_sentences = [' '.join(text) for text in articles]
+
+vectorizer = CountVectorizer(analyzer='word', max_features=1000);
