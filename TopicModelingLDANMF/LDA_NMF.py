@@ -109,7 +109,10 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 pyLDAvis.gensim.prepare(lda_model, corpus, dictionary)
 
-
+lda_model.save('model15.gensim')
+topics = lda_model.print_topics(num_words=6)
+for topic in topics:
+    print(topic)
 
 
 
