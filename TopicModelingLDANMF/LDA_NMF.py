@@ -127,3 +127,6 @@ for idx, topic in lda_model.print_topics(-1):
 data_text = data[['text']]
 data_text = data_text.astype('str')
 
+articles = [value[0] for value in data_text.iloc[0:].values]
+
+articles_sentences = [' '.join(text) for text in articles]
