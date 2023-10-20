@@ -114,5 +114,10 @@ topics = lda_model.print_topics(num_words=6)
 for topic in topics:
     print(topic)
 
+# # #evaluation by classifying sample document using LDA Bag of Words model
+# for index, score in sorted(lda_model[corpus[300]], key=lambda tup: -1*tup[1]) :
+#      print("\nScore: {}\t \nTopic: {}".format(score, lda_model.print_topic(index, 14)))
 
-
+for idx, topic in lda_model.print_topics(-1):
+    print("Topic: {} \nWords: {}".format(topic, idx ))
+    print("\n")
