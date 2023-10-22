@@ -140,5 +140,4 @@ x_counts = vectorizer.fit_transform(articles);
 transformer = TfidfTransformer()
 x_tfidf = transformer.fit_transform(x_counts);
 
-
-
+xtfidf_norm = normalize(x_tfidf, norm='l1', axis=1)
