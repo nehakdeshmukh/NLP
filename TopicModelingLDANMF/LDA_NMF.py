@@ -137,3 +137,8 @@ vectorizer = CountVectorizer(analyzer='word', max_features=1000);
 x_counts = vectorizer.fit_transform(articles);
 
 
+transformer = TfidfTransformer()
+x_tfidf = transformer.fit_transform(x_counts);
+
+
+
