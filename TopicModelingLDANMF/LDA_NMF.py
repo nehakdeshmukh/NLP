@@ -21,6 +21,8 @@ import pyLDAvis.gensim
 import warnings
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.preprocessing import normalize
+from sklearn.decomposition import NMF
+
 
 data = pd.read_csv(r'articles.csv')
 
@@ -141,3 +143,14 @@ transformer = TfidfTransformer()
 x_tfidf = transformer.fit_transform(x_counts);
 
 xtfidf_norm = normalize(x_tfidf, norm='l1', axis=1)
+
+num_topics = 10
+model = NMF(n_components=num_topics, init='nndsvd');
+model.fit(xtfidf_norm)
+
+
+
+
+
+
+
