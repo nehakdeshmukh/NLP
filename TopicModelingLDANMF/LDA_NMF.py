@@ -148,9 +148,18 @@ num_topics = 10
 model = NMF(n_components=num_topics, init='nndsvd');
 model.fit(xtfidf_norm)
 
+def get_nmf_topics(model, n_top_words):
+    feat_names = vectorizer.get_feature_names_out()
+    word_dict = {};    
+    for i in range(num_topics):
+        words_ids = model.components_[i].argsort()[:-20 - 1:-1]
+        words = [feat_names[key] for key in words_ids]
+        words = [re.sub('\S*@\S*\s?', '', sent) for sent in words]
 
+        word_dict['Topic # ' + '{:02d}'.format(i+1)] = words;
+    return pd.DataFrame(word_dict);
 
-
+get_nmf_topics(model, 15)
 
 
 
