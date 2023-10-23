@@ -23,6 +23,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.preprocessing import normalize
 from sklearn.decomposition import NMF
 from itertools import chain
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 data = pd.read_csv(r'articles.csv')
 
@@ -167,4 +168,8 @@ get_nmf_topics(model, 15)
 
 words_list=list(chain.from_iterable(docs))
 
+# Cosine similarity
+def cosine_sim(text1, text2):
+    tfidf_score = TfidfVectorizer().fit_transform([text1, text2])
+    return ((tfidf_score * tfidf_score.T).A)[0, 1]
 
