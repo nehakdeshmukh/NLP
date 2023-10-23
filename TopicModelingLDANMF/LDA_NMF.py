@@ -22,7 +22,7 @@ import warnings
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.preprocessing import normalize
 from sklearn.decomposition import NMF
-
+from itertools import chain
 
 data = pd.read_csv(r'articles.csv')
 
@@ -162,5 +162,9 @@ def get_nmf_topics(model, n_top_words):
 
 get_nmf_topics(model, 15)
 
+
+#Cosine Similarity between Documents
+
+words_list=list(chain.from_iterable(docs))
 
 
