@@ -24,6 +24,7 @@ from sklearn.preprocessing import normalize
 from sklearn.decomposition import NMF
 from itertools import chain
 from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
 
 data = pd.read_csv(r'articles.csv')
 
@@ -172,4 +173,11 @@ words_list=list(chain.from_iterable(docs))
 def cosine_sim(text1, text2):
     tfidf_score = TfidfVectorizer().fit_transform([text1, text2])
     return ((tfidf_score * tfidf_score.T).A)[0, 1]
+
+# Most similar article
+def closest_doc_name(sentence, docs):
+    cos = []
+    for i in range(len(docs)):
+        cos.append(cosine_sim(', '.join(sentence.split(' ')),', '.join(docs[i])))
+    return [titles[x] for x in np.argsort(cos)[-10:][::-1]]
 
