@@ -181,4 +181,5 @@ def closest_doc_name(sentence, docs):
         cos.append(cosine_sim(', '.join(sentence.split(' ')),', '.join(docs[i])))
     return [titles[x] for x in np.argsort(cos)[-10:][::-1]]
 
-tfidf = TfidfVectorizer(tokenizer=words, stop_words=stop_words).fit(words_list)
+tfidf = TfidfVectorizer(stop_words=stop_words).fit(words_list)
+
