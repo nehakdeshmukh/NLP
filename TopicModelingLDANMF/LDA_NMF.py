@@ -183,3 +183,4 @@ def closest_doc_name(sentence, docs):
 
 tfidf = TfidfVectorizer(stop_words=stop_words).fit(words_list)
 
+closest_doc_name('music', docs)
