@@ -60,3 +60,16 @@ for file in savee_directory_list:
         file_emotion.append('disgust')
     elif ele=='f':
         file_emotion.append('fear')
+    elif ele=='h':
+        file_emotion.append('happy')
+    elif ele=='n':
+        file_emotion.append('neutral')
+    elif ele=='sa':
+        file_emotion.append('sad')
+    else:
+        file_emotion.append('surprise')    
+        
+        
+        
+        
+        
