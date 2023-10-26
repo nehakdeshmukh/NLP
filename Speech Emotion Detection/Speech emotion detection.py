@@ -44,3 +44,19 @@ Ravdess_df.Emotions.replace({1:'neutral', 2:'calm', 3:'happy', 4:'sad',
                             inplace=True)
 Ravdess_df.head()
 
+
+savee_directory_list = os.listdir(Savee)
+
+file_emotion = []
+file_path = []
+
+for file in savee_directory_list:
+    file_path.append(Savee + file)
+    part = file.split('_')[1]
+    ele = part[:-6]
+    if ele=='a':
+        file_emotion.append('angry')
+    elif ele=='d':
+        file_emotion.append('disgust')
+    elif ele=='f':
+        file_emotion.append('fear')
