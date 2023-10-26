@@ -30,3 +30,9 @@ for dir in ravdess_directory_list:
         file_emotion.append(int(part[2]))
         file_path.append(Ravdess + dir + '/' + file)
         
+        
+
+emotion_df = pd.DataFrame(file_emotion, columns=['Emotions'])
+
+path_df = pd.DataFrame(file_path, columns=['Path'])
+Ravdess_df = pd.concat([emotion_df, path_df], axis=1)
