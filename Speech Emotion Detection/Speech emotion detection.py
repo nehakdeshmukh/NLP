@@ -75,4 +75,6 @@ path_df = pd.DataFrame(file_path, columns=['Path'])
 Savee_df = pd.concat([emotion_df, path_df], axis=1)
 Savee_df.head()        
         
-        
+data_path = pd.concat([Ravdess_df, Savee_df], axis = 0)
+data_path.to_csv("data_path.csv",index=False)
+data_path.head()        
