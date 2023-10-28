@@ -7,9 +7,11 @@ Created on Tue Oct 24 18:12:19 2023
 
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
 import os
 import sys
+import seaborn as sns
+
 
 Ravdess  = r"C:\Neha\kaggle Projects\Ravdess\audio_speech_actors_01-24/"
 Savee = r"C:\Neha\kaggle Projects\Savee\ALL/"
@@ -78,3 +80,11 @@ Savee_df.head()
 data_path = pd.concat([Ravdess_df, Savee_df], axis = 0)
 data_path.to_csv("data_path.csv",index=False)
 data_path.head()        
+
+
+plt.title('Count of Emotions', size=16)
+sns.countplot(data = data_path, x="Emotions")
+plt.ylabel('Count', size=12)
+plt.xlabel('Emotions', size=12)
+sns.despine(top=True, right=True, left=False, bottom=False)
+plt.show()
