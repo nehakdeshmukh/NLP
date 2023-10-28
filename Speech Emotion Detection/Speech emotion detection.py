@@ -69,7 +69,10 @@ for file in savee_directory_list:
     else:
         file_emotion.append('surprise')    
         
-        
-        
+emotion_df = pd.DataFrame(file_emotion, columns=['Emotions'])
+       
+path_df = pd.DataFrame(file_path, columns=['Path'])
+Savee_df = pd.concat([emotion_df, path_df], axis=1)
+Savee_df.head()        
         
         
