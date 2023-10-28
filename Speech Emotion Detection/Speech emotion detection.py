@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 import os
 import sys
 import seaborn as sns
+import librosa
+import librosa.display
 
 
 Ravdess  = r"C:\Neha\kaggle Projects\Ravdess\audio_speech_actors_01-24/"
@@ -40,7 +42,7 @@ path_df = pd.DataFrame(file_path, columns=['Path'])
 Ravdess_df = pd.concat([emotion_df, path_df], axis=1)
 
 
-# changing integers to actual emotions.
+# integers to actual emotions.
 Ravdess_df.Emotions.replace({1:'neutral', 2:'calm', 3:'happy', 4:'sad', 
                              5:'angry', 6:'fear', 7:'disgust', 8:'surprise'}, 
                             inplace=True)
@@ -88,3 +90,10 @@ plt.ylabel('Count', size=12)
 plt.xlabel('Emotions', size=12)
 sns.despine(top=True, right=True, left=False, bottom=False)
 plt.show()
+
+
+def create_waveplot(data, sr, e):
+    plt.figure(figsize=(10, 3))
+    plt.title('Waveplot for audio with {} emotion'.format(e), size=15)
+    librosa.display.waveplot(data, sr=sr)
+    plt.show()
