@@ -131,3 +131,11 @@ spectrogram(data, sampling_rate, emotion)
 Audio(path)
 
 
+emotion='fear'
+path = np.array(data_path.Path[data_path.Emotions==emotion])[1]
+data, sampling_rate = librosa.load(path)
+waveplot(data, sampling_rate, emotion)
+spectrogram(data, sampling_rate, emotion)
+Audio(path)
+
+
