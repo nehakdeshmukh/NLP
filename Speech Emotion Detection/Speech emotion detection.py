@@ -13,6 +13,7 @@ import sys
 import seaborn as sns
 import librosa
 import librosa.display
+from IPython.display import Audio
 
 
 Ravdess  = r"C:\Neha\kaggle Projects\Ravdess\audio_speech_actors_01-24/"
@@ -84,7 +85,7 @@ data_path.to_csv("data_path.csv",index=False)
 data_path.head()        
 
 
-plt.title('Count of Emotions', size=16)
+# plt.title('Count of Emotions', size=16)
 sns.countplot(data = data_path, x="Emotions")
 plt.ylabel('Count', size=12)
 plt.xlabel('Emotions', size=12)
@@ -107,3 +108,10 @@ def spectrogram(data, sr, e):
     librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')   
     plt.colorbar()
     
+emotion='happy'
+path = np.array(data_path.Path[data_path.Emotions==emotion])[1]
+data, sampling_rate = librosa.load(path)
+waveplot(data, sampling_rate, emotion)
+spectrogram(data, sampling_rate, emotion)
+
+Audio(path)
