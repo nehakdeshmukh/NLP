@@ -138,4 +138,8 @@ waveplot(data, sampling_rate, emotion)
 spectrogram(data, sampling_rate, emotion)
 Audio(path)
 
+def noise(data):
+    noise_amp = 0.035*np.random.uniform()*np.amax(data)
+    data = data + noise_amp*np.random.normal(size=data.shape[0])
+    return data
 
