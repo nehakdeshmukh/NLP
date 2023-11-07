@@ -145,3 +145,7 @@ def noise(data):
 
 def stretch(data, rate=0.8):
     return librosa.effects.time_stretch(data, rate)
+
+def shift(data):
+    shift_range = int(np.random.uniform(low=-5, high = 5)*1000)
+    return np.roll(data, shift_range)
