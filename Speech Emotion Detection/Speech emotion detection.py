@@ -143,3 +143,5 @@ def noise(data):
     data = data + noise_amp*np.random.normal(size=data.shape[0])
     return data
 
+def stretch(data, rate=0.8):
+    return librosa.effects.time_stretch(data, rate)
