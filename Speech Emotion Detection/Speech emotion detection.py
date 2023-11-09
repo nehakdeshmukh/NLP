@@ -149,3 +149,6 @@ def stretch(data, rate=0.8):
 def shift(data):
     shift_range = int(np.random.uniform(low=-5, high = 5)*1000)
     return np.roll(data, shift_range)
+
+def pitch(data, sampling_rate, pitch_factor=0.7):
+    return librosa.effects.pitch_shift(data, sampling_rate, pitch_factor)
