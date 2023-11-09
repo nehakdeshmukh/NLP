@@ -152,3 +152,11 @@ def shift(data):
 
 def pitch(data, sampling_rate, pitch_factor=0.7):
     return librosa.effects.pitch_shift(data, sampling_rate, pitch_factor)
+
+
+path = np.array(data_path.Path)[1]
+data, sample_rate = librosa.load(path)
+
+plt.figure(figsize=(14,4))
+librosa.display.waveplot(y=data, sr=sample_rate)
+Audio(path)
