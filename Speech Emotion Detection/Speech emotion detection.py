@@ -160,3 +160,9 @@ data, sample_rate = librosa.load(path)
 plt.figure(figsize=(14,4))
 librosa.display.waveplot(y=data, sr=sample_rate)
 Audio(path)
+
+#added noise 
+x = noise(data)
+plt.figure(figsize=(14,4))
+librosa.display.waveplot(y=x, sr=sample_rate)
+Audio(x, rate=sample_rate)
