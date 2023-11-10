@@ -171,3 +171,14 @@ x = stretch(data)
 plt.figure(figsize=(14,4))
 librosa.display.waveplot(y=x, sr=sample_rate)
 Audio(x, rate=sample_rate)
+
+x = shift(data)
+plt.figure(figsize=(14,4))
+librosa.display.waveplot(y=x, sr=sample_rate)
+Audio(x, rate=sample_rate)
+
+
+
+
+
+
