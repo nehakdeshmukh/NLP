@@ -182,6 +182,10 @@ plt.figure(figsize=(14,4))
 librosa.display.waveplot(y=x, sr=sample_rate)
 Audio(x, rate=sample_rate)
 
-
+def ZCR(data):
+    # ZCR
+    result = np.array([])
+    zcr = np.mean(librosa.feature.zero_crossing_rate(y=data).T, axis=0)
+    result=np.hstack((result, zcr)) 
 
 
