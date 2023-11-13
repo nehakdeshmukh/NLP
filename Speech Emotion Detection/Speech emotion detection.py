@@ -187,5 +187,12 @@ def ZCR(data):
     result = np.array([])
     zcr = np.mean(librosa.feature.zero_crossing_rate(y=data).T, axis=0)
     result=np.hstack((result, zcr)) 
+    return result
 
-
+def chrm_shift(data,result):
+# Chroma_stft
+    stft = np.abs(librosa.stft(data))
+    chroma_stft = np.mean(librosa.feature.chroma_stft(S=stft, sr=sample_rate).T, axis=0)
+    result = np.hstack((result, chroma_stft)) # stacking horizontally
+    return result
+    
