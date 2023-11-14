@@ -196,3 +196,8 @@ def chrm_shift(data,result):
     result = np.hstack((result, chroma_stft)) # stacking horizontally
     return result
     
+def MFCC(data,result):
+    # MFCC
+    mfcc = np.mean(librosa.feature.mfcc(y=data, sr=sample_rate).T, axis=0)
+    result = np.hstack((result, mfcc))
+    return result 
