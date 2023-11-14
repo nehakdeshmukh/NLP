@@ -206,3 +206,9 @@ def rms(data,result):
     rms = np.mean(librosa.feature.rms(y=data).T, axis=0)
     result = np.hstack((result, rms)) 
     return result
+
+def mel_spectrogram(data,result):
+    # MelSpectogram
+    mel = np.mean(librosa.feature.melspectrogram(y=data, sr=sample_rate).T, axis=0)
+    result = np.hstack((result, mel)) 
+    return result
