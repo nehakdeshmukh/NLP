@@ -221,5 +221,10 @@ def extract_features(data):
     result=mel_spectrogram(data,result)
     return result 
 
+def get_features(path):
+    data, sample_rate = librosa.load(path, duration=2.5, offset=0.6)
+    res1 = extract_features(data)
+    result = np.array(res1)
+
 
 
