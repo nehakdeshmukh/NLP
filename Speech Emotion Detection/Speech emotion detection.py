@@ -226,5 +226,10 @@ def get_features(path):
     res1 = extract_features(data)
     result = np.array(res1)
 
-
+    # data with noise
+    noise_data = noise(data)
+    res2 = extract_features(noise_data)
+    result = np.vstack((result, res2)) 
+    
+    
 
