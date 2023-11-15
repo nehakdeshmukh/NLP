@@ -212,3 +212,14 @@ def mel_spectrogram(data,result):
     mel = np.mean(librosa.feature.melspectrogram(y=data, sr=sample_rate).T, axis=0)
     result = np.hstack((result, mel)) 
     return result
+
+def extract_features(data):
+    result=ZCR(data)
+    result=chrm_shift(data,result)
+    result=mfcc(data,result)
+    result=rms(data,result)
+    result=mel_spectrogram(data,result)
+    return result 
+
+
+
