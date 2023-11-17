@@ -238,3 +238,12 @@ def get_features(path):
     
     return result
 
+X, Y = [], []
+for path, emotion in zip(data_path.Path, data_path.Emotions):
+    feature = get_features(path)
+    for ele in feature:
+        X.append(ele)
+        Y.append(emotion)
+        
+        
+        
