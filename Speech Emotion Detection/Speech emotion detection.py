@@ -226,10 +226,15 @@ def get_features(path):
     res1 = extract_features(data)
     result = np.array(res1)
 
-    # data with noise
+    # with noise
     noise_data = noise(data)
     res2 = extract_features(noise_data)
     result = np.vstack((result, res2)) 
     
+    new_data = stretch(data)
+    data_stretch_pitch = pitch(new_data, sample_rate)
+    res3 = extract_features(data_stretch_pitch)
+    result = np.vstack((result, res3)) 
     
+    return result
 
