@@ -250,3 +250,7 @@ Features = pd.DataFrame(X)
 Features['labels'] = Y
 # Features.to_csv('features.csv', index=False)
 Features.head()
+
+
+X = Features.iloc[: ,:-1].values
+Y = Features['labels'].values 
