@@ -263,3 +263,6 @@ Y = encoder.fit_transform(np.array(Y).reshape(-1,1)).toarray()
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, random_state=0, shuffle=True)
 x_train.shape, y_train.shape, x_test.shape, y_test.shape
+
+x_train = np.expand_dims(x_train, axis=2)
+x_test = np.expand_dims(x_test, axis=2)
