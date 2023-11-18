@@ -14,6 +14,7 @@ import seaborn as sns
 import librosa
 import librosa.display
 from IPython.display import Audio
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
 
 Ravdess  = r"C:\Neha\kaggle Projects\Ravdess\audio_speech_actors_01-24/"
@@ -254,3 +255,8 @@ Features.head()
 
 X = Features.iloc[: ,:-1].values
 Y = Features['labels'].values 
+
+
+encoder = OneHotEncoder()
+Y = encoder.fit_transform(np.array(Y).reshape(-1,1)).toarray()
+
