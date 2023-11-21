@@ -16,6 +16,8 @@ import librosa.display
 from IPython.display import Audio
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import train_test_split
+from keras.models import Sequential
+from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
 
 
 Ravdess  = r"C:\Neha\kaggle Projects\Ravdess\audio_speech_actors_01-24/"
@@ -272,3 +274,18 @@ x_train = np.expand_dims(x_train, axis=2)
 x_test = np.expand_dims(x_test, axis=2)
 
 
+model=Sequential()
+model.add(Conv1D(256, kernel_size=5, strides=1, padding='same', activation='relu', input_shape=(x_train.shape[1], 1)))
+model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
+
+model.add(Conv1D(128, kernel_size=5, strides=1, padding='same', activation='relu'))
+model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
+model.add(Dropout(0.2))
+
+model.add(Conv1D(64, kernel_size=5, strides=1, padding='same', activation='relu'))
+model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
+
+model.add(Dense(units=8, activation='softmax'))
+model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
+
+model.summary()
