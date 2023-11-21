@@ -148,42 +148,42 @@ def noise(data):
     return data
 
 def stretch(data, rate=0.8):
-    return librosa.effects.time_stretch(data, rate)
+    return librosa.effects.time_stretch(data, rate=rate)
 
 def shift(data):
     shift_range = int(np.random.uniform(low=-5, high = 5)*1000)
     return np.roll(data, shift_range)
 
 def pitch(data, sampling_rate, pitch_factor=0.7):
-    return librosa.effects.pitch_shift(data, sampling_rate, pitch_factor)
+    return librosa.effects.pitch_shift(data, sr=sampling_rate, n_steps=pitch_factor)
 
 
 path = np.array(data_path.Path)[1]
 data, sample_rate = librosa.load(path)
 
 plt.figure(figsize=(14,4))
-librosa.display.waveplot(y=data, sr=sample_rate)
+librosa.display.waveshow(y=data, sr=sample_rate)
 Audio(path)
 
 #added noise 
 x = noise(data)
 plt.figure(figsize=(14,4))
-librosa.display.waveplot(y=x, sr=sample_rate)
+librosa.display.waveshow(y=x, sr=sample_rate)
 Audio(x, rate=sample_rate)
 
 x = stretch(data)
 plt.figure(figsize=(14,4))
-librosa.display.waveplot(y=x, sr=sample_rate)
+librosa.display.waveshow(y=x, sr=sample_rate)
 Audio(x, rate=sample_rate)
 
 x = shift(data)
 plt.figure(figsize=(14,4))
-librosa.display.waveplot(y=x, sr=sample_rate)
+librosa.display.waveshow(y=x, sr=sample_rate)
 Audio(x, rate=sample_rate)
 
 x = pitch(data, sample_rate)
 plt.figure(figsize=(14,4))
-librosa.display.waveplot(y=x, sr=sample_rate)
+librosa.display.waveshow(y=x, sr=sample_rate)
 Audio(x, rate=sample_rate)
 
 def ZCR(data):
@@ -278,12 +278,14 @@ model=Sequential()
 model.add(Conv1D(256, kernel_size=5, strides=1, padding='same', activation='relu', input_shape=(x_train.shape[1], 1)))
 model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
 
+
 model.add(Conv1D(128, kernel_size=5, strides=1, padding='same', activation='relu'))
 model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
 model.add(Dropout(0.2))
 
 model.add(Conv1D(64, kernel_size=5, strides=1, padding='same', activation='relu'))
 model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
+
 
 model.add(Dense(units=8, activation='softmax'))
 model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
