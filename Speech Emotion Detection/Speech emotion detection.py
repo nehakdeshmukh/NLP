@@ -278,6 +278,8 @@ model=Sequential()
 model.add(Conv1D(256, kernel_size=5, strides=1, padding='same', activation='relu', input_shape=(x_train.shape[1], 1)))
 model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
 
+model.add(Conv1D(256, kernel_size=5, strides=1, padding='same', activation='relu'))
+model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
 
 model.add(Conv1D(128, kernel_size=5, strides=1, padding='same', activation='relu'))
 model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
