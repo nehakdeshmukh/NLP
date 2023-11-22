@@ -294,6 +294,10 @@ model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
 model.add(Conv1D(32, kernel_size=5, strides=1, padding='same', activation='relu'))
 model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
 
+model.add(Flatten())
+model.add(Dense(units=32, activation='relu'))
+model.add(Dropout(0.3))
+
 model.add(Dense(units=8, activation='softmax'))
 model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
 
