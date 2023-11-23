@@ -18,6 +18,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
+from keras.callbacks import ReduceLROnPlateau
 
 
 Ravdess  = r"C:\Neha\kaggle Projects\Ravdess\audio_speech_actors_01-24/"
@@ -296,3 +297,7 @@ model.add(Dense(units=8, activation='softmax'))
 model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
 
 model.summary()
+
+
+rlrp = ReduceLROnPlateau(monitor='loss', factor=0.4, verbose=0, patience=2, min_lr=0.0000001)
+
