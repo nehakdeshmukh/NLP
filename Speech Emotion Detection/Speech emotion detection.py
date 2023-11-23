@@ -301,3 +301,5 @@ model.summary()
 
 rlrp = ReduceLROnPlateau(monitor='loss', factor=0.4, verbose=0, patience=2, min_lr=0.0000001)
 
+history=model.fit(x_train, y_train, batch_size=64, epochs=50, 
+                  validation_data=(x_test, y_test), callbacks=[rlrp])
