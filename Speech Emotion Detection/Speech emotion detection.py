@@ -307,7 +307,17 @@ history=model.fit(x_train, y_train, batch_size=64, epochs=50,
 
 acc = model.evaluate(x_test,y_test)[1]*100 
 
+epochs = [i for i in range(50)]
 train_acc = history.history['accuracy']
 train_loss = history.history['loss']
 test_acc = history.history['val_accuracy']
 test_loss = history.history['val_loss']
+
+
+fig , ax = plt.subplots(1,2)
+fig.set_size_inches(20,6)
+ax[0].plot(epochs , train_loss , label = 'Training Loss')
+ax[0].plot(epochs , test_loss , label = 'Testing Loss')
+ax[0].set_title('Training & Testing Loss')
+ax[0].legend()
+ax[0].set_xlabel("Epochs")
