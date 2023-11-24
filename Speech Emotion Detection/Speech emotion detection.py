@@ -306,3 +306,8 @@ history=model.fit(x_train, y_train, batch_size=64, epochs=50,
 
 
 acc = model.evaluate(x_test,y_test)[1]*100 
+
+train_acc = history.history['accuracy']
+train_loss = history.history['loss']
+test_acc = history.history['val_accuracy']
+test_loss = history.history['val_loss']
