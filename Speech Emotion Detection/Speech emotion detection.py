@@ -328,3 +328,7 @@ ax[1].set_title('Training & Testing Accuracy')
 ax[1].legend()
 ax[1].set_xlabel("Epochs")
 plt.show()
+
+
+pred_test = model.predict(x_test)
+y_pred = encoder.inverse_transform(pred_test)
