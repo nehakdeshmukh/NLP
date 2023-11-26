@@ -347,3 +347,5 @@ plt.title('Confusion Matrix', size=20)
 plt.xlabel('Predicted Labels', size=14)
 plt.ylabel('Actual Labels', size=14)
 plt.show()
+
+classification_report(y_test, y_pred)
