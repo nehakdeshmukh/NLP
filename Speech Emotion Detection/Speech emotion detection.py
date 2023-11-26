@@ -19,6 +19,7 @@ from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout, BatchNormalization
 from keras.callbacks import ReduceLROnPlateau
+from sklearn.metrics import confusion_matrix, classification_report
 
 
 Ravdess  = r"C:\Neha\kaggle Projects\Ravdess\audio_speech_actors_01-24/"
@@ -338,3 +339,11 @@ df = pd.DataFrame(columns=['Predicted Labels', 'Actual Labels'])
 df['Predicted Labels'] = y_pred.flatten()
 df['Actual Labels'] = y_test.flatten()
 
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize = (12, 10))
+cm = pd.DataFrame(cm , index = [i for i in encoder.categories_] , columns = [i for i in encoder.categories_])
+sns.heatmap(cm, linecolor='white', cmap='Blues', linewidth=1, annot=True, fmt='')
+plt.title('Confusion Matrix', size=20)
+plt.xlabel('Predicted Labels', size=14)
+plt.ylabel('Actual Labels', size=14)
+plt.show()
