@@ -333,7 +333,7 @@ plt.show()
 
 pred_test = model.predict(x_test)
 y_pred = encoder.inverse_transform(pred_test)
-
+y_test = encoder.inverse_transform(y_test)
 
 df = pd.DataFrame(columns=['Predicted Labels', 'Actual Labels'])
 df['Predicted Labels'] = y_pred.flatten()
