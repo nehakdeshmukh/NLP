@@ -5,10 +5,10 @@ Created on Wed Nov 29 21:40:37 2023
 @author: nehak
 """
 import os 
-from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.applications.vgg16 import VGG16,  preprocess_input
 from tensorflow.keras.models import Model
 from tqdm.notebook import tqdm 
-from tensorflow.keras.preprocessing.image import load_img
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
 
 
@@ -33,4 +33,19 @@ for img_name in tqdm(os.listdir(directory)):
     # load the image from file
     img_path = directory + '/' + img_name
     image = load_img(img_path, target_size=(224, 224))
-    print(image)
+    # print(image)
+    
+    # convert image pixels to numpy array
+    image = img_to_array(image)
+    # reshape data for model
+    image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
+    # preprocess image for vgg
+    image = preprocess_input(image)
+    # extract features
+    feature = model.predict(image, verbose=0)
+    # get image ID
+    image_id = img_name.split('.')[0]
+    # store feature
+    features[image_id] = feature
+    
+    
