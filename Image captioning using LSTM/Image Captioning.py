@@ -52,3 +52,7 @@ pickle.dump(features, open(os.path.join(WORKING_DIR, 'features.pkl'), 'wb'))
 
 with open(os.path.join(WORKING_DIR, 'features.pkl'), 'rb') as f:
     features = pickle.load(f)
+
+with open(os.path.join(BASE_DIR, 'captions.txt'), 'r') as f:
+    next(f)
+    captions_doc = f.read()
