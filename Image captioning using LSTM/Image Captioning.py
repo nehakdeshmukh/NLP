@@ -49,4 +49,6 @@ for img_name in tqdm(os.listdir(directory)):
     features[image_id] = feature
     
 pickle.dump(features, open(os.path.join(WORKING_DIR, 'features.pkl'), 'wb'))
-    
+
+with open(os.path.join(WORKING_DIR, 'features.pkl'), 'rb') as f:
+    features = pickle.load(f)
