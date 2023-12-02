@@ -66,3 +66,5 @@ for line in tqdm(captions_doc.split('\n')):
     if len(line) < 2:
         continue
     image_id, caption = tokens[0], tokens[1:]
+    
+    image_id = image_id.split('.')[0]
