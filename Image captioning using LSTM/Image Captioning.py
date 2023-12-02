@@ -56,3 +56,13 @@ with open(os.path.join(WORKING_DIR, 'features.pkl'), 'rb') as f:
 with open(os.path.join(BASE_DIR, 'captions.txt'), 'r') as f:
     next(f)
     captions_doc = f.read()
+    
+    
+mapping = {}
+# process lines
+for line in tqdm(captions_doc.split('\n')):
+    # split the line by comma(,)
+    tokens = line.split(',')
+    if len(line) < 2:
+        continue
+    image_id, caption = tokens[0], tokens[1:]
