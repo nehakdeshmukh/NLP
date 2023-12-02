@@ -71,6 +71,10 @@ for line in tqdm(captions_doc.split('\n')):
     
     caption = " ".join(caption)
     
+    if image_id not in mapping:
+        mapping[image_id] = []
+
+    mapping[image_id].append(caption)
     
     
     
