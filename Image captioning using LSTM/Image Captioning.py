@@ -68,3 +68,9 @@ for line in tqdm(captions_doc.split('\n')):
     image_id, caption = tokens[0], tokens[1:]
     
     image_id = image_id.split('.')[0]
+    
+    caption = " ".join(caption)
+    
+    
+    
+    
