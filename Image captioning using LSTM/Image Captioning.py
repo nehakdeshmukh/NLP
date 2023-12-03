@@ -77,4 +77,14 @@ for line in tqdm(captions_doc.split('\n')):
     mapping[image_id].append(caption)
     
     
-    
+def clean(mapping):
+    for key, captions in mapping.items():
+        for i in range(len(captions)):
+            #one caption at a time
+            caption = captions[i]
+  
+            # lowercase
+            caption = caption.lower()
+            
+
+            
