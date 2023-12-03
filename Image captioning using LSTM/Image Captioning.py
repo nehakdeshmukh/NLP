@@ -86,5 +86,5 @@ def clean(mapping):
             # lowercase
             caption = caption.lower()
             
-
+            caption = caption.replace('[^A-Za-z]', '')
             
