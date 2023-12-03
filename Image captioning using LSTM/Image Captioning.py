@@ -88,3 +88,12 @@ def clean(mapping):
             
             caption = caption.replace('[^A-Za-z]', '')
             
+            caption = caption.replace('\s+', ' ')
+            
+            caption = 'startseq ' + " ".join([word for word in caption.split() if len(word)>1]) + ' endseq'
+            
+            captions[i] = caption
+            
+            
+            
+            
