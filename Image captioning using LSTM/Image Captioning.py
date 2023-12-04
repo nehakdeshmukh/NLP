@@ -101,4 +101,7 @@ clean(mapping)
 
 mapping['1000268201_693b08cb0e']
 
-
+all_captions = []
+for key in mapping:
+    for caption in mapping[key]:
+        all_captions.append(caption)
