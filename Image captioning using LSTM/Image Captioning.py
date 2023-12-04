@@ -105,3 +105,5 @@ all_captions = []
 for key in mapping:
     for caption in mapping[key]:
         all_captions.append(caption)
+
+all_captions[:15]
