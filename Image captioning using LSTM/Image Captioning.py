@@ -95,5 +95,10 @@ def clean(mapping):
             captions[i] = caption
             
             
+mapping['1000268201_693b08cb0e']
             
-            
+clean(mapping)
+
+mapping['1000268201_693b08cb0e']
+
+
