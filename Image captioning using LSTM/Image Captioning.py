@@ -111,3 +111,6 @@ all_captions[:15]
 
 tokenizer = Tokenizer()
 tokenizer.fit_on_texts(all_captions)
+
+vocab_size = len(tokenizer.word_index) + 1
+print(vocab_size)
