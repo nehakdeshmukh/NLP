@@ -10,6 +10,7 @@ from tensorflow.keras.models import Model
 from tqdm.notebook import tqdm 
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import pickle 
+from tensorflow.keras.preprocessing.text import Tokenizer
 
 
 BASE_DIR = r'C:\Neha\kaggle Projects\Image Captioning'
@@ -107,3 +108,6 @@ for key in mapping:
         all_captions.append(caption)
 
 all_captions[:15]
+
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(all_captions)
