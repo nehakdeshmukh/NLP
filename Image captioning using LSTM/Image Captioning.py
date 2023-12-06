@@ -117,3 +117,8 @@ print(vocab_size)
 
 max_length = max(len(caption.split()) for caption in all_captions)
 max_length
+
+image_ids = list(mapping.keys())
+split = int(len(image_ids) * 0.90)
+train = image_ids[:split]
+test = image_ids[split:]
