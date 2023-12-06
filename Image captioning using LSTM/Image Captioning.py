@@ -11,6 +11,7 @@ from tqdm.notebook import tqdm
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import pickle 
 from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 BASE_DIR = r'C:\Neha\kaggle Projects\Image Captioning'
@@ -135,3 +136,8 @@ def data_generator(data_keys, mapping, tokenizer):
         for caption in captions:
            
             seq = tokenizer.texts_to_sequences([caption])[0]
+            for i in range(1, len(seq)):
+                # split into input and output pairs
+                in_seq, out_seq = seq[:i], seq[i]
+                # pad input sequence
+                in_seq = pad_sequences([in_seq], maxlen=max_length)[0]
