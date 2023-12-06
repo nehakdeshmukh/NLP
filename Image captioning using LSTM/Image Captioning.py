@@ -122,3 +122,16 @@ image_ids = list(mapping.keys())
 split = int(len(image_ids) * 0.90)
 train = image_ids[:split]
 test = image_ids[split:]
+
+
+def data_generator(data_keys, mapping, tokenizer):
+    # loop over images
+    X1, X2, y = list(), list(), list()
+    n = 0
+    for key in data_keys:
+        n += 1
+        captions = mapping[key]
+        
+        for caption in captions:
+           
+            seq = tokenizer.texts_to_sequences([caption])[0]
