@@ -12,7 +12,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import pickle 
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
+from tensorflow.keras.utils import to_categorical
 
 BASE_DIR = r'C:\Neha\kaggle Projects\Image Captioning'
 WORKING_DIR = r'C:\Neha\kaggle Projects\Git hub\NLP\Image captioning using LSTM'
@@ -141,3 +141,9 @@ def data_generator(data_keys, mapping, tokenizer):
                 in_seq, out_seq = seq[:i], seq[i]
                 # pad input sequence
                 in_seq = pad_sequences([in_seq], maxlen=max_length)[0]
+                
+                out_seq = to_categorical([out_seq],num_classes=vocab_size)[0]
+                
+                X1.append(features[key][0])
+                X2.append(in_seq)
+                y.append(out_seq)
