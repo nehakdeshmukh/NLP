@@ -5,6 +5,7 @@ Created on Wed Nov 29 21:40:37 2023
 @author: nehak
 """
 import os 
+import numpy as np
 from tensorflow.keras.applications.vgg16 import VGG16,  preprocess_input
 from tensorflow.keras.models import Model
 from tqdm.notebook import tqdm 
@@ -13,6 +14,8 @@ import pickle
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import to_categorical
+
+
 
 BASE_DIR = r'C:\Neha\kaggle Projects\Image Captioning'
 WORKING_DIR = r'C:\Neha\kaggle Projects\Git hub\NLP\Image captioning using LSTM'
@@ -125,7 +128,7 @@ train = image_ids[:split]
 test = image_ids[split:]
 
 
-def data_generator(data_keys, mapping, tokenizer):
+def data_generator(data_keys, features, mapping, tokenizer, max_length, vocab_size, batch_size):
     # loop over images
     X1, X2, y = list(), list(), list()
     n = 0
@@ -147,3 +150,9 @@ def data_generator(data_keys, mapping, tokenizer):
                 X1.append(features[key][0])
                 X2.append(in_seq)
                 y.append(out_seq)
+                
+                if n == batch_size:
+                    X1, X2, y = np.array(X1), np.array(X2), np.array(y)
+                    yield [X1, X2], y
+                    X1, X2, y = list(), list(), list()
+                    n = 0
