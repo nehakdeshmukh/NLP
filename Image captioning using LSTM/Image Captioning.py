@@ -172,3 +172,8 @@ se3 = LSTM(256)(se2)
 epochs = 20
 batch_size = 32
 steps = len(train) // batch_size
+
+for i in range(epochs):
+    
+    generator = data_generator(train, mapping, features, tokenizer, max_length, vocab_size, batch_size)
+    
