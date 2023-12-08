@@ -14,7 +14,7 @@ import pickle
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.layers import Input, Dense, Dropout
+from tensorflow.keras.layers import Input, Dense, Dropout, Embedding, LSTM
 
 
 BASE_DIR = r'C:\Neha\kaggle Projects\Image Captioning'
@@ -162,3 +162,8 @@ def data_generator(data_keys, features, mapping, tokenizer, max_length, vocab_si
 inputs1 = Input(shape=(4096,))
 fe1 = Dropout(0.4)(inputs1)
 fe2 = Dense(256, activation='relu')(fe1)
+
+inputs2 = Input(shape=(max_length,))
+se1 = Embedding(vocab_size, 256, mask_zero=True)(inputs2)
+se2 = Dropout(0.4)(se1)
+se3 = LSTM(256)(se2)
