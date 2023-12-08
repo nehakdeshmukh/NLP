@@ -167,3 +167,8 @@ inputs2 = Input(shape=(max_length,))
 se1 = Embedding(vocab_size, 256, mask_zero=True)(inputs2)
 se2 = Dropout(0.4)(se1)
 se3 = LSTM(256)(se2)
+
+
+epochs = 20
+batch_size = 32
+steps = len(train) // batch_size
