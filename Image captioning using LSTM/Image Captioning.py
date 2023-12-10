@@ -178,3 +178,7 @@ for i in range(epochs):
     generator = data_generator(train, mapping, features, tokenizer, max_length, vocab_size, batch_size)
     
     model.fit(generator, epochs=1, steps_per_epoch=steps, verbose=1)
+    
+    
+# save model
+model.save(WORKING_DIR+'/best_model.h5')
