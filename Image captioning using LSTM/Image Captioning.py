@@ -182,3 +182,10 @@ for i in range(epochs):
     
 # save model
 model.save(WORKING_DIR+'/best_model.h5')
+
+
+def idx_to_word(integer, tokenizer):
+    for word, index in tokenizer.word_index.items():
+        if index == integer:
+            return word
+    return None
