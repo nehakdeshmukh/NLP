@@ -189,3 +189,13 @@ def idx_to_word(integer, tokenizer):
         if index == integer:
             return word
     return None
+
+
+
+def predict_caption(model, image, tokenizer, max_length):
+    
+    in_text = 'startseq'
+    
+    for i in range(max_length):
+        # encode input
+        sequence = tokenizer.texts_to_sequences([in_text])[0]
