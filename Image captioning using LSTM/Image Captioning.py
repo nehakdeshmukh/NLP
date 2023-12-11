@@ -203,3 +203,7 @@ def predict_caption(model, image, tokenizer, max_length):
         sequence = pad_sequences([sequence], max_length)
         #next word prediction
         yhat = model.predict([image, sequence], verbose=0)
+        #high probability index
+        yhat = np.argmax(yhat)
+        #index to word
+        word = idx_to_word(yhat, tokenizer)
