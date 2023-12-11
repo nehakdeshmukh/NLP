@@ -199,3 +199,7 @@ def predict_caption(model, image, tokenizer, max_length):
     for i in range(max_length):
         # encode input
         sequence = tokenizer.texts_to_sequences([in_text])[0]
+        #padding
+        sequence = pad_sequences([sequence], max_length)
+        #next word prediction
+        yhat = model.predict([image, sequence], verbose=0)
