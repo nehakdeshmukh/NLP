@@ -207,3 +207,13 @@ def predict_caption(model, image, tokenizer, max_length):
         yhat = np.argmax(yhat)
         #index to word
         word = idx_to_word(yhat, tokenizer)
+        if word is None:
+            break
+        # append word as input for generating next word
+        in_text += " " + word
+        # stop if  end tag
+        if word == 'endseq':
+            break
+    return in_text
+        
+        
