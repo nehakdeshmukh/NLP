@@ -15,7 +15,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.layers import Input, Dense, Dropout, Embedding, LSTM
-
+from nltk.translate.bleu_score import corpus_bleu
 
 BASE_DIR = r'C:\Neha\kaggle Projects\Image Captioning'
 WORKING_DIR = r'C:\Neha\kaggle Projects\Git hub\NLP\Image captioning using LSTM'
@@ -212,8 +212,18 @@ def predict_caption(model, image, tokenizer, max_length):
         # append word as input for generating next word
         in_text += " " + word
         # stop if  end tag
-        if word == 'endseq':
+        if word == 'endseq': 
             break
     return in_text
         
-        
+
+
+# validate with test data
+actual, predicted = list(), list()
+
+
+for key in tqdm(test):
+    # actual caption
+    captions = mapping[key]
+    # caption for image
+    y_pred = predict_caption(model, features[key], tokenizer, max_length)        
