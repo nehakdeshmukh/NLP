@@ -226,4 +226,9 @@ for key in tqdm(test):
     # actual caption
     captions = mapping[key]
     # caption for image
-    y_pred = predict_caption(model, features[key], tokenizer, max_length)        
+    y_pred = predict_caption(model, features[key], tokenizer, max_length)    
+    # split into words
+    actual_captions = [caption.split() for caption in captions]
+    actual.append(actual_captions)
+    
+    
