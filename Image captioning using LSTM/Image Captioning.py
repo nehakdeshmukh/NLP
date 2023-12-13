@@ -231,4 +231,5 @@ for key in tqdm(test):
     actual_captions = [caption.split() for caption in captions]
     actual.append(actual_captions)
     
-    
+BLEU_1 = corpus_bleu(actual, predicted, weights=(1.0, 0, 0, 0))
+BLEU_2 = corpus_bleu(actual, predicted, weights=(0.5, 0.5, 0, 0))
