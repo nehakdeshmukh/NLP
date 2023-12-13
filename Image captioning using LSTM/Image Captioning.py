@@ -233,3 +233,22 @@ for key in tqdm(test):
     
 BLEU_1 = corpus_bleu(actual, predicted, weights=(1.0, 0, 0, 0))
 BLEU_2 = corpus_bleu(actual, predicted, weights=(0.5, 0.5, 0, 0))
+
+
+from PIL import Image
+import matplotlib.pyplot as plt
+def generate_caption(image_name):
+    # load the image
+    # image_name = "1001773457_577c3a7d70.jpg"
+    image_id = image_name.split('.')[0]
+    img_path = os.path.join(BASE_DIR, "Images", image_name)
+    image = Image.open(img_path)
+    captions = mapping[image_id]
+    print('---------------------Actual---------------------')
+    for caption in captions:
+        print(caption)
+    # predict the caption
+    y_pred = predict_caption(model, features[image_id], tokenizer, max_length)
+    print('--------------------Predicted--------------------')
+    print(y_pred)
+    plt.imshow(image)
