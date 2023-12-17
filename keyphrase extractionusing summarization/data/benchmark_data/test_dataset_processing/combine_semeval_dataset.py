@@ -62,3 +62,19 @@ for sentence in tree.iterfind('./document/sentences/sentence'):
                          range(len(starts))]
     })
     sentences[-1].update(sentence.attrib)
+    
+title = ''
+abstract = ''
+body = ''
+for indx, sent in enumerate(sentences):
+    if sentences[indx]['section'] == 'title':  # for the title
+        title += ' ' + ' '.join(sentences[indx]['words'])
+    elif sentences[indx]['section'] == 'abstract':  # for the abstract
+        abstract += ' ' + ' '.join(sentences[indx]['words'])
+    else:  # for the main body (everything else)
+        body += ' ' + ' '.join(sentences[indx]['words'])
+
+list_of_document_title.append(title)
+list_of_document_abstract.append(abstract)
+list_of_document_text.append(body)
+
