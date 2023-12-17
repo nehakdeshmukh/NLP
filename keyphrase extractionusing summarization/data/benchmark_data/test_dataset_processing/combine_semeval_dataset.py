@@ -45,3 +45,20 @@ path = 'semeval_2010/train_test_combined/' + key + '.xml'
 
 sentences = []  
 tree = etree.parse(path, parser)
+
+for sentence in tree.iterfind('./document/sentences/sentence'):
+    
+    starts = [int(u.text) for u in
+              sentence.iterfind("tokens/token/CharacterOffsetBegin")]
+    ends = [int(u.text) for u in
+            sentence.iterfind("tokens/token/CharacterOffsetEnd")]
+    sentences.append({
+        "words": [u.text for u in
+                  sentence.iterfind("tokens/token/word")],
+        "lemmas": [u.text for u in
+                   sentence.iterfind("tokens/token/lemma")],
+        "POS": [u.text for u in sentence.iterfind("tokens/token/POS")],
+        "char_offsets": [(starts[k], ends[k]) for k in
+                         range(len(starts))]
+    })
+    sentences[-1].update(sentence.attrib)
