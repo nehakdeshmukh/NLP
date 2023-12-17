@@ -37,3 +37,11 @@ for key in keyphrases_dictionary:
             for nested_kp in keyphrase: 
                 keyphrase_string += nested_kp + ';'
         list_of_document_keyphrases.append(keyphrase_string[:-1])  
+
+
+
+parser = etree.XMLParser()  
+path = 'semeval_2010/train_test_combined/' + key + '.xml'
+
+sentences = []  
+tree = etree.parse(path, parser)
