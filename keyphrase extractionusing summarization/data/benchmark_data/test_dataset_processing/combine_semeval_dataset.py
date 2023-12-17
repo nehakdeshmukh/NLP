@@ -24,3 +24,16 @@ keyphrases_dictionary = json_normalize(json_data)
 print(keyphrases_dictionary)
 
 
+list_of_document_title = []  # save the title of documents
+list_of_document_abstract = []  # save the abstract of documents
+list_of_document_text = []  # save the body of documents
+list_of_document_keyphrases = []  # save the keyphrases of documents
+for key in keyphrases_dictionary:
+
+    keyphrase_string = ''
+    
+    for list_of_keyphrases in keyphrases_dictionary[key]:
+        for keyphrase in list_of_keyphrases:
+            for nested_kp in keyphrase: 
+                keyphrase_string += nested_kp + ';'
+        list_of_document_keyphrases.append(keyphrase_string[:-1])  
