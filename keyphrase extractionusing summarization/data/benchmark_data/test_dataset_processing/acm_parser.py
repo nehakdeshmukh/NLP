@@ -21,3 +21,20 @@ print(json_data)
 keyphrases_dictionary = json_normalize(json_data)
 
 print(keyphrases_dictionary)
+
+list_of_document_text = []  # save the text of documents
+list_of_document_keyphrases = []  # save the keyphrases of documents
+for key in keyphrases_dictionary:
+	print('ACM/' + key + '.txt')
+	print(keyphrases_dictionary[key])
+
+	keyphrase_string = ''
+	# format the keyphrases as key1;key2;key3 (required for preprocessing)
+	for list_of_keyphrases in keyphrases_dictionary[key]:
+		for keyphrase in list_of_keyphrases:
+			keyphrase_string += keyphrase[0] + ';'
+		list_of_document_keyphrases.append(keyphrase_string[:-1])  # [:-1] -> remove the ';' in the end
+
+	# read the documents' text
+	with open('ACM/' + key + '.txt', 'r', encoding="utf8") as document_text:
+		list_of_document_text.append(document_text.read())
