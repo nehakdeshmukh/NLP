@@ -38,3 +38,10 @@ for key in keyphrases_dictionary:
 	# read the documents' text
 	with open('ACM/' + key + '.txt', 'r', encoding="utf8") as document_text:
 		list_of_document_text.append(document_text.read())
+        
+        
+df = pd.DataFrame({'fulltext': list_of_document_text, 'keyword': list_of_document_keyphrases})
+print(df)
+
+#data to json file
+df.to_json('../ACM.json', orient='records',  lines=True)
