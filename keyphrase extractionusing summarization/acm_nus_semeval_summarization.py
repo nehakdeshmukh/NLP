@@ -15,3 +15,11 @@ model = ExtractiveSummarizer.load_from_checkpoint("models\\epoch=3.ckpt")
 
 file = 'datasets\\ACM.json' 
 
+json_data = []
+for line in open(file, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data = json_normalize(json_data)
+
+print(data)
