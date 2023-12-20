@@ -45,3 +45,14 @@ print(df)
 
 #data to json file
 df.to_json('../ACM.json', orient='records',  lines=True)
+
+
+# read the json file
+json_data = []
+for line in open('../ACM.json', 'r', encoding='utf8'):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data = json_normalize(json_data)
+
+print(data)
