@@ -43,3 +43,8 @@ for index, fulltext in enumerate(tqdm(data['fulltext'])):
     end_abstract = fulltext.find("--B\n")
     abstract = fulltext[start_abstract:end_abstract]
 
+    start_fulltext = fulltext.find("--B\n") + len("--B\n")  # skip the special characters '--B\n'
+    end_fulltext = fulltext.find("--R\n")  # do not include references
+    main_body = fulltext[start_fulltext:end_fulltext]
+
+    abstract_mainBody = abstract + ' ' + main_body
