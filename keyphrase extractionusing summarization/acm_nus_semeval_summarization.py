@@ -31,3 +31,6 @@ def extract_title(fulltext):
     title = fulltext[start_title:end_title]
 
     return title
+
+
+data['title'] = data['fulltext'].apply(extract_title)
