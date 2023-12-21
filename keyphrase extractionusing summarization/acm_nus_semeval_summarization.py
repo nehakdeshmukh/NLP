@@ -23,3 +23,11 @@ for line in open(file, 'r', encoding="utf8"):
 data = json_normalize(json_data)
 
 print(data)
+
+def extract_title(fulltext):
+    # extract the title
+    start_title = fulltext.find("--T\n") + len("--T\n")  # skip the special characters '--T\n'
+    end_title = fulltext.find("--A\n")
+    title = fulltext[start_title:end_title]
+
+    return title
