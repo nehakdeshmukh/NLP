@@ -11,6 +11,9 @@ from datetime import timedelta
 from pandas import json_normalize
 from extractive import ExtractiveSummarizer
 
+from tqdm import tqdm
+tqdm.pandas()
+
 model = ExtractiveSummarizer.load_from_checkpoint("models\\epoch=3.ckpt")
 
 file = 'datasets\\ACM.json' 
@@ -32,5 +35,11 @@ def extract_title(fulltext):
 
     return title
 
-
 data['title'] = data['fulltext'].apply(extract_title)
+
+for index, fulltext in enumerate(tqdm(data['fulltext'])):
+    # extract the abstract
+    start_abstract = fulltext.find("--A\n") + len("--A\n")  # skip the special characters '--A\n'
+    end_abstract = fulltext.find("--B\n")
+    abstract = fulltext[start_abstract:end_abstract]
+
