@@ -48,3 +48,9 @@ for index, fulltext in enumerate(tqdm(data['fulltext'])):
     main_body = fulltext[start_fulltext:end_fulltext]
 
     abstract_mainBody = abstract + ' ' + main_body
+    
+    summarize_fulltext = model.predict(abstract_mainBody, num_summary_sentences=14)
+
+    data['fulltext'].iat[index] = summarize_fulltext
+    
+    
