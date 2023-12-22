@@ -37,6 +37,8 @@ def extract_title(fulltext):
 
 data['title'] = data['fulltext'].apply(extract_title)
 
+start_time = time.time()
+
 for index, fulltext in enumerate(tqdm(data['fulltext'])):
     # extract the abstract
     start_abstract = fulltext.find("--A\n") + len("--A\n")  # skip the special characters '--A\n'
@@ -54,3 +56,13 @@ for index, fulltext in enumerate(tqdm(data['fulltext'])):
     data['fulltext'].iat[index] = summarize_fulltext
     
     
+data.rename(columns={"fulltext": "abstract"}, inplace=True)
+
+print(data)
+print(data['abstract'][0])
+print(data['abstract'][50])
+
+
+
+total_time = str(timedelta(seconds=(time.time() - start_time)))
+print("\n--- ACM %s running time ---" % total_time)
