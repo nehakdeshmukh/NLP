@@ -92,7 +92,17 @@ for index, abstract in enumerate(tqdm(data['abstract'])):
 
     data['abstract'].iat[index] = summarize_fulltext
 
+print(data)
+print(data['abstract'][0])
+print(data['abstract'][50])
 
+total_time = str(timedelta(seconds=(time.time() - start_time)))
+print("\n--- SemEval-2010 %s running time ---" % total_time)
 
+total_time = str(timedelta(seconds=(time.time() - start_time)))
+print("\n--- SemEval-2010 %s running time ---" % total_time)
 
+summarized_file = 'datasets\\summarized_text\\SemEval-2010_summarized.csv'  # TEST data to evaluate the final model
+
+data[['title', 'abstract', 'keyword']].to_csv(summarized_file, index=False)
 
