@@ -69,4 +69,21 @@ summarized_file = 'datasets\\summarized_text\\ACM_summarized.csv'  # TEST data t
 
 data[['title', 'abstract', 'keyword']].to_csv(summarized_file, index=False)
 
+file = 'datasets\\semeval_2010.json'
+
+json_data = []
+for line in open(file, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data = json_normalize(json_data)
+
+print(data)
+
+start_time = time.time()
+
+
+
+
+
 
