@@ -30,3 +30,18 @@ print(punctuation, 'LEN:', len(punctuation))
 def remove_punct(text):
     clean_text = text.translate(table)
     return clean_text
+
+
+json_data = []
+for line in open(file_kp20k, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data_kp20k = json_normalize(json_data)
+
+# print(data_kp20k)
+
+# remove punctuation
+data_kp20k['clean_title'] = data_kp20k['title'].apply(remove_punct)
+# remove whitespaces
+data_kp20k['clean_title'] = data_kp20k["clean_title"].str.replace('\s+', ' ', regex=True)
