@@ -75,13 +75,22 @@ json_data = []
 for line in open(file, 'r', encoding="utf8"):
     json_data.append(json.loads(line))
 
-# convert json to dataframe
+
 data = json_normalize(json_data)
 
 print(data)
 
 start_time = time.time()
 
+for index, abstract in enumerate(tqdm(data['abstract'])):
+    
+    abstract_mainBody = abstract + ' ' + data['fulltext'][index]
+
+    abstract_mainBody = abstract_mainBody.replace('\n', ' ')
+
+    summarize_fulltext = model.predict(abstract_mainBody, num_summary_sentences=14)
+
+    data['abstract'].iat[index] = summarize_fulltext
 
 
 
