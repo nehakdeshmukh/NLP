@@ -45,3 +45,12 @@ data_kp20k = json_normalize(json_data)
 data_kp20k['clean_title'] = data_kp20k['title'].apply(remove_punct)
 # remove whitespaces
 data_kp20k['clean_title'] = data_kp20k["clean_title"].str.replace('\s+', ' ', regex=True)
+
+
+
+json_data = []
+for line in open(file_kp20k, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# json to dataframe
+data_kp20k = json_normalize(json_data)
