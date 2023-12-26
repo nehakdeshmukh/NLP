@@ -74,5 +74,13 @@ data_kp20k_test['title'] = data_kp20k_test['title'].apply(remove_punct)
 data_kp20k_test['title'] = data_kp20k_test["title"].str.replace('\s+', ' ', regex=True)
 
 
+json_data = []
+for line in open(file_nus, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# json to dataframe
+data_nus = json_normalize(json_data)
+
+print(data_nus)
 
 
