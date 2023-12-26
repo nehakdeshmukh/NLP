@@ -68,3 +68,11 @@ for line in open(file_kp20k_test, 'r', encoding="utf8"):
 
 #  json to dataframe
 data_kp20k_test = json_normalize(json_data)
+
+data_kp20k_test['title'] = data_kp20k_test['title'].apply(remove_punct)
+
+data_kp20k_test['title'] = data_kp20k_test["title"].str.replace('\s+', ' ', regex=True)
+
+
+
+
