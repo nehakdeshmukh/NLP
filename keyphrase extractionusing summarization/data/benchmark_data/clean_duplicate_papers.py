@@ -83,4 +83,7 @@ data_nus = json_normalize(json_data)
 
 print(data_nus)
 
+data_nus['title'] = data_nus['title'].apply(remove_punct)
+# remove whitespaces
+data_nus['title'] = data_nus["title"].str.replace('\s+', ' ', regex=True)
 
