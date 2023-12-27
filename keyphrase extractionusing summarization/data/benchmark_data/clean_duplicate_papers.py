@@ -87,3 +87,10 @@ data_nus['title'] = data_nus['title'].apply(remove_punct)
 # remove whitespaces
 data_nus['title'] = data_nus["title"].str.replace('\s+', ' ', regex=True)
 
+
+json_data = []
+for line in open(file_acm, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data_acm = json_normalize(json_data)
