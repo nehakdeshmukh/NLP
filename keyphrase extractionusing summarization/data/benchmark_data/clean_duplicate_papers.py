@@ -94,3 +94,11 @@ for line in open(file_acm, 'r', encoding="utf8"):
 
 # convert json to dataframe
 data_acm = json_normalize(json_data)
+
+for index, fulltext in enumerate(data_acm['fulltext']):
+    # extract the title
+    start_title = fulltext.find("--T\n") + len("--T\n")  #special characters '--T\n'
+    end_title = fulltext.find("--A\n")
+    title = fulltext[start_title:end_title]
+    title = title.translate(table)  # remove punctuation
+    data_acm['fulltext'].iat[index] = title
