@@ -117,3 +117,8 @@ for line in open(file_semeval, 'r', encoding="utf8"):
 
 # convert json to dataframe
 data_semeval = json_normalize(json_data)
+
+# remove punctuation
+data_semeval['title'] = data_semeval['title'].apply(remove_punct)
+# remove whitespaces
+data_semeval['title'] = data_semeval["title"].str.replace('\s+', ' ', regex=True)
