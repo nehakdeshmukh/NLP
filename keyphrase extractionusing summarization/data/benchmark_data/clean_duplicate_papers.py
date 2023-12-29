@@ -102,3 +102,8 @@ for index, fulltext in enumerate(data_acm['fulltext']):
     title = fulltext[start_title:end_title]
     title = title.translate(table)  # remove punctuation
     data_acm['fulltext'].iat[index] = title
+
+data_acm.rename(columns={"fulltext": "title"}, inplace=True)
+
+# remove whitespaces
+data_acm['title'] = data_acm["title"].str.replace('\s+', ' ', regex=True)
