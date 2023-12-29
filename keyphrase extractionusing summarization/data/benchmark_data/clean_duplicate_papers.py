@@ -107,3 +107,13 @@ data_acm.rename(columns={"fulltext": "title"}, inplace=True)
 
 # remove whitespaces
 data_acm['title'] = data_acm["title"].str.replace('\s+', ' ', regex=True)
+
+
+# # Load SemEval
+
+json_data = []
+for line in open(file_semeval, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data_semeval = json_normalize(json_data)
