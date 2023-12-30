@@ -57,6 +57,11 @@ data_kp20k_val = json_normalize(json_data)
 
 # print(data_kp20k_val)
 
+# remove punctuation
+data_kp20k_val['title'] = data_kp20k_val['title'].apply(remove_punct)
+# remove whitespaces
+data_kp20k_val['title'] = data_kp20k_val["title"].str.replace('\s+', ' ', regex=True)
+
 
 
 # KP test
