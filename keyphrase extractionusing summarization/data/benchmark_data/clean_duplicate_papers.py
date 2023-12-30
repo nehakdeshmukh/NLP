@@ -126,3 +126,11 @@ data_semeval['title'] = data_semeval['title'].apply(remove_punct)
 # remove whitespaces
 data_semeval['title'] = data_semeval["title"].str.replace('\s+', ' ', regex=True)
 
+
+# lower case titles
+data_kp20k["clean_title"] = data_kp20k["clean_title"].str.lower()
+data_nus["title"] = data_nus["title"].str.lower()
+data_acm["title"] = data_acm["title"].str.lower()
+data_semeval["title"] = data_semeval["title"].str.lower()
+data_kp20k_val["title"] = data_kp20k_val["title"].str.lower()
+data_kp20k_test["title"] = data_kp20k_test["title"].str.lower()
