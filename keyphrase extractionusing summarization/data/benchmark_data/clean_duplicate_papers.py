@@ -146,6 +146,18 @@ count_dupl_docs_test = 0
 for kp20k_index, kp20k_title in enumerate(tqdm(data_kp20k['clean_title'])):
     for nus_index, nus_title in enumerate(data_nus['title']):
         if kp20k_title == nus_title:
-            
             count_dupl_docs_nus += 1
             data_kp20k['duplicate'].iat[kp20k_index] = 1  # mark duplicate documents
+
+
+
+    for acm_index, acm_title in enumerate(data_acm['title']):
+        if kp20k_title == acm_title:
+            count_dupl_docs_acm += 1
+            data_kp20k['duplicate'].iat[kp20k_index] = 1  
+            
+            
+            
+            
+            
+            
