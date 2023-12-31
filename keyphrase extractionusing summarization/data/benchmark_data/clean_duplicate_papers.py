@@ -157,7 +157,10 @@ for kp20k_index, kp20k_title in enumerate(tqdm(data_kp20k['clean_title'])):
             data_kp20k['duplicate'].iat[kp20k_index] = 1  
             
             
-            
+    for semeval_index, semeval_title in enumerate(data_semeval['title']):
+        if kp20k_title == semeval_title:
+            count_dupl_docs_semeval += 1
+            data_kp20k['duplicate'].iat[kp20k_index] = 1 
             
             
             
