@@ -134,3 +134,18 @@ data_acm["title"] = data_acm["title"].str.lower()
 data_semeval["title"] = data_semeval["title"].str.lower()
 data_kp20k_val["title"] = data_kp20k_val["title"].str.lower()
 data_kp20k_test["title"] = data_kp20k_test["title"].str.lower()
+
+
+data_kp20k['duplicate'] = 0
+
+count_dupl_docs_nus = 0
+count_dupl_docs_acm = 0
+count_dupl_docs_semeval = 0
+count_dupl_docs_val = 0
+count_dupl_docs_test = 0
+for kp20k_index, kp20k_title in enumerate(tqdm(data_kp20k['clean_title'])):
+    for nus_index, nus_title in enumerate(data_nus['title']):
+        if kp20k_title == nus_title:
+            
+            count_dupl_docs_nus += 1
+            data_kp20k['duplicate'].iat[kp20k_index] = 1  # mark duplicate documents
