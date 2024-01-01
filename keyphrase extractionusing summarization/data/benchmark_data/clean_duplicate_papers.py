@@ -174,3 +174,15 @@ for kp20k_index, kp20k_title in enumerate(tqdm(data_kp20k['clean_title'])):
             count_dupl_docs_test += 1
             data_kp20k['duplicate'].iat[kp20k_index] = 1  # mark duplicate documents
 
+print('NUS COUNT: ', count_dupl_docs_nus, ' ACM COUNT: ', count_dupl_docs_acm, ' SemEval COUNT: ', count_dupl_docs_semeval,
+      'VAL COUNT: ', count_dupl_docs_val, ' TEST COUNT: ', count_dupl_docs_test)
+
+print(data_kp20k)
+
+data_kp20k.drop(['clean_title'], axis=1, inplace=True)
+data_kp20k.drop(['duplicate'], axis=1, inplace=True)
+
+print(data_kp20k)
+
+#data to json file
+data_kp20k.to_json('kp20k_training.json', orient='records',  lines=True)
