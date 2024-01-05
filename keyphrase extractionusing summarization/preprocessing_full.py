@@ -25,3 +25,12 @@ parser = ArgumentParser()
 parser.add_argument("-m", "--mode", type=str, help="choose which type of data to create (options are: train, validation or test)")
 
 args = parser.parse_args()
+
+
+if args.mode == 'train':
+    # reading the initial JSON data using json.load()
+    file = 'data\\kp20k_training.json'  # TRAIN data
+
+    # Define the file paths and names to save TRAIN data
+    x_filename = 'data\\preprocessed_data\\x_TRAIN_data_preprocessed'
+    y_filename = 'data\\preprocessed_data\\y_TRAIN_data_preprocessed'
