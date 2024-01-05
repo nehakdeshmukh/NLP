@@ -34,3 +34,10 @@ if args.mode == 'train':
     # Define the file paths and names to save TRAIN data
     x_filename = 'data\\preprocessed_data\\x_TRAIN_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_TRAIN_data_preprocessed'
+elif args.mode == 'validation':
+    # reading the initial JSON data using json.load()
+    file = 'data\\kp20k_validation.json'  # VALIDATION data to tune model parameters
+
+    # Define the file paths and names to save VALIDATION data to tune model parameters
+    x_filename = 'data\\preprocessed_data\\x_VALIDATION_data_preprocessed'
+    y_filename = 'data\\preprocessed_data\\y_VALIDATION_data_preprocessed'
