@@ -44,6 +44,13 @@ elif args.mode == 'validation':
 elif args.mode == 'test':
     
     file = 'data\\kp20k_testing.json'  
-
     x_filename = 'data\\preprocessed_data\\x_TEST_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_TEST_data_preprocessed'
+
+else:
+    print('WRONG ARGUMENTS! - please fill the argument "-m" or "--mode" with one of the values "train", "validation" or "test"')
+    sys.exit()
+
+    # save preprosessed text for TEST data - use for EVALUATION (exact/partial matching)
+    x_text_filename = 'data\\preprocessed_data\\x_TEST_preprocessed_TEXT'  # save preprosessed text for TEST data
+    y_text_filename = 'data\\preprocessed_data\\y_TEST_preprocessed_TEXT'  # save preprosessed keyphrases for TEST data
