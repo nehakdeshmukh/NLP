@@ -13,7 +13,7 @@ import json
 import pickle
 import pandas as pd
 from argparse import ArgumentParser
-
+from pandas import json_normalize
 
 from tqdm import tqdm
 tqdm.pandas()
@@ -51,6 +51,17 @@ else:
     print('WRONG ARGUMENTS! - please fill the argument "-m" or "--mode" with one of the values "train", "validation" or "test"')
     sys.exit()
 
-    # save preprosessed text for TEST data - use for EVALUATION (exact/partial matching)
-    x_text_filename = 'data\\preprocessed_data\\x_TEST_preprocessed_TEXT'  # save preprosessed text for TEST data
-    y_text_filename = 'data\\preprocessed_data\\y_TEST_preprocessed_TEXT'  # save preprosessed keyphrases for TEST data
+    x_text_filename = 'data\\preprocessed_data\\x_TEST_preprocessed_TEXT' 
+    y_text_filename = 'data\\preprocessed_data\\y_TEST_preprocessed_TEXT' 
+
+
+batch_size = 64  # 1024  # 10000
+max_len = 400 
+
+
+json_data = []
+for line in open(file, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data = json_normalize(json_data)
