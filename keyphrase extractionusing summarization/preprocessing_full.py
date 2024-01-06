@@ -35,15 +35,16 @@ if args.mode == 'train':
     x_filename = 'data\\preprocessed_data\\x_TRAIN_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_TRAIN_data_preprocessed'
 elif args.mode == 'validation':
-    # reading the initial JSON data using json.load()
-    file = 'data\\kp20k_validation.json'  # VALIDATION data to tune model parameters
+   
+    file = 'data\\kp20k_validation.json'  
 
-    # Define the file paths and names to save VALIDATION data to tune model parameters
+    # Define the file paths and names to save VALIDATION data 
     x_filename = 'data\\preprocessed_data\\x_VALIDATION_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_VALIDATION_data_preprocessed'
 elif args.mode == 'test':
     
     file = 'data\\kp20k_testing.json'  
+    # Define the file paths and names to save TEST data 
     x_filename = 'data\\preprocessed_data\\x_TEST_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_TEST_data_preprocessed'
 
@@ -55,7 +56,7 @@ else:
     y_text_filename = 'data\\preprocessed_data\\y_TEST_preprocessed_TEXT' 
 
 
-batch_size = 64  # 1024  # 10000
+batch_size = 64  
 max_len = 400 
 
 
@@ -65,3 +66,7 @@ for line in open(file, 'r', encoding="utf8"):
 
 # convert json to dataframe
 data = json_normalize(json_data)
+
+#split keyphrases 
+for index, keywords in enumerate(data['keyword']):
+    data['keyword'].iat[index] = keywords.split(';')
