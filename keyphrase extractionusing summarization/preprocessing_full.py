@@ -79,7 +79,7 @@ for index, abstract in enumerate(data['abstract']):
 
     data['abstract'].iat[index] = title_abstract
     
-def contractions():
+def contractions_func():
     contraction_dict = {"ain't": "is not", "aren't": "are not", "can't": "cannot", "'cause": "because",
                         "could've": "could have", "couldn't": "could not", "didn't": "did not",
                         "doesn't": "does not", "don't": "do not", "hadn't": "had not", "hasn't": "has not",
@@ -120,3 +120,10 @@ def contractions():
     contraction_re = re.compile('(%s)' % '|'.join(contraction_dict.keys()))
     return contraction_dict, contraction_re
     
+def replace_contractions(text):
+    contractions, contractions_re = contractions_func()
+
+    def replace(match):
+        return contractions[match.group(0)]
+
+    return contractions_re.sub(replace, text)
