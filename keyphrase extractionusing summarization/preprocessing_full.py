@@ -168,4 +168,11 @@ newLine_tabs = '\t' + '\n'
 newLine_tabs_table = str.maketrans(newLine_tabs, ' ' * len(newLine_tabs))
 print(newLine_tabs, 'newLine_tabs LEN:', len(newLine_tabs))
 
+def remove_references(doc):
+    
+    clear_doc = doc.translate(newLine_tabs_table)    
+    clear_doc = re.sub(r'[A-Z][a-z]+,\s[A-Z][a-z]*\. et al.,\s\d{4}', "REFPUBL", clear_doc)  
+    clear_doc = re.sub("[A-Z][a-z]+ et al. [0-9]{4}", "REFPUBL", clear_doc)
+    clear_doc = re.sub("[A-Z][a-z]+ et al.", "REFPUBL", clear_doc)
 
+    return clear_doc
