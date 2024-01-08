@@ -157,3 +157,15 @@ def remove_brackets_contents(doc):
         elif skip1c == 0: 
             ret += i
     return ret
+
+
+# remove parenthesis, brackets, contents
+data['abstract'] = data['abstract'].apply(remove_brackets_contents)
+
+
+# delete newline, tab characters
+newLine_tabs = '\t' + '\n'
+newLine_tabs_table = str.maketrans(newLine_tabs, ' ' * len(newLine_tabs))
+print(newLine_tabs, 'newLine_tabs LEN:', len(newLine_tabs))
+
+
