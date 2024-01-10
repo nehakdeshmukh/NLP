@@ -14,6 +14,7 @@ import pickle
 import pandas as pd
 from argparse import ArgumentParser
 from pandas import json_normalize
+import string
 
 from tqdm import tqdm
 tqdm.pandas()
@@ -176,3 +177,7 @@ def remove_references(doc):
     clear_doc = re.sub("[A-Z][a-z]+ et al.", "REFPUBL", clear_doc)
 
     return clear_doc
+
+
+# remove references in documents 
+data['abstract'] = data['abstract'].apply(remove_references)
