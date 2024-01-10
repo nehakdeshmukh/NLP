@@ -181,3 +181,7 @@ def remove_references(doc):
 
 # remove references in documents 
 data['abstract'] = data['abstract'].apply(remove_references)
+
+punctuation = string.punctuation
+table = str.maketrans(punctuation, ' '*len(punctuation))
+print(punctuation, 'LEN:', len(punctuation))
