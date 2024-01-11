@@ -202,3 +202,8 @@ data['keyword'] = data['keyword'].apply(keyword_remove_punct_non_ascii)
 
 # remove spaces
 data['abstract'] = data['abstract'].apply(lambda text: " ".join([token if not re.match('^\d+$', token) else 'DIGIT_REPL' for token in text.split()]))  
+
+# remove empty sentences
+data = data[data['abstract'].str.strip().astype(bool)]
+# reset index 
+data.reset_index(drop=True, inplace=True)
