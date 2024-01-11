@@ -18,7 +18,7 @@ import string
 
 from tqdm import tqdm
 tqdm.pandas()
-
+from tensorflow.keras.preprocessing.text import Tokenizer
 
 pd.set_option('display.max_columns', None)
 
@@ -213,10 +213,32 @@ data['keyword'] = data['keyword'].apply(lambda set_of_keyws: [key_text for key_t
 # remove rows keyphrases
 data = data[data['keyword'].map(len) > 0]
 
+#create the GloVe matrix, that will be used as weights in the embedding layer
+if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed': 
 
+    # oov_token
+    tokenizer = Tokenizer(filters='', lower=True, oov_token='<UKN>')
+    tokenizer.fit_on_texts(data['abstract'])
 
+    # convert text to sequence of numbers
+    X = tokenizer.texts_to_sequences(data['abstract'])
 
+    # get the word-index pairs
+    word_index = tokenizer.word_index
 
+    # save tokenizer
+    with open('data\\train_tokenizer.pickle', 'wb') as handle:
+        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+else:  # for validation and test sets
+
+    # load tokenizer
+    with open('data\\train_tokenizer.pickle', 'rb') as handle:
+        tokenizer = pickle.load(handle)
+
+    X = tokenizer.texts_to_sequences(data['abstract'])
+
+    word_index = tokenizer.word_index
 
 
 
