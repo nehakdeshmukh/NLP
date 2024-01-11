@@ -207,3 +207,17 @@ data['abstract'] = data['abstract'].apply(lambda text: " ".join([token if not re
 data = data[data['abstract'].str.strip().astype(bool)]
 # reset index 
 data.reset_index(drop=True, inplace=True)
+
+# remove empty keyphrases
+data['keyword'] = data['keyword'].apply(lambda set_of_keyws: [key_text for key_text in set_of_keyws if key_text.strip()])
+# remove rows keyphrases
+data = data[data['keyword'].map(len) > 0]
+
+
+
+
+
+
+
+
+
