@@ -195,3 +195,10 @@ def remove_punct_non_ascii(text):
 def keyword_remove_punct_non_ascii(text):
     clean_text = [re.sub(r"\b[b-zB-Z]\b", "", keyw.translate(table).encode("ascii", "ignore").decode()) for keyw in text]  # remove non-ascii characters
     return clean_text
+
+# remove punctuation
+data['abstract'] = data['abstract'].apply(remove_punct_non_ascii)
+data['keyword'] = data['keyword'].apply(keyword_remove_punct_non_ascii)
+
+# remove spaces
+data['abstract'] = data['abstract'].apply(lambda text: " ".join([token if not re.match('^\d+$', token) else 'DIGIT_REPL' for token in text.split()]))  
