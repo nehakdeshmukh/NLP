@@ -249,4 +249,6 @@ def tokenize_lowercase(text):
         formatted_text.append(word_token.lower())  # DO NOT STEM TEXT WORDS TO TRAIN THE CLASSIFIER
     return formatted_text
 
-
+# tokenize text
+data['abstract'] = data['abstract'].apply(tokenize_lowercase)
+print(data['abstract'])
