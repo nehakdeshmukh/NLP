@@ -15,6 +15,7 @@ import pandas as pd
 from argparse import ArgumentParser
 from pandas import json_normalize
 import string
+from nltk.tokenize import word_tokenize
 
 from tqdm import tqdm
 tqdm.pandas()
@@ -228,7 +229,7 @@ if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
 
     # save tokenizer
     with open('data\\train_tokenizer.pickle', 'wb') as handle:
-        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
 else:  # for validation and test sets
 
@@ -241,5 +242,11 @@ else:  # for validation and test sets
     word_index = tokenizer.word_index
 
 
+def tokenize_lowercase(text):
+    formatted_text = []
+    words = word_tokenize(text)  # tokenize document text
+    for word_token in words:  # get words of all keyphrases in a single list
+        formatted_text.append(word_token.lower())  # DO NOT STEM TEXT WORDS TO TRAIN THE CLASSIFIER
+    return formatted_text
 
 
