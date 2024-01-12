@@ -20,6 +20,7 @@ from nltk.tokenize import word_tokenize
 from tqdm import tqdm
 tqdm.pandas()
 from tensorflow.keras.preprocessing.text import Tokenizer
+from nltk.stem.snowball import SnowballStemmer as Stemmer
 
 pd.set_option('display.max_columns', None)
 
@@ -244,11 +245,22 @@ else:  # for validation and test sets
 
 def tokenize_lowercase(text):
     formatted_text = []
-    words = word_tokenize(text)  # tokenize document text
-    for word_token in words:  # get words of all keyphrases in a single list
-        formatted_text.append(word_token.lower())  # DO NOT STEM TEXT WORDS TO TRAIN THE CLASSIFIER
+    words = word_tokenize(text)  
+    for word_token in words:  
+        formatted_text.append(word_token.lower())  
     return formatted_text
 
 # tokenize text
 data['abstract'] = data['abstract'].apply(tokenize_lowercase)
 print(data['abstract'])
+
+# stem, tokenize and lower case keyphrases 
+for index, list_of_keyphrases in enumerate(data['keyword']):
+    keyphrases_list = []
+    for keyphrase in list_of_keyphrases:  
+        keyphrase = keyphrase.strip()  
+        if len(keyphrase):  
+            tokens = word_tokenize(keyphrase)  
+            tokens = [tok if not re.match('^\d+$', tok) else 'DIGIT_REPL' for tok in tokens]
+            keyphrases_list.append([Stemmer('porter').stem(keyword.lower()) for keyword in tokens])
+    data['keyword'].iat[index] = keyphrases_list
