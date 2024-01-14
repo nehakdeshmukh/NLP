@@ -12,6 +12,7 @@ import sys
 import json
 import pickle
 import pandas as pd
+import numpy as np
 from argparse import ArgumentParser
 from pandas import json_normalize
 import string
@@ -268,3 +269,20 @@ for index, list_of_keyphrases in enumerate(data['keyword']):
 if x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':  
     data['abstract'].to_csv(x_text_filename, index=False)  
     data['keyword'].to_csv(y_text_filename, index=False)  
+    
+# Glove metrix
+if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':  
+
+    
+    gloveFile = 'GloVe\\glove.6B\\glove.6B.100d.txt'
+
+    print("Loading Glove Model")
+    glove_model = {}
+    with open(gloveFile, 'r', encoding="utf8") as f:
+        for line in f:
+            splitLine = line.split()
+            word = splitLine[0]
+            embedding = np.array(splitLine[1:], dtype='float32')
+            glove_model[word] = embedding
+
+    print("Found %s word vectors." % len(glove_model))
