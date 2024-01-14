@@ -264,3 +264,7 @@ for index, list_of_keyphrases in enumerate(data['keyword']):
             tokens = [tok if not re.match('^\d+$', tok) else 'DIGIT_REPL' for tok in tokens]
             keyphrases_list.append([Stemmer('porter').stem(keyword.lower()) for keyword in tokens])
     data['keyword'].iat[index] = keyphrases_list
+
+if x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':  
+    data['abstract'].to_csv(x_text_filename, index=False)  
+    data['keyword'].to_csv(y_text_filename, index=False)  
