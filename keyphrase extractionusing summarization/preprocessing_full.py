@@ -286,3 +286,12 @@ if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
             glove_model[word] = embedding
 
     print("Found %s word vectors." % len(glove_model))
+    
+def get_glove_vec(word_vec):
+    """
+    Get the vector of a word
+    """
+    embedding_vector = glove_model.get(word_vec)  # get the vector of a word, if exists
+
+    if embedding_vector is not None:  # we found the word - add that words vector to the matrix
+        return embedding_vector
