@@ -351,3 +351,8 @@ def check_coverage(vocab, glove_model):
 
 oov = check_coverage(tokenizer.word_counts, glove_model)
 print('out of vocab: ', oov[:30])
+
+
+embedding_dim = 100
+num_tokens = len(word_index)
+print('Vocabulary (number of unique words):', num_tokens)
