@@ -17,6 +17,7 @@ from argparse import ArgumentParser
 from pandas import json_normalize
 import string
 from nltk.tokenize import word_tokenize
+import operator
 
 from tqdm import tqdm
 tqdm.pandas()
@@ -323,3 +324,26 @@ def get_glove_vec(word_vec):
                           1.00092500e-01, 6.39176890e-02, 5.10458164e-02, 8.40307549e-02,
                           1.05783986e-02, 2.15598941e-01, -1.54302031e-01, 1.49716333e-01]
          return np.array(avg_vector, dtype='float64') 
+
+
+
+def check_coverage(vocab, glove_model):
+    a = {}
+    oov = {}
+    k = 0
+    i = 0
+    for word in tqdm(vocab):
+        try:
+            a[word] = glove_model[word]
+            k += vocab[word]
+        except:
+
+            oov[word] = vocab[word]
+            i += vocab[word]
+            pass
+
+    print('Found embeddings for {:.2%} of vocab'.format(len(a) / len(vocab)))
+    print('Found embeddings for  {:.2%} of all text'.format(k / (k + i)))
+    sorted_x = sorted(oov.items(), key=operator.itemgetter(1))[::-1]
+
+    return sorted_x
