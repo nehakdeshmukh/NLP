@@ -347,3 +347,7 @@ def check_coverage(vocab, glove_model):
     sorted_x = sorted(oov.items(), key=operator.itemgetter(1))[::-1]
 
     return sorted_x
+
+
+oov = check_coverage(tokenizer.word_counts, glove_model)
+print('out of vocab: ', oov[:30])
