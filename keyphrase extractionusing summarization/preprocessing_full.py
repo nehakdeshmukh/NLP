@@ -356,3 +356,16 @@ print('out of vocab: ', oov[:30])
 embedding_dim = 100
 num_tokens = len(word_index)
 print('Vocabulary (number of unique words):', num_tokens)
+
+
+# Prepare embedding matrix
+embedding_matrix = np.zeros((num_tokens + 1, embedding_dim))
+for word, i in word_index.items():
+    embedding_vector = get_glove_vec(word)
+    if embedding_vector is not None:
+        # Words not found in embedding index will be equal to the median of the GloVe vector space (handled by get_glove_vec function).
+        # This includes the representation for "padding" and "OOV"
+        embedding_matrix[i] = embedding_vector
+
+print('embedding_matrix', embedding_matrix)
+print('embedding_matrix %s.' % len(embedding_matrix))
