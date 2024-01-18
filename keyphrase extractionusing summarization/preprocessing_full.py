@@ -407,3 +407,11 @@ for index, abstract in enumerate(tqdm(data['abstract'])):
     y.append(abstract_word_labels)
 
 print('KP count: ', count_KP, '\nKP WORDS count: ', count_KP_words, '\nNON-KP count: ', count_NON_KP)
+
+
+import json
+# save data
+with open(x_filename+".txt", "w") as fp_x:
+    json.dump(X, fp_x)
+with open(y_filename+".txt", "w") as fp_y:
+    json.dump(y, fp_y)
