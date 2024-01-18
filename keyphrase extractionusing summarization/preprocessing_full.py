@@ -372,3 +372,31 @@ print('embedding_matrix %s.' % len(embedding_matrix))
 
 
 savez_compressed('data\\embedding_matrix.npz', embedding_matrix)
+
+
+# Convert Tag/Label to tag_index
+count_KP = 0  
+count_KP_words = 0 
+count_NON_KP = 0  
+y = [] 
+for index, abstract in enumerate(tqdm(data['abstract'])):
+    abstract_word_labels = [0] * len(abstract)  
+
+    # add labels for words in abstract
+    for i, word in enumerate(abstract):  
+        for keyphrase in data['keyword'][index]:
+            if Stemmer('porter').stem(word) == keyphrase[0]:  
+                match_count = 1  
+                for j in range(1, len(keyphrase)):  
+                    if i + j < len(abstract):  
+                        if Stemmer('porter').stem(abstract[i + j]) == keyphrase[j]:  
+                            match_count += 1
+                        else:
+                            break  
+                    else:
+                        break  
+                if match_count == len(keyphrase):
+                    for x in range(len(keyphrase)):  
+                        abstract_word_labels[i + x] = 1
+                    count_KP += 1
+                    break  
