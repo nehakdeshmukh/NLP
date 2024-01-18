@@ -400,3 +400,10 @@ for index, abstract in enumerate(tqdm(data['abstract'])):
                         abstract_word_labels[i + x] = 1
                     count_KP += 1
                     break  
+        if not abstract_word_labels[i]:  # count NON-KPs
+            count_NON_KP += 1
+    count_KP_words += abstract_word_labels.count(1)  # count KP WORDS
+    
+    y.append(abstract_word_labels)
+
+print('KP count: ', count_KP, '\nKP WORDS count: ', count_KP_words, '\nNON-KP count: ', count_NON_KP)
