@@ -18,6 +18,7 @@ from pandas import json_normalize
 import string
 from nltk.tokenize import word_tokenize
 import operator
+import pad_sequences
 from numpy import savez_compressed
 
 from tqdm import tqdm
@@ -415,3 +416,12 @@ with open(x_filename+".txt", "w") as fp_x:
     json.dump(X, fp_x)
 with open(y_filename+".txt", "w") as fp_y:
     json.dump(y, fp_y)
+    
+    
+print("Maximum length of title and abstract in the whole dataset", max_len)
+
+for i in tqdm(range(0, len(X), batch_size)):
+
+    X_batch = pad_sequences(sequences=X[i:i + batch_size], padding="post", maxlen=max_len, value=0)
+    if not x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':
+        y_batch = pad_sequences(sequences=y[i:i + batch_size], padding="post", maxlen=max_len, value=0)
