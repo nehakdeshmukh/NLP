@@ -438,3 +438,9 @@ ds = f.create_carray('/', 'x_data'+str(i), obj=X_batch, filters=filters)
 ds[:] = X_batch
 f.close()
 
+if not x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed': 
+    
+    f = tables.open_file(y_filename + '.hdf', 'a')
+    ds = f.create_carray('/', 'y_data' + str(i), obj=y_batch, filters=filters)
+    ds[:] = y_batch
+    f.close()
