@@ -431,3 +431,10 @@ for i in tqdm(range(0, len(X), batch_size)):
 y_batch = [to_categorical(i, num_classes=2, dtype='int8') for i in y_batch]
 
 filters = tables.Filters(complib='blosc', complevel=5)
+
+# Save X batches into file
+f = tables.open_file(x_filename+'.hdf', 'a')
+ds = f.create_carray('/', 'x_data'+str(i), obj=X_batch, filters=filters)
+ds[:] = X_batch
+f.close()
+
