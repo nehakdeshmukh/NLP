@@ -444,3 +444,13 @@ if not x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':
     ds = f.create_carray('/', 'y_data' + str(i), obj=y_batch, filters=filters)
     ds[:] = y_batch
     f.close()
+    
+
+X_batch = None
+y_batch = None
+
+
+if y_filename == 'data\\preprocessed_data\\y_TEST_data_preprocessed':  # write ONLY for TEST DATA
+    y_test = pd.DataFrame({'y_test_keyword': y})
+    y_test['y_test_keyword'].to_csv(y_filename, index=False)  # save the preprocessed keyphrases
+    
