@@ -19,6 +19,7 @@ import string
 from nltk.tokenize import word_tokenize
 import operator
 import pad_sequences
+import to_categorical
 from numpy import savez_compressed
 
 from tqdm import tqdm
@@ -425,3 +426,5 @@ for i in tqdm(range(0, len(X), batch_size)):
     X_batch = pad_sequences(sequences=X[i:i + batch_size], padding="post", maxlen=max_len, value=0)
     if not x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':
         y_batch = pad_sequences(sequences=y[i:i + batch_size], padding="post", maxlen=max_len, value=0)
+
+y_batch = [to_categorical(i, num_classes=2, dtype='int8') for i in y_batch]
