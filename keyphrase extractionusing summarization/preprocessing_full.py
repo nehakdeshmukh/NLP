@@ -450,7 +450,15 @@ X_batch = None
 y_batch = None
 
 
-if y_filename == 'data\\preprocessed_data\\y_TEST_data_preprocessed':  # write ONLY for TEST DATA
+if y_filename == 'data\\preprocessed_data\\y_TEST_data_preprocessed':  
     y_test = pd.DataFrame({'y_test_keyword': y})
-    y_test['y_test_keyword'].to_csv(y_filename, index=False)  # save the preprocessed keyphrases
+    y_test['y_test_keyword'].to_csv(y_filename, index=False)  
+    
+
+with tables.File(x_filename+'.hdf', 'r') as h5f:
+    x = h5f.get_node('/x_data'+str(1024)).read()  
+    print(x)
+    print('X SHAPE AFTER', np.array(x, dtype=object).shape)
+    
+    
     
