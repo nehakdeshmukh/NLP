@@ -461,4 +461,7 @@ with tables.File(x_filename+'.hdf', 'r') as h5f:
     print('X SHAPE AFTER', np.array(x, dtype=object).shape)
     
     
+if not x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':  
     
+    with tables.File(y_filename+'.hdf', 'r') as h5f:
+        y = h5f.get_node('/y_data'+str(1024)).read()  # get a specific chunk of data
