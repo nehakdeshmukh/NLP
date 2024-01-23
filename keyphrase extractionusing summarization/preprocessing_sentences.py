@@ -43,3 +43,11 @@ elif args.mode == 'validation':
     # Define the file paths and names to save VALIDATION data to tune model parameters
     x_filename = 'data\\preprocessed_data\\x_VALIDATION_SENTENC_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_VALIDATION_SENTENC_data_preprocessed'
+    
+elif args.mode == 'test':
+    
+    file = 'data\\kp20k_testing.json'  
+
+    # Define the file paths and names to save TEST data to evaluate the final model
+    x_filename = 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed'
+    y_filename = 'data\\preprocessed_data\\y_TEST_SENTENC_data_preprocessed'
