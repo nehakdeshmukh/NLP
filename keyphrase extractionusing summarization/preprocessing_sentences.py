@@ -51,3 +51,16 @@ elif args.mode == 'test':
     # Define the file paths and names to save TEST data to evaluate the final model
     x_filename = 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_TEST_SENTENC_data_preprocessed'
+    
+else:
+    print('WRONG ARGUMENTS! - please fill the argument "-m" or "--mode" with one of the values "train", "validation" or "test"')
+    sys.exit()
+
+
+x_text_filename = 'data\\preprocessed_data\\x_TEST_SENTENC_preprocessed_TEXT'  
+y_text_filename = 'data\\preprocessed_data\\y_TEST_SENTENC_preprocessed_TEXT'  
+
+
+# Define the number of lines to read
+batch_size = 256  
+max_len = 40  
