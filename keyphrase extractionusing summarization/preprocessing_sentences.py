@@ -36,4 +36,10 @@ if args.mode == 'train':
     x_filename = 'data\\preprocessed_data\\x_TRAIN_SENTENC_data_preprocessed'
     y_filename = 'data\\preprocessed_data\\y_TRAIN_SENTENC_data_preprocessed'
     
+elif args.mode == 'validation':
     
+    file = 'data\\kp20k_validation.json'  
+
+    # Define the file paths and names to save VALIDATION data to tune model parameters
+    x_filename = 'data\\preprocessed_data\\x_VALIDATION_SENTENC_data_preprocessed'
+    y_filename = 'data\\preprocessed_data\\y_VALIDATION_SENTENC_data_preprocessed'
