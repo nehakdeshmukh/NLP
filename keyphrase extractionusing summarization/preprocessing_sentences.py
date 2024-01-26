@@ -76,4 +76,5 @@ data = json_normalize(json_data)
 
 print(data)
 
-
+for index, keywords in enumerate(data['keyword']):
+    data['keyword'].iat[index] = keywords.split(';')
