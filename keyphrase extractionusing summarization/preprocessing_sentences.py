@@ -12,6 +12,7 @@ import string
 import tables
 import numpy as np
 import pandas as pd
+from pandas import json_normalize
 
 from argparse import ArgumentParser
 
@@ -64,3 +65,15 @@ y_text_filename = 'data\\preprocessed_data\\y_TEST_SENTENC_preprocessed_TEXT'
 # Define the number of lines to read
 batch_size = 256  
 max_len = 40  
+
+
+json_data = []
+for line in open(file, 'r', encoding="utf8"):
+    json_data.append(json.loads(line))
+
+# convert json to dataframe
+data = json_normalize(json_data)
+
+print(data)
+
+
