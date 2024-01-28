@@ -146,3 +146,11 @@ def get_contractions():
 
     contraction_re = re.compile('(%s)' % '|'.join(contraction_dict.keys()))
     return contraction_dict, contraction_re
+
+def replace_contractions(text):
+    contractions, contractions_re = get_contractions()
+
+    def replace(match):
+        return contractions[match.group(0)]
+
+    return contractions_re.sub(replace, text)
