@@ -85,3 +85,9 @@ for index, abstract in enumerate(data['abstract']):
     title_abstract = title_abstract.replace('\n', ' ')
 
     data['abstract'].iat[index] = title_abstract
+    
+    
+    
+data['abstract'] = data['abstract'].apply(lambda text: re.sub(r'(?<!\w)([A-Z])\.', r'\1', text.replace('e.g.', 'eg')))
+data['abstract'] = data['abstract'].apply(lambda text: text.replace('i.e.', 'ie'))
+data['abstract'] = data['abstract'].apply(lambda text: text.replace('etc.', 'etc'))
