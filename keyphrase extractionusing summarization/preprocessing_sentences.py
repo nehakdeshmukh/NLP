@@ -96,3 +96,6 @@ data['abstract'] = data['abstract'].apply(lambda text: text.replace('etc.', 'etc
 
 data['abstract'] = data['abstract'].apply(sent_tokenize)
 print(data['abstract'][0])
+
+data = data.explode('abstract')
+print(data)
