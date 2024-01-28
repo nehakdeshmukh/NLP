@@ -99,3 +99,8 @@ print(data['abstract'][0])
 
 data = data.explode('abstract')
 print(data)
+
+if x_filename == 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed': 
+    data['assemble_documents_index'] = data.index 
+
+
