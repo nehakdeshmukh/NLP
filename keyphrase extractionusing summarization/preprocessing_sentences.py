@@ -13,6 +13,7 @@ import tables
 import numpy as np
 import pandas as pd
 from pandas import json_normalize
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 from argparse import ArgumentParser
 
@@ -91,3 +92,7 @@ for index, abstract in enumerate(data['abstract']):
 data['abstract'] = data['abstract'].apply(lambda text: re.sub(r'(?<!\w)([A-Z])\.', r'\1', text.replace('e.g.', 'eg')))
 data['abstract'] = data['abstract'].apply(lambda text: text.replace('i.e.', 'ie'))
 data['abstract'] = data['abstract'].apply(lambda text: text.replace('etc.', 'etc'))
+
+
+data['abstract'] = data['abstract'].apply(sent_tokenize)
+print(data['abstract'][0])
