@@ -159,3 +159,25 @@ def replace_contractions(text):
 data['abstract'] = data['abstract'].apply(replace_contractions)
 
 data['keyword'] = data['keyword'].apply(lambda set_of_keyphrases: [replace_contractions(keyphrase) for keyphrase in set_of_keyphrases])
+
+def remove_brackets_and_contents(doc):
+    """
+    remove parenthesis, brackets and their contents
+    :param doc: initial text document
+    :return: text document without parenthesis, brackets and their contents
+    """
+    ret = ''
+    skip1c = 0
+    # skip2c = 0
+    for i in doc:
+        if i == '[':
+            skip1c += 1
+        # elif i == '(':
+        # skip2c += 1
+        elif i == ']' and skip1c > 0:
+            skip1c -= 1
+        # elif i == ')'and skip2c > 0:
+        # skip2c -= 1
+        elif skip1c == 0:  # and skip2c == 0:
+            ret += i
+    return ret
