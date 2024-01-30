@@ -154,3 +154,8 @@ def replace_contractions(text):
         return contractions[match.group(0)]
 
     return contractions_re.sub(replace, text)
+
+
+data['abstract'] = data['abstract'].apply(replace_contractions)
+
+data['keyword'] = data['keyword'].apply(lambda set_of_keyphrases: [replace_contractions(keyphrase) for keyphrase in set_of_keyphrases])
