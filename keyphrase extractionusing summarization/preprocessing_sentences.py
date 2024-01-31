@@ -204,3 +204,6 @@ def remove_references(doc):
     clear_doc = re.sub("[A-Z][a-z]+ et al.", "REFPUBL", clear_doc)
 
     return clear_doc
+
+
+data['abstract'] = data['abstract'].apply(remove_references)
