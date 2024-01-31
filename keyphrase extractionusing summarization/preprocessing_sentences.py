@@ -207,3 +207,7 @@ def remove_references(doc):
 
 
 data['abstract'] = data['abstract'].apply(remove_references)
+
+punctuation = string.punctuation  # + '\t' + '\n'
+table = str.maketrans(punctuation, ' '*len(punctuation))
+
