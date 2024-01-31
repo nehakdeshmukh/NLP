@@ -180,3 +180,9 @@ def remove_brackets_and_contents(doc):
 
 
 data['abstract'] = data['abstract'].apply(remove_brackets_and_contents)
+
+
+newLine_tabs = '\t' + '\n'
+newLine_tabs_table = str.maketrans(newLine_tabs, ' ' * len(newLine_tabs))
+
+
