@@ -185,4 +185,22 @@ data['abstract'] = data['abstract'].apply(remove_brackets_and_contents)
 newLine_tabs = '\t' + '\n'
 newLine_tabs_table = str.maketrans(newLine_tabs, ' ' * len(newLine_tabs))
 
+def remove_references(doc):
+    """
+    remove references of publications (in document text)
+    :param doc: initial text document
+    :return: text document without references
+    """
+    # delete newline and tab characters
+    clear_doc = doc.translate(newLine_tabs_table)
 
+    # remove all references of type "Author, J. et al., 2014"
+    clear_doc = re.sub(r'[A-Z][a-z]+,\s[A-Z][a-z]*\. et al.,\s\d{4}', "REFPUBL", clear_doc)
+
+    # remove all references of type "Author et al. 1990"
+    clear_doc = re.sub("[A-Z][a-z]+ et al. [0-9]{4}", "REFPUBL", clear_doc)
+
+    # remove all references of type "Author et al."
+    clear_doc = re.sub("[A-Z][a-z]+ et al.", "REFPUBL", clear_doc)
+
+    return clear_doc
