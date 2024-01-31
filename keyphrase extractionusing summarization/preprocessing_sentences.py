@@ -211,3 +211,8 @@ data['abstract'] = data['abstract'].apply(remove_references)
 punctuation = string.punctuation  # + '\t' + '\n'
 table = str.maketrans(punctuation, ' '*len(punctuation))
 
+def remove_punct_and_non_ascii(text):
+    clean_text = text.translate(table)
+    clean_text = clean_text.encode("ascii", "ignore").decode() 
+    clean_text = re.sub(r"\b[b-zB-Z]\b", "", clean_text)
+    return clean_text
