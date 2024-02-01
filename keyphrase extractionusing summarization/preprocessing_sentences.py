@@ -227,4 +227,7 @@ data['abstract'] = data['abstract'].apply(remove_punct_and_non_ascii)
 data['keyword'] = data['keyword'].apply(keyword_remove_punct_and_non_ascii)
 print(data['keyword'])
 
+data['abstract'] = data['abstract'].apply(lambda text: " ".join([token if not re.match('^\d+$', token) else 'DIGIT_REPL' for token in text.split()]))
+print(data['abstract'][3])  
+print('convert digits - abstract finish')
 
