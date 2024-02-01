@@ -231,3 +231,7 @@ data['abstract'] = data['abstract'].apply(lambda text: " ".join([token if not re
 print(data['abstract'][3])  
 print('convert digits - abstract finish')
 
+print('LEN BEFORE', len(data))
+data['keyword'] = data['keyword'].apply(lambda set_of_keyws: [key_text for key_text in set_of_keyws if key_text.strip()])
+data = data[data['keyword'].map(len) > 0]
+print('LEN AFTER', len(data))
