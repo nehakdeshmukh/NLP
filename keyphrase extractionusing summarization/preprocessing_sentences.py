@@ -221,3 +221,10 @@ def keyword_remove_punct_and_non_ascii(text):
     # remove all single letter except from 'a' and 'A'
     clean_text = [re.sub(r"\b[b-zB-Z]\b", "", keyw.translate(table).encode("ascii", "ignore").decode()) for keyw in text]  # remove non-ascii characters
     return clean_text
+
+
+data['abstract'] = data['abstract'].apply(remove_punct_and_non_ascii)
+data['keyword'] = data['keyword'].apply(keyword_remove_punct_and_non_ascii)
+print(data['keyword'])
+
+
