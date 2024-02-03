@@ -244,3 +244,10 @@ X = tokenizer.texts_to_sequences(data['abstract'])
 
 word_index = tokenizer.word_index
 
+def tokenize_lowercase(text):
+
+    formatted_text = []
+    words = word_tokenize(text)  
+    for word_token in words:  
+        formatted_text.append(word_token.lower())  
+    return formatted_text
