@@ -273,3 +273,36 @@ if x_filename == 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed':
     data['abstract'].to_csv(x_text_filename, index=False)  
     data[['keyword', 'assemble_documents_index']].to_csv(y_text_filename, index=False)  
     
+count_KP = 0 
+count_KP_words = 0  
+count_NON_KP = 0 
+y = [] 
+for index, abstract in enumerate(tqdm(data['abstract'])):
+    abstract_word_labels = [0] * len(abstract) 
+
+    
+    for i, word in enumerate(abstract): 
+        for keyphrase in data['keyword'][index]:
+            if Stemmer('porter').stem(word) == keyphrase[0]: 
+                match_count = 1 
+                for j in range(1, len(keyphrase)): 
+                    if i + j < len(abstract):
+                        if Stemmer('porter').stem(abstract[i + j]) == keyphrase[j]: 
+                            match_count += 1
+                        else:
+                            break  
+                    else:
+                        break 
+                if match_count == len(keyphrase):
+                    for x in range(len(keyphrase)):  
+                        abstract_word_labels[i + x] = 1
+                    count_KP += 1
+                    break  
+                
+        if not abstract_word_labels[i]:  
+            count_NON_KP += 1
+    count_KP_words += abstract_word_labels.count(1)  
+    y.append(abstract_word_labels)
+
+print('KP count: ', count_KP, '\nKP WORDS count: ', count_KP_words, '\nNON-KP count: ', count_NON_KP)
+
