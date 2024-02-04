@@ -14,6 +14,8 @@ import numpy as np
 import pandas as pd
 from pandas import json_normalize
 from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.stem.snowball import SnowballStemmer as Stemmer
+
 
 from argparse import ArgumentParser
 
@@ -254,3 +256,15 @@ def tokenize_lowercase(text):
 
 # tokenize text
 data['abstract'] = data['abstract'].apply(tokenize_lowercase)
+
+
+for index, list_of_keyphrases in enumerate(data['keyword']):
+    keyphrases_list = []
+    for keyphrase in list_of_keyphrases:  
+       
+        keyphrase = keyphrase.strip() 
+        if len(keyphrase):  
+            tokens = word_tokenize(keyphrase)  
+            tokens = [tok if not re.match('^\d+$', tok) else 'DIGIT_REPL' for tok in tokens]            
+            keyphrases_list.append([Stemmer('porter').stem(keyword.lower()) for keyword in tokens])
+    data['keyword'].iat[index] = keyphrases_list
