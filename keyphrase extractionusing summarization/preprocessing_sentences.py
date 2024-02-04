@@ -311,3 +311,5 @@ with open(x_filename+".txt", "w") as fp_x:
     json.dump(X, fp_x)
 with open(y_filename+".txt", "w") as fp_y:
     json.dump(y, fp_y)
+    
+print("Maximum length of title and abstract in the whole dataset", max_len)
