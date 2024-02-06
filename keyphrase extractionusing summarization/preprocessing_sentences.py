@@ -319,3 +319,7 @@ print("Maximum length of title and abstract in the whole dataset", max_len)
 for i in tqdm(range(0, len(X), batch_size)):
  
     X_batch = pad_sequences(sequences=X[i:i + batch_size], padding="post", maxlen=max_len, value=0)
+
+    if not x_filename == 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed':
+        y_batch = pad_sequences(sequences=y[i:i + batch_size], padding="post", maxlen=max_len, value=0)
+        
