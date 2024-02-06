@@ -15,6 +15,7 @@ import pandas as pd
 from pandas import json_normalize
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem.snowball import SnowballStemmer as Stemmer
+from keras.preprocessing.sequence import pad_sequences
 
 
 from argparse import ArgumentParser
@@ -313,3 +314,8 @@ with open(y_filename+".txt", "w") as fp_y:
     json.dump(y, fp_y)
     
 print("Maximum length of title and abstract in the whole dataset", max_len)
+
+
+for i in tqdm(range(0, len(X), batch_size)):
+ 
+    X_batch = pad_sequences(sequences=X[i:i + batch_size], padding="post", maxlen=max_len, value=0)
