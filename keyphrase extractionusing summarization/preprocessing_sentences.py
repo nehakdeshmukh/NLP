@@ -323,3 +323,6 @@ for i in tqdm(range(0, len(X), batch_size)):
     if not x_filename == 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed':
         y_batch = pad_sequences(sequences=y[i:i + batch_size], padding="post", maxlen=max_len, value=0)
         y_batch = [to_categorical(i, num_classes=2, dtype='int8') for i in y_batch]
+        
+    filters = tables.Filters(complib='blosc', complevel=5)
+
