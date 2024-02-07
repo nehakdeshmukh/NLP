@@ -331,3 +331,11 @@ for i in tqdm(range(0, len(X), batch_size)):
     ds[:] = X_batch
     f.close()
 
+    if not x_filename == 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed': 
+        
+        f = tables.open_file(y_filename + '.hdf', 'a')
+        ds = f.create_carray('/', 'y_data' + str(i), obj=y_batch, filters=filters)
+        ds[:] = y_batch
+        f.close()
+        
+        
