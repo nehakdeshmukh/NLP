@@ -338,4 +338,5 @@ for i in tqdm(range(0, len(X), batch_size)):
         ds[:] = y_batch
         f.close()
         
-        
+    X_batch = None
+    y_batch = None
