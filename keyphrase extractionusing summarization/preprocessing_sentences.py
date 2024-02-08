@@ -340,3 +340,10 @@ for i in tqdm(range(0, len(X), batch_size)):
         
     X_batch = None
     y_batch = None
+    
+    if y_filename == 'data\\preprocessed_data\\y_TEST_SENTENC_data_preprocessed':  
+        y_test = pd.DataFrame({'y_test_keyword': y})
+        y_test['y_test_keyword'].to_csv(y_filename, index=False) 
+    
+    
+    
