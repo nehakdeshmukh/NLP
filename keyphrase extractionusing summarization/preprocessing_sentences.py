@@ -350,3 +350,8 @@ for i in tqdm(range(0, len(X), batch_size)):
         print(x)
         print('X SHAPE AFTER', np.array(x, dtype=object).shape)
     
+    if not x_filename == 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed': 
+        with tables.File(y_filename+'.hdf', 'r') as h5f:
+            y = h5f.get_node('/y_data'+str(1024)).read()  
+            print(y)
+            print('y SHAPE AFTER', np.array(y, dtype=object).shape)
