@@ -19,3 +19,8 @@ parser = ArgumentParser()
 
 parser.add_argument("-m", "--mode", type=str,
                     help="choose which type of data to create (options are: train, validation or test)")
+
+parser.add_argument("-sm", "--sentence_model", type=bool, default=False,
+                    help="choose which data to load (options are: True for data split in sentences or False for whole title and abstracts)")
+
+args = parser.parse_args()
