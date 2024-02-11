@@ -35,3 +35,8 @@ if args.sentence_model:
         # Define the file paths for TRAIN data
         x_filename = 'data\\preprocessed_data\\x_TRAIN_SENTENC_data_preprocessed'
         y_filename = 'data\\preprocessed_data\\y_TRAIN_SENTENC_data_preprocessed'
+        
+    elif args.mode == 'validation':
+        # Define the file paths for VALIDATION data 
+        x_filename = 'data\\preprocessed_data\\x_VALIDATION_SENTENC_data_preprocessed'
+        y_filename = 'data\\preprocessed_data\\y_VALIDATION_SENTENC_data_preprocessed'
