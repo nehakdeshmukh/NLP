@@ -24,3 +24,14 @@ parser.add_argument("-sm", "--sentence_model", type=bool, default=False,
                     help="choose which data to load (options are: True for data split in sentences or False for whole title and abstracts)")
 
 args = parser.parse_args()
+
+
+if args.sentence_model:
+  
+    batch_size = 352
+    max_len = 40  
+
+    if args.mode == 'train':
+        # Define the file paths for TRAIN data
+        x_filename = 'data\\preprocessed_data\\x_TRAIN_SENTENC_data_preprocessed'
+        y_filename = 'data\\preprocessed_data\\y_TRAIN_SENTENC_data_preprocessed'
