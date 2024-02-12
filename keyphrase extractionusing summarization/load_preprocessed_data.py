@@ -4,6 +4,7 @@ Created on Fri Feb  9 07:55:24 2024
 
 @author: nehak
 """
+import sys
 import numpy as np
 import pandas as pd
 from argparse import ArgumentParser
@@ -45,3 +46,7 @@ if args.sentence_model:
         # Define the file paths for TEST data 
         x_filename = 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed'
         y_filename = 'data\\preprocessed_data\\y_TEST_SENTENC_data_preprocessed'
+        
+    else:
+        print('WRONG ARGUMENTS! - please fill the argument "-m" or "--mode" with one of the values "train", "validation" or "test"')
+        sys.exit()
