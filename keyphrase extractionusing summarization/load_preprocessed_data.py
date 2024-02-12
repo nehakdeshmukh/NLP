@@ -50,3 +50,19 @@ if args.sentence_model:
     else:
         print('WRONG ARGUMENTS! - please fill the argument "-m" or "--mode" with one of the values "train", "validation" or "test"')
         sys.exit()
+        
+        
+else:
+    batch_size = 64 
+  
+    max_len = 400  
+    
+    if args.mode == 'train':
+        # TRAIN data
+        x_filename = 'data\\preprocessed_data\\x_TRAIN_data_preprocessed'
+        y_filename = 'data\\preprocessed_data\\y_TRAIN_data_preprocessed'
+        
+    elif args.mode == 'validation':
+        # VALIDATION data 
+        x_filename = 'data\\preprocessed_data\\x_VALIDATION_data_preprocessed'
+        y_filename = 'data\\preprocessed_data\\y_VALIDATION_data_preprocessed'
