@@ -66,3 +66,11 @@ else:
         # VALIDATION data 
         x_filename = 'data\\preprocessed_data\\x_VALIDATION_data_preprocessed'
         y_filename = 'data\\preprocessed_data\\y_VALIDATION_data_preprocessed'
+        
+    elif args.mode == 'test':
+        # TEST data 
+        x_filename = 'data\\preprocessed_data\\x_TEST_data_preprocessed'
+        y_filename = 'data\\preprocessed_data\\y_TEST_data_preprocessed'
+    else:
+        print('WRONG ARGUMENTS! - please fill the argument "-m" or "--mode" with one of the values "train", "validation" or "test"')
+        sys.exit()
