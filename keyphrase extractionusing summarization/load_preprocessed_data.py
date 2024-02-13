@@ -85,3 +85,4 @@ with open(x_filename+".txt", "r") as fp:
 with open(y_filename+".txt", "r") as fp:
     y = json.load(fp)
 
+print('X SHAPE', pd.DataFrame(X).shape)  
