@@ -74,3 +74,10 @@ else:
     else:
         print('WRONG ARGUMENTS! - please fill the argument "-m" or "--mode" with one of the values "train", "validation" or "test"')
         sys.exit()
+
+print("Βatch size", batch_size)
+print("Maximum length of title and abstract in the whole dataset", max_len)
+
+
+
+
