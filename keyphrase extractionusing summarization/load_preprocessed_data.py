@@ -79,5 +79,9 @@ print("Βatch size", batch_size)
 print("Maximum length of title and abstract in the whole dataset", max_len)
 
 
-
+import json
+with open(x_filename+".txt", "r") as fp:
+    X = json.load(fp)
+with open(y_filename+".txt", "r") as fp:
+    y = json.load(fp)
 
