@@ -8,6 +8,8 @@ import sys
 import numpy as np
 import pandas as pd
 from argparse import ArgumentParser
+from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.utils import to_categorical
 
 
 from tqdm import tqdm
@@ -86,3 +88,18 @@ with open(y_filename+".txt", "r") as fp:
     y = json.load(fp)
 
 print('X SHAPE', pd.DataFrame(X).shape)  
+
+
+for i in tqdm(range(0, len(X), batch_size)):
+
+    X_batch = pad_sequences(sequences=X[i:i + batch_size], padding="post", maxlen=max_len, value=0)
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
