@@ -111,7 +111,11 @@ for i in tqdm(range(0, len(X), batch_size)):
     f.close()
     
     
-    
+    if 'TEST' not in x_filename:  # do NOT write for TEST DATA
+        f = tables.open_file(y_filename + '.hdf', 'a')
+        ds = f.create_carray('/', 'y_data' + str(i), obj=y_batch, filters=filters)
+        ds[:] = y_batch
+        f.close()
     
     
     
