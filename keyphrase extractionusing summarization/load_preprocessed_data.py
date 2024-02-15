@@ -104,7 +104,11 @@ for i in tqdm(range(0, len(X), batch_size)):
     filters = tables.Filters(complib='blosc', complevel=5)
 
     
-    
+    f = tables.open_file(x_filename+'.hdf', 'a')
+    ds = f.create_carray('/', 'x_data'+str(i), obj=X_batch, filters=filters)
+    ds[:] = X_batch
+    #print(ds)
+    f.close()
     
     
     
