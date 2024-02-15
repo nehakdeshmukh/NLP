@@ -10,6 +10,7 @@ import pandas as pd
 from argparse import ArgumentParser
 from keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import to_categorical
+import tables
 
 
 from tqdm import tqdm
@@ -100,7 +101,8 @@ for i in tqdm(range(0, len(X), batch_size)):
         y_batch = [to_categorical(i, num_classes=2, dtype='int8') for i in y_batch]
 
     
-    
+    filters = tables.Filters(complib='blosc', complevel=5)
+
     
     
     
