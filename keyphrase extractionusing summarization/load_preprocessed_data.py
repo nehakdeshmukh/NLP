@@ -125,4 +125,10 @@ for i in tqdm(range(0, len(X), batch_size)):
         x = h5f.get_node('/x_data'+str(1024)).read()
         print(x)
         print('X SHAPE AFTER', np.array(x, dtype=object).shape)
+        
+    if 'TEST' not in x_filename:  
+        with tables.File(y_filename+'.hdf', 'r') as h5f:
+            y = h5f.get_node('/y_data'+str(1024)).read()  
+            print(y)
+            print('y SHAPE AFTER', np.array(y, dtype=object).shape)
     
