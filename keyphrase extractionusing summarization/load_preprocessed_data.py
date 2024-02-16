@@ -123,5 +123,6 @@ for i in tqdm(range(0, len(X), batch_size)):
     
     with tables.File(x_filename+'.hdf', 'r') as h5f:
         x = h5f.get_node('/x_data'+str(1024)).read()
-    
+        print(x)
+        print('X SHAPE AFTER', np.array(x, dtype=object).shape)
     
