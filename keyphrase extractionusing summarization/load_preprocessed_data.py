@@ -118,4 +118,10 @@ for i in tqdm(range(0, len(X), batch_size)):
         f.close()
     
     
+    X_batch = None
+    y_batch = None
+    
+    with tables.File(x_filename+'.hdf', 'r') as h5f:
+        x = h5f.get_node('/x_data'+str(1024)).read()
+    
     
