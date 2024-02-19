@@ -76,3 +76,9 @@ else:
     train_data_size = 530390 
     validation_data_size = 20000 
     MAX_LEN = 400 
+
+# Set embedding size, OUTPUT layer size
+VECT_SIZE = 100  
+number_labels = 2 
+
+doc_vocab = 321352
