@@ -86,3 +86,20 @@ doc_vocab = 321352
 print('MAX_LEN of text', MAX_LEN)
 print('VECT_SIZE', VECT_SIZE)
 print('VOCABULARY', doc_vocab)
+
+if args.sentence_model:
+    
+    x_train_filename = 'data\\preprocessed_data\\x_TRAIN_SENTENC_data_preprocessed.hdf'
+    y_train_filename = 'data\\preprocessed_data\\y_TRAIN_SENTENC_data_preprocessed.hdf'
+
+    
+    x_validate_filename = 'data\\preprocessed_data\\x_VALIDATION_SENTENC_data_preprocessed.hdf'
+    y_validate_filename = 'data\\preprocessed_data\\y_VALIDATION_SENTENC_data_preprocessed.hdf'
+else:
+    
+    x_train_filename = 'data\\preprocessed_data\\x_TRAIN_data_preprocessed.hdf'
+    y_train_filename = 'data\\preprocessed_data\\y_TRAIN_data_preprocessed.hdf'
+
+    
+    x_validate_filename = 'data\\preprocessed_data\\x_VALIDATION_data_preprocessed.hdf'
+    y_validate_filename = 'data\\preprocessed_data\\y_VALIDATION_data_preprocessed.hdf'
