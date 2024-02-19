@@ -62,3 +62,17 @@ parser.add_argument("-sm", "--sentence_model", type=int, default=0,
                     help="choose which data to load (options are: True for sentence model or False for whole title and abstracts model)")
 
 args = parser.parse_args()
+
+
+if args.sentence_model:
+   
+    batch_size = 256
+    train_data_size = 4136306
+    validation_data_size = 156519
+    MAX_LEN = 40
+else:
+    
+    batch_size = 64
+    train_data_size = 530390 
+    validation_data_size = 20000 
+    MAX_LEN = 400 
