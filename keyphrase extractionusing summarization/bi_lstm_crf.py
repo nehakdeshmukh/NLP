@@ -9,8 +9,8 @@ import pandas as pd
 import time
 from argparse import ArgumentParser
 import sys
-
-
+import tables 
+from tensorflow import constant 
 
 pd.set_option('display.max_columns', None)
 
@@ -277,3 +277,21 @@ else:
     print('WRONG ARGUMENTS! - please fill the argument "-sts" or "--select_test_set" with one of the proper values')
     sys.exit()
     
+def load_data(x_filename, y_filename, batch_number):
+
+    print('batch_number', batch_number)
+    print(x_filename)
+
+    
+    with tables.File(x_filename, 'r') as h5f:
+        x = h5f.get_node('/x_data' + str(batch_number)).read() 
+
+    if not y_filename == '':    
+        with tables.File(y_filename, 'r') as h5f:
+            y = h5f.get_node('/y_data' + str(batch_number)).read() 
+
+
+    if y_filename == '':  # for TEST data return only the x values
+        return x
+
+    return x, constant(y)
