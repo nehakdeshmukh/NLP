@@ -11,6 +11,7 @@ from argparse import ArgumentParser
 import sys
 import tables 
 from tensorflow import constant 
+import numpy as np
 
 pd.set_option('display.max_columns', None)
 
@@ -311,3 +312,11 @@ def batch_generator(x_filename, y_filename, batch_size, number_of_batches):
             current_batch_number += batch_size
         else:
             current_batch_number = 0
+            
+            
+steps_per_epoch = np.ceil(train_data_size/batch_size) 
+validation_steps = np.ceil(validation_data_size/batch_size) 
+test_steps = np.ceil(test_data_size/batch_size) 
+print('steps_per_epoch', steps_per_epoch)
+print('validation_steps', validation_steps)
+print('test_steps', test_steps)
