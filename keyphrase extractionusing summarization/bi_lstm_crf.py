@@ -12,6 +12,7 @@ import sys
 import tables 
 from tensorflow import constant 
 import numpy as np
+import DataGenerator
 
 pd.set_option('display.max_columns', None)
 
@@ -320,3 +321,8 @@ test_steps = np.ceil(test_data_size/batch_size)
 print('steps_per_epoch', steps_per_epoch)
 print('validation_steps', validation_steps)
 print('test_steps', test_steps)
+
+
+training_generator = DataGenerator(x_train_filename, y_train_filename, steps_per_epoch, batch_size=batch_size, shuffle=False)
+validation_generator = DataGenerator(x_validate_filename, y_validate_filename, validation_steps, batch_size=batch_size, shuffle=False)
+test_generator = DataGenerator(x_test_filename, '', test_steps, batch_size=batch_size, shuffle=False)
