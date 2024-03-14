@@ -326,3 +326,22 @@ print('test_steps', test_steps)
 training_generator = DataGenerator(x_train_filename, y_train_filename, steps_per_epoch, batch_size=batch_size, shuffle=False)
 validation_generator = DataGenerator(x_validate_filename, y_validate_filename, validation_steps, batch_size=batch_size, shuffle=False)
 test_generator = DataGenerator(x_test_filename, '', test_steps, batch_size=batch_size, shuffle=False)
+
+
+def load_y_val(y_file_name, batch_size, number_of_batches):
+
+    y_val_batches = []  
+    current_batch_number = 0  
+    while True:
+        
+        with tables.File(y_file_name, 'r') as h5f:
+            y_val_batches.append(h5f.get_node('/y_data' + str(current_batch_number)).read())  
+
+        if current_batch_number < batch_size * number_of_batches:
+            current_batch_number += batch_size
+        else:
+            y_val_flat = [y_label for y_batch in y_val_batches for y_label in y_batch]  
+            print('y_test SHAPE AFTER', np.array(y_val_flat, dtype=object).shape)
+            return y_val_flat
+        
+        
