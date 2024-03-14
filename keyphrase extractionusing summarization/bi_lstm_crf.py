@@ -344,4 +344,10 @@ def load_y_val(y_file_name, batch_size, number_of_batches):
             print('y_test SHAPE AFTER', np.array(y_val_flat, dtype=object).shape)
             return y_val_flat
         
+def pred2label(all_abstract_preds):
+
+    preds = []
+    for abstract_preds in all_abstract_preds:
+        preds.extend([np.argmax(word_pred) for word_pred in abstract_preds])
+    return preds
         
