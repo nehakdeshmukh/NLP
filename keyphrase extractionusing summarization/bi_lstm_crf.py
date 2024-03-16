@@ -359,3 +359,11 @@ y_val = pred2label(y_val)
 class PredictionCallback(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
         super().on_epoch_end(epoch, logs)
+        
+        
+
+dict_data = np.load('data\\embedding_matrix.npz')
+embedding_matrix = dict_data['arr_0']
+print(embedding_matrix)
+
+
