@@ -13,6 +13,8 @@ import tables
 from tensorflow import constant 
 import numpy as np
 import DataGenerator
+import tensorflow as tf
+
 
 pd.set_option('display.max_columns', None)
 
@@ -353,3 +355,7 @@ def pred2label(all_abstract_preds):
 
 y_val = load_y_val(y_validate_filename, batch_size, validation_steps - 1) 
 y_val = pred2label(y_val)
+
+class PredictionCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs=None):
+        super().on_epoch_end(epoch, logs)
