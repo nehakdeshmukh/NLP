@@ -350,4 +350,6 @@ def pred2label(all_abstract_preds):
     for abstract_preds in all_abstract_preds:
         preds.extend([np.argmax(word_pred) for word_pred in abstract_preds])
     return preds
-        
+
+y_val = load_y_val(y_validate_filename, batch_size, validation_steps - 1) 
+y_val = pred2label(y_val)
