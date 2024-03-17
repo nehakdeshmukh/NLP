@@ -10,13 +10,15 @@ import time
 from argparse import ArgumentParser
 import sys
 import tables 
+from tf2crf import CRF
 from tensorflow import constant 
 import numpy as np
 import DataGenerator
 import tensorflow as tf
 from tensorflow.keras.regularizers import l1
 from tensorflow.keras import Model, Input
-from tensorflow.keras.layers import Embedding
+from tensorflow.keras.constraints import max_norm
+from tensorflow.keras.layers import Embedding,LSTM,Dense,Bidirectional
 
 pd.set_option('display.max_columns', None)
 
@@ -377,4 +379,9 @@ model = Embedding(doc_vocab, output_dim=100, input_length=MAX_LEN,
                   weights=[embedding_matrix],  
                   mask_zero=True, trainable=True, activity_regularizer=l1(0.00000001))(inpt)
 
-
+model = Bidirectional(LSTM(units=100, return_sequences=True, activity_regularizer=l1(0.0000000001), 
+                           recurrent_constraint=max_norm(2)))(model)  
+model = Dense(number_labels, activation=None)(model)
+crf = CRF() 
+out = crf(model) 
+model = Model(inputs=inpt, outputs=out)
