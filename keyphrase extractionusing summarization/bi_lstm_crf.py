@@ -14,7 +14,9 @@ from tensorflow import constant
 import numpy as np
 import DataGenerator
 import tensorflow as tf
-
+from tensorflow.keras.regularizers import l1
+from tensorflow.keras import Model, Input
+from tensorflow.keras.layers import Embedding
 
 pd.set_option('display.max_columns', None)
 
@@ -365,5 +367,14 @@ class PredictionCallback(tf.keras.callbacks.Callback):
 dict_data = np.load('data\\embedding_matrix.npz')
 embedding_matrix = dict_data['arr_0']
 print(embedding_matrix)
+
+
+# Bi-LSTM-CRF
+
+inpt = Input(shape=(MAX_LEN,))
+
+model = Embedding(doc_vocab, output_dim=100, input_length=MAX_LEN,  
+                  weights=[embedding_matrix],  
+                  mask_zero=True, trainable=True, activity_regularizer=l1(0.00000001))(inpt)
 
 
