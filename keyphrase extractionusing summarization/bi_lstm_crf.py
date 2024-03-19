@@ -19,6 +19,8 @@ from tensorflow.keras.regularizers import l1
 from tensorflow.keras import Model, Input
 from tensorflow.keras.constraints import max_norm
 from tensorflow.keras.layers import Embedding,LSTM,Dense,Bidirectional
+from tensorflow.keras.callbacks import LearningRateScheduler
+
 
 pd.set_option('display.max_columns', None)
 
@@ -394,3 +396,5 @@ def step_decay(epoch):
     lrate = initial_lrate / (1 + drop * epoch)
 
     return lrate
+
+lrate = LearningRateScheduler(step_decay)
