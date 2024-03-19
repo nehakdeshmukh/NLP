@@ -20,6 +20,8 @@ from tensorflow.keras import Model, Input
 from tensorflow.keras.constraints import max_norm
 from tensorflow.keras.layers import Embedding,LSTM,Dense,Bidirectional
 from tensorflow.keras.callbacks import LearningRateScheduler
+from tensorflow.keras.optimizers import SGD
+
 
 
 pd.set_option('display.max_columns', None)
@@ -398,3 +400,5 @@ def step_decay(epoch):
     return lrate
 
 lrate = LearningRateScheduler(step_decay)
+
+opt = SGD(learning_rate=0.0, momentum=0.9, clipvalue=5.0)
