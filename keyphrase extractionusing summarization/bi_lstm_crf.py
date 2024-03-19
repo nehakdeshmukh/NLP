@@ -385,3 +385,12 @@ model = Dense(number_labels, activation=None)(model)
 crf = CRF() 
 out = crf(model) 
 model = Model(inputs=inpt, outputs=out)
+
+
+def step_decay(epoch):
+    initial_lrate = 0.01
+    drop = 0.5
+    
+    lrate = initial_lrate / (1 + drop * epoch)
+
+    return lrate
