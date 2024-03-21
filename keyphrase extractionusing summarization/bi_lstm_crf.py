@@ -420,4 +420,10 @@ class LRTensorBoard(TensorBoard):
         logs.update({'lr-SGD': lr})
         super().on_epoch_end(epoch, logs)
         
-        
+my_callbacks = [lrate,      
+    tf.keras.callbacks.ModelCheckpoint(filepath='pretrained_models\\checkpoint\\model.{epoch:02d}.h5', 
+                                       save_weights_only=True,
+                                       save_best_only=False),
+    LRTensorBoard(log_dir="/tmp/tb_log"),  
+    PredictionCallback()
+]
