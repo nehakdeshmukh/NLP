@@ -22,6 +22,8 @@ from tensorflow.keras.layers import Embedding,LSTM,Dense,Bidirectional
 from tensorflow.keras.callbacks import LearningRateScheduler
 from tensorflow.keras.optimizers import SGD
 import TensorBoard
+from keras import backend as K
+
 
 pd.set_option('display.max_columns', None)
 
@@ -407,5 +409,15 @@ model.compile(optimizer=opt, loss=crf.loss, metrics=[crf.accuracy])
 print('BEFORE TRAINING', model.get_weights())
 
 class LRTensorBoard(TensorBoard):
-    def __init__(self, log_dir, **kwargs):  # add other arguments to __init__ if you need
+    def __init__(self, log_dir, **kwargs):  
         super().__init__(log_dir=log_dir, **kwargs)
+        
+        
+    def on_epoch_end(self, epoch, logs=None):
+        logs = logs or {}
+        optimizer = self.model.optimizer
+        lr = K.eval(tf.cast(optimizer.lr, dtype=tf.float32) * (1. / (1. + tf.cast(optimizer.decay, dtype=tf.float32) * tf.cast(optimizer.iterations, dtype=tf.float32))))
+        logs.update({'lr-SGD': lr})
+        super().on_epoch_end(epoch, logs)
+        
+        
