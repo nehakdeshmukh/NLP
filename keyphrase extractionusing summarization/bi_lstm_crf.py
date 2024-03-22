@@ -434,3 +434,5 @@ history = model.fit(x=training_generator,
 
 
 model.summary()
+
+print('AFTER TRAINING', model.get_weights())
