@@ -427,3 +427,8 @@ my_callbacks = [lrate,
     LRTensorBoard(log_dir="/tmp/tb_log"),  
     PredictionCallback()
 ]
+
+
+history = model.fit(x=training_generator,
+                    validation_data=validation_generator,
+                    epochs=5, callbacks=my_callbacks, verbose=2)
