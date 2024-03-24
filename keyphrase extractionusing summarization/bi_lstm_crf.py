@@ -445,4 +445,5 @@ y_pred = model.predict(x=test_generator)
 
 traditional_evaluation.evaluation(y_pred=y_pred, x_filename=x_filename, y_filename=y_filename)
 
+sequence_evaluation.evaluation(y_pred, MAX_LEN, y_test_filename)
 
