@@ -436,3 +436,7 @@ history = model.fit(x=training_generator,
 model.summary()
 
 print('AFTER TRAINING', model.get_weights())
+
+print('\nPredicting...')
+
+y_pred = model.predict(x=test_generator)
