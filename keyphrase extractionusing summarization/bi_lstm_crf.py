@@ -23,7 +23,8 @@ from tensorflow.keras.callbacks import LearningRateScheduler
 from tensorflow.keras.optimizers import SGD
 import TensorBoard
 from keras import backend as K
-
+import traditional_evaluation
+import sequence_evaluation
 
 pd.set_option('display.max_columns', None)
 
@@ -440,3 +441,8 @@ print('AFTER TRAINING', model.get_weights())
 print('\nPredicting...')
 
 y_pred = model.predict(x=test_generator)
+
+
+traditional_evaluation.evaluation(y_pred=y_pred, x_filename=x_filename, y_filename=y_filename)
+
+
