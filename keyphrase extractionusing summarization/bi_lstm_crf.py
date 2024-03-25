@@ -448,3 +448,8 @@ traditional_evaluation.evaluation(y_pred=y_pred, x_filename=x_filename, y_filena
 sequence_evaluation.evaluation(y_pred, MAX_LEN, y_test_filename)
 
 model.save_weights("pretrained_models\\fulltext_model_weights.h5") 
+
+model.save('pretrained_models\\fulltext_bi_lstm_crf_dense_linear.h5')
+
+
+
