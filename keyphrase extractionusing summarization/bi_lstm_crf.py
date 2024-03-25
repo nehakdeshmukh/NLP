@@ -25,6 +25,7 @@ import TensorBoard
 from keras import backend as K
 import traditional_evaluation
 import sequence_evaluation
+from datetime import timedelta
 
 pd.set_option('display.max_columns', None)
 
@@ -451,5 +452,6 @@ model.save_weights("pretrained_models\\fulltext_model_weights.h5")
 
 model.save('pretrained_models\\fulltext_bi_lstm_crf_dense_linear.h5')
 
-
+total_time = str(timedelta(seconds=(time.time() - start_time)))
+print("\n--- %s running time ---" % total_time)
 
