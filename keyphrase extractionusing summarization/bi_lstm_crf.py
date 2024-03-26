@@ -455,3 +455,7 @@ model.save('pretrained_models\\fulltext_bi_lstm_crf_dense_linear.h5')
 total_time = str(timedelta(seconds=(time.time() - start_time)))
 print("\n--- %s running time ---" % total_time)
 
+with open("pretrained_models\\Results.txt", "a") as myfile:  
+    myfile.write("f1-score after each epoch: " + str(history.history['val_f1score']) + '\n')
+    myfile.write("learning rate after each epoch: " + str(history.history['lr']))
+
