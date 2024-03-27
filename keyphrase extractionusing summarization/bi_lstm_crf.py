@@ -459,3 +459,9 @@ with open("pretrained_models\\Results.txt", "a") as myfile:
     myfile.write("f1-score after each epoch: " + str(history.history['val_f1score']) + '\n')
     myfile.write("learning rate after each epoch: " + str(history.history['lr']))
 
+print('\nf1-score after each epoch: ', history.history['val_f1score'])
+print('learning rate after each epoch: ', history.history['lr'])
+print('loss: ', history.history['loss'])
+print('accuracy: ', history.history['accuracy'])
+print('val_loss: ', history.history['val_loss'])
+print('val_accuracy: ', history.history['val_accuracy'])
