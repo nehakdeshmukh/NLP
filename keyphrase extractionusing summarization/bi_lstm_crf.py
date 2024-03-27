@@ -26,6 +26,8 @@ from keras import backend as K
 import traditional_evaluation
 import sequence_evaluation
 from datetime import timedelta
+import matplotlib.pyplot as plt
+
 
 pd.set_option('display.max_columns', None)
 
@@ -465,3 +467,13 @@ print('loss: ', history.history['loss'])
 print('accuracy: ', history.history['accuracy'])
 print('val_loss: ', history.history['val_loss'])
 print('val_accuracy: ', history.history['val_accuracy'])
+
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+# plt.show()
+plt.savefig('pretrained_models\\model_loss_per_epoch.png')
+
