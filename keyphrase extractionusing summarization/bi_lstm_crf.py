@@ -27,7 +27,7 @@ import traditional_evaluation
 import sequence_evaluation
 from datetime import timedelta
 import matplotlib.pyplot as plt
-
+import plot_model
 
 pd.set_option('display.max_columns', None)
 
@@ -484,3 +484,5 @@ plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 # plt.show()
 plt.savefig('pretrained_models\\model_accuracy_per_epoch.png') 
+
+plot_model(model, "schemas\\bi-lstm-crf_architecture.png", show_shapes=True)
