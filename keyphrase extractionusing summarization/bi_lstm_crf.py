@@ -482,7 +482,6 @@ plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-# plt.show()
 plt.savefig('pretrained_models\\model_accuracy_per_epoch.png') 
 
 plot_model(model, "schemas\\bi-lstm-crf_architecture.png", show_shapes=True)
