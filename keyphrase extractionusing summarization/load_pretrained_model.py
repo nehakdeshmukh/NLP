@@ -54,3 +54,6 @@ parser.add_argument("-sts", "--select_test_set", type=str,
                          "'semeval_summarization'"
                          ")"
                     )
+
+parser.add_argument("-pmp", "--pretrained_model_path", type=str,
+                    help="the path and the name of the pretrained model")
