@@ -57,3 +57,8 @@ parser.add_argument("-sts", "--select_test_set", type=str,
 
 parser.add_argument("-pmp", "--pretrained_model_path", type=str,
                     help="the path and the name of the pretrained model")
+
+parser.add_argument("-sm", "--sentence_model", type=int, default=0,
+                    help="choose which data to load (options are: True for sentence model or False for whole title and abstracts model)")
+
+args = parser.parse_args()
