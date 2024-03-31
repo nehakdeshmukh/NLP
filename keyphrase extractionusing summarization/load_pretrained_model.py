@@ -71,6 +71,14 @@ if args.sentence_model:
     train_data_size = 4136306
     validation_data_size = 156519
     
-
     # Set input layer size
     MAX_LEN = 40 
+    
+    
+else:
+    # batch size,train and test data size
+    batch_size = 64 
+    train_data_size = 530390 
+    validation_data_size = 20000 
+
+    MAX_LEN = 400 
