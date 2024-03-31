@@ -82,3 +82,15 @@ else:
     validation_data_size = 20000 
 
     MAX_LEN = 400 
+    
+    
+    
+# embedding size, OUTPUT layer size
+VECT_SIZE = 100  
+number_labels = 2
+
+doc_vocab = 321352
+
+print('MAX_LEN of text', MAX_LEN)
+print('VECT_SIZE', VECT_SIZE)
+print('VOCABULARY', doc_vocab)
