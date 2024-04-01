@@ -94,3 +94,13 @@ doc_vocab = 321352
 print('MAX_LEN of text', MAX_LEN)
 print('VECT_SIZE', VECT_SIZE)
 print('VOCABULARY', doc_vocab)
+
+
+# Full abstract
+if args.select_test_set=="kp20k_full_abstract":
+    # [ test_data_size = 20000 ]
+    test_data_size = 20000
+    x_test_filename = 'data\\preprocessed_data\\data_train1\\x_TEST_data_preprocessed.hdf'  # kp20k
+    y_test_filename = 'data\\preprocessed_data\\data_train1\\y_TEST_data_preprocessed'
+    x_filename = 'data\\preprocessed_data\\data_train1\\x_TEST_preprocessed_TEXT'  # kp20k
+    y_filename = 'data\\preprocessed_data\\data_train1\\y_TEST_preprocessed_TEXT'  # kp20k
