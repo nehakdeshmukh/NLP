@@ -128,3 +128,12 @@ elif args.select_test_set=="semeval_full_abstract":
     y_test_filename = 'data\\preprocessed_data\\full_abstract\\y_SEMEVAL_FULL_ABSTRACT_TEST_data_preprocessed'
     x_filename = 'data\\preprocessed_data\\full_abstract\\x_SEMEVAL_FULL_ABSTRACT_preprocessed_TEXT'
     y_filename = 'data\\preprocessed_data\\full_abstract\\y_SEMEVAL_FULL_ABSTRACT_preprocessed_TEXT'
+
+# Sentences abstract
+elif args.select_test_set=="kp20k_sentences_abstract":
+    # [ test_data_size = 155801 ]
+    test_data_size = 155801
+    x_test_filename = 'data\\preprocessed_data\\x_TEST_SENTENC_data_preprocessed.hdf'  
+    y_test_filename = 'data\\preprocessed_data\\y_TEST_SENTENC_data_preprocessed'
+    x_filename = 'data\\preprocessed_data\\x_TEST_SENTENC_preprocessed_TEXT'  
+    y_filename = 'data\\preprocessed_data\\y_TEST_SENTENC_preprocessed_TEXT'  
