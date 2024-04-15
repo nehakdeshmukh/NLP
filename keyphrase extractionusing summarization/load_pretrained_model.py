@@ -309,3 +309,18 @@ def load_data(x_filename, y_filename, batch_number):
 
     return x, constant(y)
 
+def batch_generator(x_filename, y_filename, batch_size, number_of_batches):
+    
+    current_batch_number = 0 
+
+    if 'TRAIN' in x_filename: 
+        yield load_data(x_filename, y_filename, current_batch_number) 
+
+    while True:
+        yield load_data(x_filename, y_filename, current_batch_number)
+
+       
+        if current_batch_number < batch_size * number_of_batches:
+            current_batch_number += batch_size
+        else:
+            current_batch_number = 0
