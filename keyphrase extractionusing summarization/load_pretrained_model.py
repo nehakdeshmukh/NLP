@@ -10,6 +10,8 @@ import sys
 import numpy as np
 import pandas as pd
 from argparse import ArgumentParser
+import tables
+from tensorflow import constant  
 
 
 pd.set_option('display.max_columns', None)
@@ -283,3 +285,27 @@ elif args.select_test_set=="semeval_summarization":
 else:
     print('WRONG ARGUMENTS! - please fill the argument "-sts" or "--select_test_set" with one of the proper values')
     sys.exit()
+
+def load_data(x_filename, y_filename, batch_number):
+ 
+    print('batch_number', batch_number)
+    print(x_filename)
+
+  
+    with tables.File(x_filename, 'r') as h5f:
+        x = h5f.get_node('/x_data' + str(batch_number)).read() 
+       
+        print('X SHAPE AFTER', np.array(x, dtype=object).shape)
+
+    if not y_filename == '': 
+        
+        with tables.File(y_filename, 'r') as h5f:
+            y = h5f.get_node('/y_data' + str(batch_number)).read() 
+           
+            print('y SHAPE AFTER', np.array(y, dtype=object).shape)
+
+    if y_filename == '':  
+        return x
+
+    return x, constant(y)
+
