@@ -12,6 +12,8 @@ import pandas as pd
 from argparse import ArgumentParser
 import tables
 from tensorflow import constant  
+from numpy import load
+
 
 
 pd.set_option('display.max_columns', None)
@@ -324,3 +326,9 @@ def batch_generator(x_filename, y_filename, batch_size, number_of_batches):
             current_batch_number += batch_size
         else:
             current_batch_number = 0
+            
+# load dict of arrays
+dict_data = load('data\\embedding_matrix.npz')
+# extract the 1st array
+embedding_matrix = dict_data['arr_0']
+print(embedding_matrix)
