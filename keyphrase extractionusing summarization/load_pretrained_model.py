@@ -13,6 +13,7 @@ from argparse import ArgumentParser
 import tables
 from tensorflow import constant  
 from numpy import load
+import Model, Input
 
 
 
@@ -332,3 +333,8 @@ dict_data = load('data\\embedding_matrix.npz')
 # extract the 1st array
 embedding_matrix = dict_data['arr_0']
 print(embedding_matrix)
+
+
+from keras.regularizers import l1
+from keras.constraints import max_norm
+inpt = Input(shape=(None,)) 
