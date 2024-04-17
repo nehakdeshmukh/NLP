@@ -14,7 +14,7 @@ import tables
 from tensorflow import constant  
 from numpy import load
 import Model, Input
-
+from tensorflow.keras.layers import Embedding
 
 
 pd.set_option('display.max_columns', None)
@@ -338,3 +338,7 @@ print(embedding_matrix)
 from keras.regularizers import l1
 from keras.constraints import max_norm
 inpt = Input(shape=(None,)) 
+
+model = Embedding(doc_vocab, output_dim=100, input_length=None,  
+                  weights=[embedding_matrix], 
+                  mask_zero=True, trainable=True, activity_regularizer=l1(0.0000001))(inpt) 
