@@ -15,7 +15,7 @@ from tensorflow import constant
 from numpy import load
 import Model, Input
 from tensorflow.keras.layers import Embedding, LSTM,Bidirectional, Dense
-
+from tf2crf import CRF
 
 pd.set_option('display.max_columns', None)
 
@@ -347,4 +347,5 @@ model = Bidirectional(LSTM(units=100, return_sequences=True, activity_regularize
 
 model = Dense(number_labels, activation=None)(model) 
 
-
+crf = CRF()  
+out = crf(model) 
