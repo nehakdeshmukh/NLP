@@ -349,3 +349,5 @@ model = Dense(number_labels, activation=None)(model)
 
 crf = CRF()  
 out = crf(model) 
+
+model = Model(inputs=inpt, outputs=out)
