@@ -16,6 +16,7 @@ from numpy import load
 import Model, Input
 from tensorflow.keras.layers import Embedding, LSTM,Bidirectional, Dense
 from tf2crf import CRF
+import SGD
 
 pd.set_option('display.max_columns', None)
 
@@ -351,3 +352,6 @@ crf = CRF()
 out = crf(model) 
 
 model = Model(inputs=inpt, outputs=out)
+
+opt = SGD(learning_rate=0.0, momentum=0.9, clipvalue=5.0)
+
