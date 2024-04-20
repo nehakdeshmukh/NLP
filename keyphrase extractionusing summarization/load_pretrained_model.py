@@ -357,3 +357,8 @@ opt = SGD(learning_rate=0.0, momentum=0.9, clipvalue=5.0)
 
 # compile Bi-LSTM-CRF
 model.compile(optimizer=opt, loss=crf.loss, metrics=[crf.accuracy])
+
+print('BEFORE TRAINING', model.get_weights())
+
+
+
