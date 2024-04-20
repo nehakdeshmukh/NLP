@@ -360,5 +360,6 @@ model.compile(optimizer=opt, loss=crf.loss, metrics=[crf.accuracy])
 
 print('BEFORE TRAINING', model.get_weights())
 
-
+test_steps = np.ceil(test_data_size / batch_size)  #
+print('test_steps', test_steps)
 
