@@ -17,6 +17,7 @@ import Model, Input
 from tensorflow.keras.layers import Embedding, LSTM,Bidirectional, Dense
 from tf2crf import CRF
 import SGD
+import DataGenerator
 
 pd.set_option('display.max_columns', None)
 
@@ -363,3 +364,5 @@ print('BEFORE TRAINING', model.get_weights())
 test_steps = np.ceil(test_data_size / batch_size)  #
 print('test_steps', test_steps)
 
+
+test_generator = DataGenerator(x_test_filename, '', test_steps, batch_size=batch_size, shuffle=False)
