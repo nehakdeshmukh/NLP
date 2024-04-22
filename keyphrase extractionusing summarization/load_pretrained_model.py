@@ -368,3 +368,7 @@ print('test_steps', test_steps)
 test_generator = DataGenerator(x_test_filename, '', test_steps, batch_size=batch_size, shuffle=False)
 
 load_status = model.load_weights(args.pretrained_model_path)
+
+model.summary()
+
+print('AFTER LOADING', model.get_weights())
