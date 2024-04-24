@@ -18,6 +18,7 @@ from tensorflow.keras.layers import Embedding, LSTM,Bidirectional, Dense
 from tf2crf import CRF
 import SGD
 import DataGenerator
+import traditional_evaluation
 
 pd.set_option('display.max_columns', None)
 
@@ -378,3 +379,5 @@ y_pred = model.predict(x=test_generator)
 
 print(y_pred)
 print('\nY_PRED SHAPE', np.array(y_pred, dtype=object).shape)
+
+traditional_evaluation.evaluation(y_pred=y_pred, x_filename=x_filename, y_filename=y_filename)
