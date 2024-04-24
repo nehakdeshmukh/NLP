@@ -372,3 +372,8 @@ load_status = model.load_weights(args.pretrained_model_path)
 model.summary()
 
 print('AFTER LOADING', model.get_weights())
+
+print('\nPredicting...')
+y_pred = model.predict(x=test_generator)
+
+
