@@ -376,4 +376,5 @@ print('AFTER LOADING', model.get_weights())
 print('\nPredicting...')
 y_pred = model.predict(x=test_generator)
 
-
+print(y_pred)
+print('\nY_PRED SHAPE', np.array(y_pred, dtype=object).shape)
