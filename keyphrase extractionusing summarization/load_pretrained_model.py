@@ -19,6 +19,7 @@ from tf2crf import CRF
 import SGD
 import DataGenerator
 import traditional_evaluation
+import sequence_evaluation
 
 pd.set_option('display.max_columns', None)
 
@@ -381,3 +382,5 @@ print(y_pred)
 print('\nY_PRED SHAPE', np.array(y_pred, dtype=object).shape)
 
 traditional_evaluation.evaluation(y_pred=y_pred, x_filename=x_filename, y_filename=y_filename)
+
+sequence_evaluation.evaluation(y_pred, MAX_LEN, y_test_filename)
