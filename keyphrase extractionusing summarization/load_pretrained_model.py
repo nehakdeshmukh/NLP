@@ -389,3 +389,4 @@ sequence_evaluation.evaluation(y_pred, MAX_LEN, y_test_filename)
 
 total_time = str(timedelta(seconds=(time.time() - start_time)))
 
+print("\n--- %s running time ---" % total_time)
