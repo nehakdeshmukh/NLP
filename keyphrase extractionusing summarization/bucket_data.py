@@ -33,3 +33,7 @@ for line in open(file, 'r', encoding="utf8"):
 data = json_normalize(json_data)
 
 print(data)
+
+#Split keyphrases list
+for index, keywords in enumerate(data['keyword']):
+    data['keyword'].iat[index] = keywords.split(';')  
