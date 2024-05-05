@@ -37,3 +37,10 @@ print(data)
 #Split keyphrases list
 for index, keywords in enumerate(data['keyword']):
     data['keyword'].iat[index] = keywords.split(';')  
+
+for index, abstract in enumerate(data['abstract']):
+    title_abstract = data['title'][index] + '. ' + abstract  # title + abstract
+    # remove '\n'
+    title_abstract = title_abstract.replace('\n', ' ')
+
+    data['abstract'].iat[index] = title_abstract
