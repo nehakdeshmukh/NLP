@@ -8,6 +8,7 @@ import json
 import pandas as pd
 from pandas import json_normalize
 import re
+import string 
 
 file = 'data\\kp20k_validation.json' 
 
@@ -106,3 +107,7 @@ data['keyword'] = data['keyword'].apply(
     lambda set_of_keyphrases: [replace_contractions(keyphrase) for keyphrase in set_of_keyphrases])
 print('AFTER contractions data[keyword]', data['keyword'])
 
+punctuation = string.punctuation + '\t' + '\n'
+punctuation = punctuation.replace("'", '')  
+table = str.maketrans(punctuation, ' ' * len(punctuation))
+print(punctuation, 'LEN:', len(punctuation))
