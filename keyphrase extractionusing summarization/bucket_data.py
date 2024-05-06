@@ -100,3 +100,9 @@ def replace_contractions(text):
 print('BEFORE contractions data[abstract]', data['abstract'])
 data['abstract'] = data['abstract'].apply(replace_contractions)
 print('AFTER contractions data[abstract]', data['abstract'])
+
+print('BEFORE contractions data[keyword]', data['keyword'])
+data['keyword'] = data['keyword'].apply(
+    lambda set_of_keyphrases: [replace_contractions(keyphrase) for keyphrase in set_of_keyphrases])
+print('AFTER contractions data[keyword]', data['keyword'])
+
