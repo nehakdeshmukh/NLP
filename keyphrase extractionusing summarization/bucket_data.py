@@ -95,3 +95,8 @@ def replace_contractions(text):
         return contractions[match.group(0)]
 
     return contractions_re.sub(replace, text)
+
+
+print('BEFORE contractions data[abstract]', data['abstract'])
+data['abstract'] = data['abstract'].apply(replace_contractions)
+print('AFTER contractions data[abstract]', data['abstract'])
