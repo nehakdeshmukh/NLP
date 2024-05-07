@@ -117,3 +117,6 @@ def remove_punct_and_non_ascii(text):
     clean_text = clean_text.encode("ascii", "ignore").decode()  # remove non-ascii characters
     return clean_text
 
+def keyword_remove_punct_and_non_ascii(text):
+    clean_text = [keyw.translate(table).encode("ascii", "ignore").decode() for keyw in text]  # remove non-ascii characters
+    return clean_text
