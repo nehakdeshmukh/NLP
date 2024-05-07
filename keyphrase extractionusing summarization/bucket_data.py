@@ -111,3 +111,9 @@ punctuation = string.punctuation + '\t' + '\n'
 punctuation = punctuation.replace("'", '')  
 table = str.maketrans(punctuation, ' ' * len(punctuation))
 print(punctuation, 'LEN:', len(punctuation))
+
+def remove_punct_and_non_ascii(text):
+    clean_text = text.translate(table)
+    clean_text = clean_text.encode("ascii", "ignore").decode()  # remove non-ascii characters
+    return clean_text
+
