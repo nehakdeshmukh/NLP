@@ -129,3 +129,6 @@ print(data['keyword'])
 data['abstract'] = data['abstract'].apply(lambda text: " ".join([token if not re.match('^\d+$', token) else 'DIGIT_REPL' for token in text.split()]))
 
 data = data[data['abstract'].str.strip().astype(bool)]
+
+data.reset_index(drop=True, inplace=True)
+print('AFTER CLEANING', data)
