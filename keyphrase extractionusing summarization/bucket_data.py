@@ -9,6 +9,8 @@ import pandas as pd
 from pandas import json_normalize
 import re
 import string 
+from keras.preprocessing.text import Tokenizer
+
 
 file = 'data\\kp20k_validation.json' 
 
@@ -138,3 +140,8 @@ data['keyword'] = data['keyword'].apply(lambda set_of_keyws: [key_text for key_t
 
 data = data[data['keyword'].map(len) > 0]
 print('LEN AFTER', len(data))
+
+if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':  
+
+    tokenizer = Tokenizer(filters='', lower=True, oov_token='<UKN>')
+    tokenizer.fit_on_texts(data['abstract'])
