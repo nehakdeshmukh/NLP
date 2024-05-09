@@ -132,3 +132,7 @@ data = data[data['abstract'].str.strip().astype(bool)]
 
 data.reset_index(drop=True, inplace=True)
 print('AFTER CLEANING', data)
+
+print('LEN BEFORE', len(data))
+data['keyword'] = data['keyword'].apply(lambda set_of_keyws: [key_text for key_text in set_of_keyws if key_text.strip()])
+
