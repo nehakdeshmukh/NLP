@@ -136,3 +136,5 @@ print('AFTER CLEANING', data)
 print('LEN BEFORE', len(data))
 data['keyword'] = data['keyword'].apply(lambda set_of_keyws: [key_text for key_text in set_of_keyws if key_text.strip()])
 
+data = data[data['keyword'].map(len) > 0]
+print('LEN AFTER', len(data))
