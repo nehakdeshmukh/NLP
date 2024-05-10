@@ -148,3 +148,6 @@ if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
     
     # convert text to sequence of numbers
     X = tokenizer.texts_to_sequences(data['abstract'])
+    
+    # word-index pairs
+    word_index = tokenizer.word_index
