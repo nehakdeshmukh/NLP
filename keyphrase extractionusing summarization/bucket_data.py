@@ -145,3 +145,6 @@ if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
 
     tokenizer = Tokenizer(filters='', lower=True, oov_token='<UKN>')
     tokenizer.fit_on_texts(data['abstract'])
+    
+    # convert text to sequence of numbers
+    X = tokenizer.texts_to_sequences(data['abstract'])
