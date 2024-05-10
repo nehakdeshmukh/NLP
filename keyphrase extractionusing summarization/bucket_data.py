@@ -10,6 +10,7 @@ from pandas import json_normalize
 import re
 import string 
 from keras.preprocessing.text import Tokenizer
+import pickle 
 
 
 file = 'data\\kp20k_validation.json' 
@@ -151,3 +152,6 @@ if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
     
     # word-index pairs
     word_index = tokenizer.word_index
+    
+    with open('data\\train_tokenizer.pickle', 'wb') as handle:
+        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
