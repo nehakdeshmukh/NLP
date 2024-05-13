@@ -162,4 +162,6 @@ else:
     with open('data\\train_tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     
+    X = tokenizer.texts_to_sequences(data['abstract'])
+    
     
