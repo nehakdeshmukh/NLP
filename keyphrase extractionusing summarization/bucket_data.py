@@ -155,3 +155,11 @@ if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
     
     with open('data\\train_tokenizer.pickle', 'wb') as handle:
         pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        
+else:  
+    
+    # load tokenizer
+    with open('data\\train_tokenizer.pickle', 'rb') as handle:
+        tokenizer = pickle.load(handle)
+    
+    
