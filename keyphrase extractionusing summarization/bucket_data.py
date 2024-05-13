@@ -164,4 +164,6 @@ else:
     
     X = tokenizer.texts_to_sequences(data['abstract'])
     
-    
+    word_index = tokenizer.word_index
+
+
