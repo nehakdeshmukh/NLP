@@ -175,4 +175,7 @@ def tokenize_lowercase(text):
         formatted_text.append(word_token.lower())  
     return formatted_text
 
-
+# tokenize text
+data['abstract'] = data['abstract'].apply(tokenize_lowercase)
+print(data['abstract'])
+print('tokenization - abstract finish')
