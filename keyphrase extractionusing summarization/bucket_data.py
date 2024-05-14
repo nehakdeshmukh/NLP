@@ -11,6 +11,7 @@ import re
 import string 
 from keras.preprocessing.text import Tokenizer
 import pickle 
+from nltk.tokenize import word_tokenize
 
 
 file = 'data\\kp20k_validation.json' 
@@ -165,5 +166,13 @@ else:
     X = tokenizer.texts_to_sequences(data['abstract'])
     
     word_index = tokenizer.word_index
+
+def tokenize_lowercase(text):
+
+    formatted_text = []
+    words = word_tokenize(text) 
+    for word_token in words:  
+        formatted_text.append(word_token.lower())  
+    return formatted_text
 
 
