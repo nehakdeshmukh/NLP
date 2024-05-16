@@ -193,3 +193,7 @@ for index, list_of_keyphrases in enumerate(data['keyword']):
            
             keyphrases_list.append([Stemmer('porter').stem(keyword.lower()) for keyword in tokens])  # stem + lower case
     data['keyword'].iat[index] = keyphrases_list
+    
+if x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':  
+    data['abstract'].to_csv(x_text_filename, index=False) 
+    data['keyword'].to_csv(y_text_filename, index=False) 
