@@ -12,6 +12,7 @@ import string
 from keras.preprocessing.text import Tokenizer
 import pickle 
 from nltk.tokenize import word_tokenize
+from nltk.stem.snowball import SnowballStemmer as Stemmer
 
 
 file = 'data\\kp20k_validation.json' 
@@ -179,3 +180,16 @@ def tokenize_lowercase(text):
 data['abstract'] = data['abstract'].apply(tokenize_lowercase)
 print(data['abstract'])
 print('tokenization - abstract finish')
+
+for index, list_of_keyphrases in enumerate(data['keyword']):
+    keyphrases_list = []
+    for keyphrase in list_of_keyphrases: 
+       
+        keyphrase = keyphrase.strip() 
+        if len(keyphrase): 
+            tokens = word_tokenize(keyphrase) 
+         
+            tokens = [tok if not re.match('^\d+$', tok) else 'DIGIT_REPL' for tok in tokens]
+           
+            keyphrases_list.append([Stemmer('porter').stem(keyword.lower()) for keyword in tokens])  # stem + lower case
+    data['keyword'].iat[index] = keyphrases_list
