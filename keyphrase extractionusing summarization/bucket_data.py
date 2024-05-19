@@ -197,3 +197,10 @@ for index, list_of_keyphrases in enumerate(data['keyword']):
 if x_filename == 'data\\preprocessed_data\\x_TEST_data_preprocessed':  
     data['abstract'].to_csv(x_text_filename, index=False) 
     data['keyword'].to_csv(y_text_filename, index=False) 
+    
+    
+if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
+
+    gloveFile = 'GloVe\\glove.6B\\glove.6B.100d.txt'
+    print("Loading Glove Model")
+    
