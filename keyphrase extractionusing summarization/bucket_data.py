@@ -13,6 +13,7 @@ from keras.preprocessing.text import Tokenizer
 import pickle 
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import SnowballStemmer as Stemmer
+import numpy as np
 
 
 file = 'data\\kp20k_validation.json' 
@@ -204,3 +205,13 @@ if x_filename == 'data\\preprocessed_data\\x_TRAIN_data_preprocessed':
     gloveFile = 'GloVe\\glove.6B\\glove.6B.100d.txt'
     print("Loading Glove Model")
     
+    
+    glove_model = {}
+    with open(gloveFile, 'r', encoding="utf8") as f:
+        for line in f:
+            splitLine = line.split()
+            word = splitLine[0]
+            embedding = np.array(splitLine[1:], dtype='float32')
+            glove_model[word] = embedding
+
+    print("Found %s word vectors." % len(glove_model))
